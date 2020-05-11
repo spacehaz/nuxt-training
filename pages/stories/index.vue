@@ -4,8 +4,8 @@
       <app-title :theme="theme">Истории неизлечимых привычек</app-title>
 
       <div class="search stories-list__search">
-        <input type="text" class="search__input" />
-        <button class="button button_size-s">Поиск</button>
+        <app-input class="search__input" />
+        <app-button :size="size" class="search__button">Поиск</app-button>
       </div>
 
       <app-previews class="stories-list__container" :stories="stories">
@@ -21,6 +21,8 @@ import Title from '@/components/shared/Title';
 import Container from '@/components/shared/Container';
 import Previews from '@/components/blocks/Previews';
 import Pagination from '@/components/blocks/Pagination';
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 
 export default {
   components: {
@@ -28,6 +30,8 @@ export default {
     'app-container': Container,
     'app-previews': Previews,
     'app-pagination': Pagination,
+    'app-button': Button,
+    'app-input': Input,
   },
   data() {
     return {
@@ -154,5 +158,15 @@ export default {
   margin-top: 140px;
   display: flex;
   justify-content: center;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-gap: 20px;
+}
+
+.search /deep/ .input {
+  border: 1px solid #e8e8e8;
 }
 </style>
