@@ -1,36 +1,43 @@
 <template>
-  <form action="" class="quiz">
-    <fieldset class="quiz__fieldset">
-      <app-title class="quiz__title" :theme="theme">Шаг 1 из 12</app-title>
-      <label class="quiz__question">
-        <p class="quiz__label">
-          <span class="quiz__text-accent">
-            Было ли у вас онкологическое заболевание?
-          </span>
-          Если да – расскажите, пожалуйста, кратко, какой диагноз и текущий
-          статус.
-        </p>
-        <app-input class="quiz__input" placeholder="Напишите тут" />
-      </label>
-    </fieldset>
-    <div class="quiz__navigation">
-      <button class="quiz__back-btn" disabled>Назад</button>
-      <app-button :size="size">Далее</app-button>
-    </div>
-    <img src="/close.svg" alt="Закрыть форму" class="close-btn" />
-  </form>
+  <div>
+    <app-overlay />
+    <form action="/" class="quiz" method="POST">
+      <fieldset class="quiz__fieldset">
+        <app-title class="quiz__title" :theme="theme">Шаг 1 из 12</app-title>
+        <label class="quiz__question">
+          <p class="quiz__label">
+            <span class="quiz__text-accent">
+              Было ли у вас онкологическое заболевание?
+            </span>
+            Если да – расскажите, пожалуйста, кратко, какой диагноз и текущий
+            статус.
+          </p>
+          <app-input class="quiz__input" placeholder="Напишите тут" />
+        </label>
+      </fieldset>
+      <div class="quiz__navigation">
+        <button class="quiz__back-btn" disabled>Назад</button>
+        <app-button :size="size">Далее</app-button>
+      </div>
+      <app-close-btn @toggleQuiz="$emit('toggleQuiz')" />
+    </form>
+  </div>
 </template>
 
 <script>
-import Button from '../ui/Button';
-import Title from '../shared/Title';
-import Input from '../ui/Input';
+import Button from '@/components/ui/Button';
+import Title from '@/components/shared/Title';
+import Input from '@/components/ui/Input';
+import Overlay from '@/components/ui/Overlay';
+import CloseBtn from '@/components/ui/CloseBtn';
 
 export default {
   components: {
     'app-button': Button,
     'app-title': Title,
     'app-input': Input,
+    'app-overlay': Overlay,
+    'app-close-btn': CloseBtn,
   },
   data() {
     return {
@@ -91,13 +98,6 @@ export default {
 .quiz__input {
   border: none;
   border-bottom: 1px solid #e7e7e7;
-}
-
-.close-btn {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  cursor: pointer;
 }
 
 .quiz__back-btn {

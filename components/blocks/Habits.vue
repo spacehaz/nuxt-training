@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import Container from '../shared/Container';
-import Title from '../shared/Title';
-import Previews from './Previews';
-import MoreBtn from '../ui/MoreBtn';
+import Container from '@/components/shared/Container';
+import Title from '@/components/shared/Title';
+import Previews from '@/components/blocks/Previews';
+import MoreBtn from '@/components/ui/MoreBtn';
 
 export default {
   props: {

@@ -1,27 +1,28 @@
 <template>
   <nav class="navigation">
     <ul class="navigation__list">
-      <li class="navigation__item" v-for="(link, index) in links" :key="index">
+      <li class="navigation__item">
         <nuxt-link
-          :to="link.path"
+          to="/"
           class="navigation__link"
           active-class="navigation__link_active"
           exact
         >
-          {{ link.item }}
+          Главная
+        </nuxt-link>
+      </li>
+      <li class="navigation__item">
+        <nuxt-link
+          to="/stories"
+          class="navigation__link"
+          active-class="navigation__link_active"
+        >
+          Истории
         </nuxt-link>
       </li>
     </ul>
   </nav>
 </template>
-
-<script>
-export default {
-  props: {
-    links: Array,
-  },
-};
-</script>
 
 <style scoped>
 .navigation__list {

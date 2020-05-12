@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Container from '../shared/Container';
+import Container from '@/components/shared/Container';
 
 export default {
   components: {

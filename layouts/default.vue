@@ -35,39 +35,8 @@ html {
   margin: 0;
 }
 
-.root__intro {
-  padding-top: 100px;
-  padding-bottom: 74px;
-}
-
-.root__habits {
-  padding: 100px 0;
-}
-
-.root__instagram {
-  padding: 100px 0;
-}
-
-.root__share-your-story {
-  padding: 100px 0;
-}
-
-.root__about {
-  padding-top: 90px;
-  padding-bottom: 100px;
-}
-
-.root__statistics {
-  padding: 100px 0;
-}
-
 .root__footer {
   padding-top: 60px;
   padding-bottom: 60px;
-}
-
-.root__stories-list {
-  padding-top: 100px;
-  padding-bottom: 100px;
 }
 </style>

@@ -5,7 +5,7 @@
         <app-title :theme="theme" class="footer__title">
           Спасибо всем, кто помог состояться этому проекту
         </app-title>
-        <app-navigation :links="footerLinks"></app-navigation>
+        <app-navigation></app-navigation>
       </div>
       <ul class="footer__socials">
         <li class="footer__socials-item">
@@ -41,10 +41,10 @@
 </template>
 
 <script>
-import FlexContainer from './FlexContainer';
-import Navigation from './Navigation';
-import Title from './Title';
-import ShareBtn from '../ui/ShareBtn';
+import FlexContainer from '@/components/shared/FlexContainer';
+import Navigation from '@/components/shared/Navigation';
+import Title from '@/components/shared/Title';
+import ShareBtn from '@/components/ui/ShareBtn';
 
 export default {
   components: {
@@ -56,10 +56,6 @@ export default {
   data() {
     return {
       theme: 'light',
-      footerLinks: [
-        { item: 'Главная', path: '/' },
-        { item: 'Истории', path: '/stories' },
-      ],
     };
   },
 };

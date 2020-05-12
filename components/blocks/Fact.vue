@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import Flex from '../shared/Flex';
+import Flex from '@/components/shared/Flex';
 
 export default {
   props: {

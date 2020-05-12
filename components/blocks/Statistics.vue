@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import Container from '../shared/Container';
-import Title from '../shared/Title';
-import Fact from './Fact';
+import Container from '@/components/shared/Container';
+import Title from '@/components/shared/Title';
+import Fact from '@/components/blocks/Fact';
 
 export default {
   props: {
