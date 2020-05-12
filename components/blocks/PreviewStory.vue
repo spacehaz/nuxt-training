@@ -24,6 +24,10 @@ export default {
   text-decoration: none;
 }
 
+.preview-story:hover {
+  opacity: 0.8;
+}
+
 .preview-story__picture {
   position: relative;
   display: block;

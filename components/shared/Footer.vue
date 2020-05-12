@@ -27,9 +27,7 @@
           </a>
         </li>
         <li class="footer__socials-item">
-          <a href="#" class="footer__socials-link">
-            Поделитесь &#8599;
-          </a>
+          <app-share-btn class="footer__socials-link"> </app-share-btn>
         </li>
       </ul>
     </app-flex-container>
@@ -46,12 +44,14 @@
 import FlexContainer from './FlexContainer';
 import Navigation from './Navigation';
 import Title from './Title';
+import ShareBtn from '../ui/ShareBtn';
 
 export default {
   components: {
     'app-flex-container': FlexContainer,
     'app-navigation': Navigation,
     'app-title': Title,
+    'app-share-btn': ShareBtn,
   },
   data() {
     return {
