@@ -27,9 +27,7 @@
           </a>
         </li>
         <li class="footer__socials-item">
-          <app-share-btn class="footer__socials-link">
-            Поделитесь &#8599;
-          </app-share-btn>
+          <app-share-btn class="footer__socials-link"> </app-share-btn>
         </li>
       </ul>
     </app-flex-container>

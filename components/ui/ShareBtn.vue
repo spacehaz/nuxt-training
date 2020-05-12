@@ -1,5 +1,5 @@
 <template>
-  <button type="button" href="#" class="share-btn">
+  <button type="button" class="share-btn">
     <slot>Поделитесь &#8599;</slot>
   </button>
 </template>
@@ -11,8 +11,8 @@
   line-height: 24px;
   color: #121212;
   background-color: transparent;
-  border: 0;
   cursor: pointer;
+  border: 0;
 }
 
 .share-btn:hover {

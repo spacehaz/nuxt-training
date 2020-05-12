@@ -1,5 +1,5 @@
 <template>
-  <section class="story root__story">
+  <main class="story root__story">
     <app-container>
       <app-flex class="story__header">
         <img
@@ -7,16 +7,16 @@
           alt=""
           class="story__img"
         />
-        <div class="story__lead">
+        <div class="story__main-description">
           <h1 class="story__title">
-            <span class="story__title-accent">Александр Тарханов:</span> «Я не
-            могу победить свою пунктуальность в отличии от рака»
+            <span class="story__title-accent">Александр Тарханов:</span>
+            «Я не могу победить свою пунктуальность в отличии от рака»
           </h1>
-          <app-flex class="story__meta">
-            <app-share-btn class="story__meta-item">
+          <app-flex class="story__info">
+            <app-share-btn class="social__link">
               Поделитесь &#8599;
             </app-share-btn>
-            <span class="story__meta-item">20 апреля 2018</span>
+            <span class="story__date">20 апреля 2018</span>
           </app-flex>
         </div>
       </app-flex>
@@ -64,36 +64,73 @@
             пунктуальность уже не лечится».
           </p>
         </div>
-        <app-share-btn class="story__link">
+        <app-share-btn class="story__share-btn">
           Поделитесь этой статьей в своих социальных сетях &#8599;
         </app-share-btn>
       </div>
+
+      <app-previews :stories="stories" class="story__previews"></app-previews>
+
+      <app-more-btn></app-more-btn>
     </app-container>
-  </section>
+  </main>
 </template>
 
 <script>
 import Container from '@/components/shared/Container';
 import Flex from '@/components/shared/Flex';
 import ShareBtn from '@/components/ui/ShareBtn';
+import Previews from '@/components/blocks/Previews';
+import MoreBtn from '@/components/ui/MoreBtn';
 
 export default {
   components: {
     'app-container': Container,
     'app-flex': Flex,
     'app-share-btn': ShareBtn,
+    'app-previews': Previews,
+    'app-more-btn': MoreBtn,
+  },
+  data() {
+    return {
+      stories: [],
+    };
+  },
+  created() {
+    this.stories = [
+      {
+        imageSrc: '',
+        author: 'Владимир Тен',
+        quote:
+          'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+      },
+      {
+        imageSrc: '',
+        author: 'Владимир Тен',
+        quote:
+          'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+      },
+      {
+        imageSrc: '',
+        author: 'Владимир Тен',
+        quote:
+          'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+      },
+      {
+        imageSrc: '',
+        author: 'Владимир Тен',
+        quote:
+          'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+      },
+    ];
   },
 };
 </script>
 
 <style scoped>
 .root__story {
-  margin-top: 100px;
-  margin-bottom: 160px;
-}
-
-.story__header {
-  margin-bottom: 130px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .story__img {
@@ -102,14 +139,14 @@ export default {
   object-fit: cover;
 }
 
-.story__lead {
+.story__main-description {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: 680px;
+  padding: 30px 0;
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
-  padding: 30px 0;
 }
 
 .story__title {
@@ -122,15 +159,17 @@ export default {
   font-weight: 500;
 }
 
-.story__meta {
+.story__info {
   font-size: 18px;
   line-height: 24px;
   color: #121212;
 }
 
 .story__content-container {
-  margin: 0 auto;
   max-width: 780px;
+  margin: 0 auto;
+  padding-top: 130px;
+  padding-bottom: 160px;
 }
 
 .story__content {
@@ -151,10 +190,14 @@ export default {
   margin-bottom: 0;
 }
 
-.story__link {
+.story__share-btn {
   padding: 30px 0;
-  width: 100%;
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
+  width: 100%;
+}
+
+.story__previews {
+  margin-bottom: 70px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/stories/:id" class="preview-story">
+  <nuxt-link to="/stories/_id" class="preview-story">
     <picture class="preview-story__picture">
       <img class="preview-story__image" src="" alt="" />
     </picture>
@@ -22,6 +22,10 @@ export default {
 .preview-story {
   display: block;
   text-decoration: none;
+}
+
+.preview-story:hover {
+  opacity: 0.8;
 }
 
 .preview-story__picture {

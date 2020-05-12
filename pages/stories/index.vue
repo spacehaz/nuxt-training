@@ -1,19 +1,21 @@
 <template>
-  <section class="stories-list root__stories-list">
+  <main class="stories root__stories">
     <app-container>
-      <app-title :theme="theme">Истории неизлечимых привычек</app-title>
+      <app-title :theme="theme" class="stories__title"
+        >Истории неизлечимых привычек</app-title
+      >
 
-      <div class="search stories-list__search">
-        <app-input class="search__input" />
-        <app-button :size="size" class="search__button">Поиск</app-button>
+      <div class="stories__search">
+        <app-input class="stories__input" />
+        <app-button :size="size">Поиск</app-button>
       </div>
 
-      <app-previews class="stories-list__container" :stories="stories">
+      <app-previews class="stories__container" :stories="stories">
       </app-previews>
 
-      <app-pagination class="stories-list__pagination"></app-pagination>
+      <app-pagination class="stories__pagination"></app-pagination>
     </app-container>
-  </section>
+  </main>
 </template>
 
 <script>
@@ -21,8 +23,8 @@ import Title from '@/components/shared/Title';
 import Container from '@/components/shared/Container';
 import Previews from '@/components/blocks/Previews';
 import Pagination from '@/components/blocks/Pagination';
-import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
+import Button from '@/components/ui/Button';
 
 export default {
   components: {
@@ -30,8 +32,8 @@ export default {
     'app-container': Container,
     'app-previews': Previews,
     'app-pagination': Pagination,
-    'app-button': Button,
     'app-input': Input,
+    'app-button': Button,
   },
   data() {
     return {
@@ -144,18 +146,30 @@ export default {
 </script>
 
 <style scoped>
-.stories-list__container {
-  margin-top: 70px;
-  margin-bottom: 140px;
+.root__stories {
+  padding: 100px 0;
 }
 
-.stories-list__search {
-  margin-top: 60px;
+.stories__title {
+  margin-bottom: 60px;
+}
+
+.stories__search {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-gap: 20px;
   margin-bottom: 70px;
 }
 
-.stories-list__pagination {
-  margin-top: 140px;
+.stories__input {
+  border: 1px solid #e8e8e8;
+}
+
+.stories__container {
+  margin-bottom: 140px;
+}
+
+.stories__pagination {
   display: flex;
   justify-content: center;
 }

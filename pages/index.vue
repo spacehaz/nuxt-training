@@ -24,6 +24,7 @@ import Instagram from '@/components/blocks/Instagram';
 import ShareYourStory from '@/components/blocks/ShareYourStory';
 import Statistics from '@/components/blocks/Statistics';
 import About from '@/components/blocks/About';
+import Form from '@/components/blocks/Form';
 
 export default {
   data() {
@@ -44,6 +45,7 @@ export default {
     'app-share-your-story': ShareYourStory,
     'app-statistics': Statistics,
     'app-about': About,
+    'app-form': Form,
   },
   created() {
     (this.stories = [

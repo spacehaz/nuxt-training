@@ -31,6 +31,10 @@ export default {
 </script>
 
 <style scoped>
+.header {
+  border-bottom: 1px solid #e8e8e8;
+}
+
 .header__container {
   align-items: center;
   min-height: 76px;
