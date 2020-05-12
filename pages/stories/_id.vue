@@ -20,7 +20,6 @@
           </app-flex>
         </div>
       </app-flex>
-
       <div class="story__content-container">
         <div class="story__content">
           <p class="story__paragraph">

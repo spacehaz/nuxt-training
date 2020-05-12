@@ -173,4 +173,14 @@ export default {
   display: flex;
   justify-content: center;
 }
+
+.search {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-gap: 20px;
+}
+
+.search /deep/ .input {
+  border: 1px solid #e8e8e8;
+}
 </style>

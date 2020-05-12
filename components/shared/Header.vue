@@ -23,7 +23,7 @@ export default {
       headerLinks: [
         { item: 'Главная', path: '/' },
         { item: 'Истории', path: '/stories' },
-        { item: 'Рассказать историю', path: '#form' },
+        { item: 'Рассказать историю', path: '/#form' },
       ],
     };
   },
