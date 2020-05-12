@@ -1,5 +1,8 @@
 <template>
-  <button :class="['button', `button_size-${size}`]">
+  <button
+    :class="['button', `button_size-${size}`]"
+    @click="$emit('toggleQuiz')"
+  >
     <slot></slot>
   </button>
 </template>

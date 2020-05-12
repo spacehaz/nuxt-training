@@ -1,7 +1,11 @@
 <template>
   <section class="cover">
     <h1 class="cover__main-title">#РАКЛЕЧИТСЯ</h1>
-    <a href="#intro" class="cover__scroll">
+    <a
+      href="#intro"
+      class="cover__scroll"
+      aria-label="Показать следующий раздел"
+    >
       <svg class="cover__scroll-arrow" xmlns="http://www.w3.org/2000/svg">
         <path d="M37 1L19 13L1 1"></path>
       </svg>

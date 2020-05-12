@@ -6,12 +6,9 @@
     <app-habits :stories="stories" class="root__habits" />
     <app-callout :title="'РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ'" />
     <app-instagram class="root__instagram" :gallery="gallery" />
-    <app-share-your-story
-      class="root__share-your-story"
-      :variants="shareYourStoryVariants"
-    />
+    <app-share-your-story class="root__share-your-story" />
     <app-statistics class="root__statistics" :statistics="statistics" />
-    <app-about class="root__about" :variants="aboutVariants" />
+    <app-about class="root__about" />
   </main>
 </template>
 
@@ -24,15 +21,12 @@ import Instagram from '@/components/blocks/Instagram';
 import ShareYourStory from '@/components/blocks/ShareYourStory';
 import Statistics from '@/components/blocks/Statistics';
 import About from '@/components/blocks/About';
-import Form from '@/components/blocks/Form';
 
 export default {
   data() {
     return {
       stories: [],
       gallery: [],
-      shareYourStoryVariants: [],
-      aboutVariants: [],
       statistics: [],
     };
   },
@@ -45,7 +39,6 @@ export default {
     'app-share-your-story': ShareYourStory,
     'app-statistics': Statistics,
     'app-about': About,
-    'app-form': Form,
   },
   created() {
     (this.stories = [
@@ -108,41 +101,6 @@ export default {
         'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
         'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
       ]),
-      (this.shareYourStoryVariants = [
-        {
-          id: 1,
-          title: '1-й вариант',
-          texts: [
-            'Заполнить подробную форму прямо на сайте и мы опубликуем вашу историю после проверки. Пожалуйста, заполняйте все пункты корректно, если вы испытаете какие-то сложности, воспользуйтесь 2-м вариантом.',
-          ],
-          buttonText: 'Заполнить форму',
-        },
-        {
-          id: 2,
-          title: '2-й вариант',
-          texts: [
-            'Оставить контакт (почту или номер телефона) и мы свяжемся с вами, зададим вопросы, уточним детали вашей истории.',
-          ],
-          buttonText: 'Оставить контакт',
-        },
-      ]),
-      (this.aboutVariants = [
-        {
-          id: 1,
-          title: 'Рак Лечится',
-          texts: [
-            'Есть вещи, которые не лечатся. Особенности характера, страстные увлечения, привычки, ставшие частью нашего «я», фобии, которые мы приобрели в детстве. Список можно продолжать до бесконечности, но одна болезнь в него точно не войдет. Эта болезнь — рак. Рак лечится, и лучшее доказательство — люди с их неизлечимыми особенностями, которые сумели победить рак.',
-            'Рак лечится — проект Благотворительного Фонда Константина Хабенского и Leo Burnett Moscow. С его помощью мы надеемся изменить отношение людей к раку и заставить каждого поверить: онкологическое заболевание — это не приговор.',
-          ],
-        },
-        {
-          id: 2,
-          title: 'Фонд Хабенского',
-          texts: [
-            'Благотворительный Фонд Константина Хабенского с 2008 года помогает детям с онкологическими и другими тяжелыми заболеваниями головного мозга. Фонд не только поддерживает семью заболевшего ребенка в самый сложный момент, оплачивая обследования, лечение и медицинские препараты, но и в целом меняет систему оказания помощи детям с опухолями мозга в России.',
-          ],
-        },
-      ]),
       (this.statistics = [
         {
           id: 1,
@@ -194,4 +152,30 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.root__intro {
+  padding-top: 100px;
+  padding-bottom: 74px;
+}
+
+.root__habits {
+  padding: 100px 0;
+}
+
+.root__instagram {
+  padding: 100px 0;
+}
+
+.root__share-your-story {
+  padding: 100px 0;
+}
+
+.root__about {
+  padding-top: 90px;
+  padding-bottom: 100px;
+}
+
+.root__statistics {
+  padding: 100px 0;
+}
+</style>

@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import Container from '../shared/Container';
-import Title from '../shared/Title';
-import Paragraph from '../shared/Paragraph';
-import Gallery from './Gallery';
+import Container from '@/components/shared/Container';
+import Title from '@/components/shared/Title';
+import Paragraph from '@/components/shared/Paragraph';
+import Gallery from '@/components/blocks/Gallery';
 
 export default {
   props: {

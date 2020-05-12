@@ -4,28 +4,37 @@
       <p class="header__logo">
         Проект Благотворительного Фонда Константина Хабенского
       </p>
-      <app-navigation :links="headerLinks"></app-navigation>
+      <div class="header__links">
+        <app-navigation></app-navigation>
+        <button class="header__button" @click="toggleQuiz">
+          Рассказать историю
+        </button>
+      </div>
     </app-flex-container>
+    <app-quiz v-if="isShown" @toggleQuiz="toggleQuiz"></app-quiz>
   </header>
 </template>
 
 <script>
-import FlexContainer from './FlexContainer';
-import Navigation from './Navigation';
+import FlexContainer from '@/components/shared/FlexContainer';
+import Navigation from '@/components/shared/Navigation';
+import Quiz from '@/components/blocks/Quiz';
 
 export default {
   components: {
     'app-flex-container': FlexContainer,
     'app-navigation': Navigation,
+    'app-quiz': Quiz,
   },
   data() {
     return {
-      headerLinks: [
-        { item: 'Главная', path: '/' },
-        { item: 'Истории', path: '/stories' },
-        { item: 'Рассказать историю', path: '/#form' },
-      ],
+      isShown: false,
     };
+  },
+  methods: {
+    toggleQuiz() {
+      this.isShown = !this.isShown;
+    },
   },
 };
 </script>
@@ -46,5 +55,29 @@ export default {
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
+}
+
+.header__links {
+  display: flex;
+}
+
+.header__button {
+  margin-left: 40px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #121212;
+  cursor: pointer;
+}
+
+.header__button:hover {
+  opacity: 0.8;
+}
+
+.header__button:active {
+  outline: none;
 }
 </style>

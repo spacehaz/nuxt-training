@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import PreviewStory from './PreviewStory';
+import PreviewStory from '@/components/blocks/PreviewStory';
 
 export default {
   components: {
