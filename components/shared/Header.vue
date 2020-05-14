@@ -11,7 +11,7 @@
         </button>
       </div>
     </app-flex-container>
-    <app-quiz v-if="quizShown"></app-quiz>
+    <app-quiz v-if="isPopupShown"></app-quiz>
   </header>
 </template>
 
@@ -27,8 +27,8 @@ export default {
     'app-quiz': Quiz,
   },
   computed: {
-    quizShown() {
-      return this.$store.getters['quiz/getQuizShown'];
+    isPopupShown() {
+      return this.$store.getters['quiz/getQuizVisibility'];
     },
   },
   methods: {

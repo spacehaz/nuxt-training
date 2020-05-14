@@ -48,7 +48,7 @@
             <app-button
               :size="size"
               class="tabs__btn"
-              @buttonClick="toggleQuiz"
+              @click.native="toggleQuiz"
             >
               Заполнить форму
             </app-button>
@@ -66,7 +66,7 @@
         </div>
       </app-flex>
     </app-container>
-    <app-quiz v-if="quizShown"></app-quiz>
+    <app-quiz v-if="isPopupShown"></app-quiz>
   </section>
 </template>
 
@@ -87,6 +87,11 @@ export default {
     'app-button': Button,
     'app-quiz': Quiz,
   },
+  computed: {
+    isPopupShown() {
+      return this.$store.getters['quiz/getQuizVisibility'];
+    },
+  },
   data() {
     return {
       theme: 'light',
@@ -102,13 +107,13 @@ export default {
     },
   },
   methods: {
+    toggleQuiz() {
+      this.$store.commit('quiz/toggleQuiz');
+    },
     changeVariant() {
       return this.currentVariant === this.firstVariant
         ? (this.currentVariant = this.secondVariant)
         : (this.currentVariant = this.firstVariant);
-    },
-    toggleQuiz() {
-      return this.$store.commit('quiz/toggleQuiz');
     },
   },
 };
