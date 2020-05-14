@@ -2,9 +2,7 @@
   <ul class="gallery">
     <li class="gallery__item" v-for="(image, index) in gallery" :key="index">
       <a href="#" class="gallery__link">
-        <picture class="gallery__picture">
-          <img :src="image" alt="" class="gallery__image" />
-        </picture>
+        <img :src="image" alt="" class="gallery__image" />
       </a>
     </li>
   </ul>
@@ -29,23 +27,18 @@ export default {
 
 .gallery__link {
   display: block;
-}
-
-.gallery__picture {
-  position: relative;
-  width: 100%;
-  height: 0;
   padding-top: 100%;
-  display: block;
+  position: relative;
 }
 
 .gallery__image {
-  width: 100%;
-  height: 100%;
+  position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
   object-fit: cover;
   object-position: center center;
-  position: absolute;
 }
 </style>

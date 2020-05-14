@@ -13,7 +13,11 @@
       <app-previews class="stories__container" :stories="stories">
       </app-previews>
 
-      <app-pagination class="stories__pagination"></app-pagination>
+      <app-pagination
+        class="stories__pagination"
+        :storiesCount="stories.length"
+        :storiesPerPage="storiesPerPage"
+      ></app-pagination>
     </app-container>
   </main>
 </template>
@@ -40,6 +44,7 @@ export default {
       theme: 'light',
       stories: [],
       size: 's',
+      storiesPerPage: 4,
     };
   },
   created() {

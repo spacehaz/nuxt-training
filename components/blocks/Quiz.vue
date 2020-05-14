@@ -1,48 +1,35 @@
 <template>
-  <div>
-    <app-overlay />
-    <form action="/" class="quiz" method="POST">
-      <fieldset class="quiz__fieldset">
-        <app-title class="quiz__title" :theme="theme">Шаг 1 из 12</app-title>
-        <label class="quiz__question">
-          <p class="quiz__label">
-            <span class="quiz__text-accent">
-              Было ли у вас онкологическое заболевание?
-            </span>
-            Если да – расскажите, пожалуйста, кратко, какой диагноз и текущий
-            статус.
-          </p>
-          <app-input class="quiz__input" placeholder="Напишите тут" />
-        </label>
-      </fieldset>
-      <div class="quiz__navigation">
-        <button class="quiz__back-btn" disabled>Назад</button>
-        <app-button :size="size">Далее</app-button>
-      </div>
-      <app-close-btn @click.native="toggleQuiz" />
-    </form>
-  </div>
+  <form action="/" class="quiz" method="POST">
+    <fieldset class="quiz__fieldset">
+      <app-title class="quiz__title" :theme="theme">Шаг 1 из 12</app-title>
+      <label class="quiz__question">
+        <p class="quiz__label">
+          <span class="quiz__text-accent">
+            Было ли у вас онкологическое заболевание?
+          </span>
+          Если да – расскажите, пожалуйста, кратко, какой диагноз и текущий
+          статус.
+        </p>
+        <app-input class="quiz__input" placeholder="Напишите тут" />
+      </label>
+    </fieldset>
+    <div class="quiz__navigation">
+      <button class="quiz__back-btn" disabled>Назад</button>
+      <app-button :size="size">Далее</app-button>
+    </div>
+  </form>
 </template>
 
 <script>
 import Button from '@/components/ui/Button';
 import Title from '@/components/shared/Title';
 import Input from '@/components/ui/Input';
-import Overlay from '@/components/ui/Overlay';
-import CloseBtn from '@/components/ui/CloseBtn';
 
 export default {
   components: {
     'app-button': Button,
     'app-title': Title,
     'app-input': Input,
-    'app-overlay': Overlay,
-    'app-close-btn': CloseBtn,
-  },
-  methods: {
-    toggleQuiz() {
-      this.$store.commit('quiz/toggleQuiz');
-    },
   },
   data() {
     return {
@@ -50,31 +37,17 @@ export default {
       theme: 'light',
     };
   },
-  methods: {
-    toggleQuiz() {
-      this.$store.commit('quiz/toggleQuiz');
-    },
-  },
 };
 </script>
 
 <style scoped>
 .quiz {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 10;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   width: 920px;
   height: 600px;
-
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 40px;
 }
 
 .quiz__fieldset {

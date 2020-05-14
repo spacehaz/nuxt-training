@@ -15,8 +15,8 @@ export default {
       },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '/fonts/fonts.css' },
+      // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // { rel: 'stylesheet', href: '@/assets/fonts/fonts.css' },
     ],
   },
   /*
@@ -26,7 +26,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [{ lang: 'css', src: '~/assets/fonts/fonts.css' }],
   /*
    ** Plugins to load before mounting the App
    */

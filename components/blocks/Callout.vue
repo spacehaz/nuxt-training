@@ -17,7 +17,10 @@ export default {
     'app-container': Container,
   },
   props: {
-    title: String,
+    title: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>

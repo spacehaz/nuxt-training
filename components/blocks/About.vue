@@ -18,7 +18,7 @@
                 :class="[
                   'tabs__variant',
                   'tabs__variant_theme_main',
-                  currentVariant === firstVariant ? 'tabs__variant_active' : '',
+                  { tabs__variant_active: currentVariant === firstVariant },
                 ]"
                 @click="changeVariant"
               >
@@ -28,9 +28,7 @@
                 :class="[
                   'tabs__variant',
                   'tabs__variant_theme_main',
-                  currentVariant === secondVariant
-                    ? 'tabs__variant_active'
-                    : '',
+                  { tabs__variant_active: currentVariant === secondVariant },
                 ]"
                 @click="changeVariant"
               >
@@ -98,9 +96,10 @@ export default {
   },
   methods: {
     changeVariant() {
-      return this.currentVariant === this.firstVariant
-        ? (this.currentVariant = this.secondVariant)
-        : (this.currentVariant = this.firstVariant);
+      this.currentVariant =
+        this.currentVariant === this.firstVariant
+          ? this.secondVariant
+          : this.firstVariant;
     },
   },
 };

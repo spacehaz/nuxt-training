@@ -6,6 +6,7 @@
           <a
             href="https://www.instagram.com/raklechitsa/"
             class="instagram__link"
+            target="_blank"
           >
             Инстаграм
           </a>

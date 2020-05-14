@@ -3,17 +3,32 @@
     <app-header />
     <nuxt />
     <app-footer class="root__footer" />
+    <app-overlay v-if="isPopupShown" />
+    <app-popup v-if="isPopupShown">
+      <app-quiz />
+    </app-popup>
   </div>
 </template>
 
 <script>
 import Header from '@/components/shared/Header.vue';
 import Footer from '@/components/shared/Footer.vue';
+import Overlay from '@/components/ui/Overlay';
+import Popup from '@/components/ui/Popup';
+import Quiz from '@/components/blocks/Quiz';
 
 export default {
   components: {
     'app-header': Header,
     'app-footer': Footer,
+    'app-overlay': Overlay,
+    'app-popup': Popup,
+    'app-quiz': Quiz,
+  },
+  computed: {
+    isPopupShown() {
+      return this.$store.getters['popup/getPopupVisibility'];
+    },
   },
 };
 </script>

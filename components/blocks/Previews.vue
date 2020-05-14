@@ -1,9 +1,12 @@
 <template>
   <div class="previews">
     <app-preview-story
-      :story="story"
+      :imageSrc="story.imageSrc"
+      :author="story.author"
+      :quote="story.quote"
+      :id="story.id"
       v-for="(story, index) in stories"
-      :key="index"
+      :key="story.id"
     ></app-preview-story>
   </div>
 </template>

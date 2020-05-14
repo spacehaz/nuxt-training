@@ -17,27 +17,18 @@
               :class="[
                 'tabs__variant',
                 'tabs__variant_theme_light',
-                currentVariant === firstVariant ? 'tabs__variant_active' : '',
+                { tabs__variant_active: currentVariant === index },
               ]"
-              @click="changeVariant"
+              @click="changeVariant(index)"
+              v-for="index in 2"
             >
-              1-й вариант
-            </li>
-            <li
-              :class="[
-                'tabs__variant',
-                'tabs__variant_theme_light',
-                currentVariant === secondVariant ? 'tabs__variant_active' : '',
-              ]"
-              @click="changeVariant"
-            >
-              2-й вариант
+              {{ index }}-й вариант
             </li>
           </ul>
 
           <div
             class="tabs__container tabs__container_theme_light"
-            v-if="currentVariant === firstVariant"
+            v-if="currentVariant === 1"
           >
             <p class="tabs__variant-text">
               Заполнить подробную форму прямо на сайте и мы опубликуем вашу
@@ -66,7 +57,6 @@
         </div>
       </app-flex>
     </app-container>
-    <app-quiz v-if="isPopupShown"></app-quiz>
   </section>
 </template>
 
@@ -76,7 +66,6 @@ import Flex from '@/components/shared/Flex';
 import Title from '@/components/shared/Title';
 import Paragraph from '@/components/shared/Paragraph';
 import Button from '@/components/ui/Button';
-import Quiz from '@/components/blocks/Quiz';
 
 export default {
   components: {
@@ -85,35 +74,20 @@ export default {
     'app-title': Title,
     'app-paragraph': Paragraph,
     'app-button': Button,
-    'app-quiz': Quiz,
-  },
-  computed: {
-    isPopupShown() {
-      return this.$store.getters['quiz/getQuizVisibility'];
-    },
   },
   data() {
     return {
       theme: 'light',
       currentVariant: 1,
       size: 'm',
-      firstVariant: 1,
-      secondVariant: 2,
     };
-  },
-  computed: {
-    quizShown() {
-      return this.$store.getters['quiz/getQuizShown'];
-    },
   },
   methods: {
     toggleQuiz() {
-      this.$store.commit('quiz/toggleQuiz');
+      this.$store.commit('popup/togglePopupVisibility');
     },
-    changeVariant() {
-      return this.currentVariant === this.firstVariant
-        ? (this.currentVariant = this.secondVariant)
-        : (this.currentVariant = this.firstVariant);
+    changeVariant(index) {
+      this.currentVariant = index;
     },
   },
 };
