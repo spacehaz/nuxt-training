@@ -1,5 +1,9 @@
 <template>
-  <nuxt-link to="/stories/_id" class="preview-story">
+  <nuxt-link
+    class="preview-story"
+    :key="3"
+    :to="{ name: 'stories-id', params: { id: 3 } }"
+  >
     <picture class="preview-story__picture">
       <img class="preview-story__image" src="" alt="" />
     </picture>
