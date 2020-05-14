@@ -3,7 +3,7 @@
     src="/close.svg"
     alt="Закрыть"
     class="close-btn"
-    @click="$emit('toggleQuiz')"
+    @click="$emit('closeBtnClick')"
   />
 </template>
 

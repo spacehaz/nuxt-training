@@ -1,5 +1,5 @@
 <template>
-  <button :class="['button', `button_size-${size}`]">
+  <button :class="['button', `button_size_${size}`]">
     <slot></slot>
   </button>
 </template>
@@ -29,11 +29,11 @@ export default {
   opacity: 0.9;
 }
 
-.button_size-m {
+.button_size_m {
   width: 280px;
 }
 
-.button_size-s {
+.button_size_s {
   width: 226px;
 }
 </style>

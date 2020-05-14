@@ -1,15 +1,15 @@
 <template>
   <nuxt-link
     class="preview-story"
-    :key="3"
-    :to="{ name: 'stories-id', params: { id: 3 } }"
+    :key="id"
+    :to="{ name: 'stories-id', params: { id: id } }"
   >
-    <picture class="preview-story__picture">
-      <img class="preview-story__image" src="" alt="" />
-    </picture>
-    <p class="preview-story__author">{{ story.author }}</p>
+    <div class="preview-story__image-container">
+      <img class="preview-story__image" :src="imageSrc" alt="" />
+    </div>
+    <p class="preview-story__author">{{ author }}</p>
     <blockquote class="preview-story__blockquote">
-      {{ story.quote }}
+      {{ quote }}
     </blockquote>
   </nuxt-link>
 </template>
@@ -17,7 +17,22 @@
 <script>
 export default {
   props: {
-    story: Object,
+    imageSrc: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
+    quote: {
+      type: String,
+      required: true,
+    },
+    id: {
+      type: Number,
+      required: true,
+    },
   },
 };
 </script>
@@ -32,7 +47,7 @@ export default {
   opacity: 0.8;
 }
 
-.preview-story__picture {
+.preview-story__image-container {
   position: relative;
   display: block;
   height: 0;

@@ -11,29 +11,24 @@
         </button>
       </div>
     </app-flex-container>
-    <app-quiz v-if="isPopupShown"></app-quiz>
+    <!-- <app-quiz v-if="isPopupShown"></app-quiz> -->
   </header>
 </template>
 
 <script>
 import FlexContainer from '@/components/shared/FlexContainer';
 import Navigation from '@/components/shared/Navigation';
-import Quiz from '@/components/blocks/Quiz';
+// import Quiz from '@/components/blocks/Quiz';
 
 export default {
   components: {
     'app-flex-container': FlexContainer,
     'app-navigation': Navigation,
-    'app-quiz': Quiz,
-  },
-  computed: {
-    isPopupShown() {
-      return this.$store.getters['quiz/getQuizVisibility'];
-    },
+    // 'app-quiz': Quiz,
   },
   methods: {
     toggleQuiz() {
-      this.$store.commit('quiz/toggleQuiz');
+      this.$store.commit('popup/togglePopupVisibility');
     },
   },
 };

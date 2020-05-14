@@ -32,7 +32,7 @@
       </ul>
     </app-flex-container>
     <app-flex-container class="footer__copyright">
-      <p class="footer__copyright-info">Рак Лечится 2020</p>
+      <p class="footer__copyright-info">Рак Лечится {{ year }}</p>
       <p class="footer__copyright-info">
         Сделано студентами Яндекс Практикум
       </p>
@@ -57,6 +57,11 @@ export default {
     return {
       theme: 'light',
     };
+  },
+  computed: {
+    year() {
+      return new Date().getFullYear();
+    },
   },
 };
 </script>

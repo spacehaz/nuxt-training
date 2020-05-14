@@ -2,7 +2,7 @@
   <div>
     <app-flex
       class="fact"
-      v-for="(fact, index) in statistics"
+      v-for="fact in statistics"
       :key="fact.id"
       v-if="fact.type === 1"
     >
@@ -11,11 +11,10 @@
       </p>
       <div class="fact__container">
         <div class="fact__bars">
-          <progress
-            :value="fact.currentValue"
-            :max="fact.maxValue"
-            class="fact__progress fact__progress_full fact__progress_size_l"
-          ></progress>
+          <app-progress-bar
+            :currentValue="fact.currentValue"
+            :maxValue="fact.maxValue"
+          />
         </div>
         <p class="fact__number">{{ fact.text }}</p>
         <p class="fact__source">{{ fact.source }}</p>
@@ -28,16 +27,11 @@
       </p>
       <div class="fact__container">
         <div class="fact__bars">
-          <progress
-            :value="fact.bars.previousValue"
-            :max="fact.bars.maxValue"
-            class="fact__progress fact__progress_short fact__progress_size_m fact__progress__value-color_light"
-          ></progress>
-          <progress
-            :value="fact.bars.currentValue"
-            :max="fact.bars.maxValue"
-            class="fact__progress fact__progress_short fact__progress_size_m fact__progress__value-color_main"
-          ></progress>
+          <app-double-progress-bar
+            :previousValue="fact.bars.previousValue"
+            :currentValue="fact.bars.currentValue"
+            :maxValue="fact.bars.maxValue"
+          />
         </div>
         <p class="fact__number">{{ fact.text }}</p>
         <p class="fact__source">{{ fact.source }}</p>
@@ -48,6 +42,8 @@
 
 <script>
 import Flex from '@/components/shared/Flex';
+import ProgressBar from '@/components/ui/ProgressBar';
+import DoubleProgressBar from '@/components/ui/DoubleProgressBar';
 
 export default {
   props: {
@@ -55,6 +51,8 @@ export default {
   },
   components: {
     'app-flex': Flex,
+    'app-progress-bar': ProgressBar,
+    'app-double-progress-bar': DoubleProgressBar,
   },
 };
 </script>
@@ -89,56 +87,5 @@ export default {
 
 .fact__bars {
   margin-bottom: 20px;
-}
-
-.fact__progress {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-}
-
-.fact__progress_full[value]::-webkit-progress-bar {
-  background-color: #f4f4f4;
-}
-
-.fact__progress_full[value]::-webkit-progress-value {
-  background-color: #613a93;
-}
-
-.fact__progress_short[value]::-webkit-progress-bar {
-  background-color: transparent;
-}
-
-.fact__progress_short[value]::-webkit-progress-value {
-  background-color: #613a93;
-}
-
-.fact__progress_size_l {
-  height: 40px;
-}
-
-.fact__progress_size_m {
-  height: 20px;
-  margin-bottom: -1px;
-}
-
-.fact__progress_size_m:last-of-type {
-  margin-bottom: 0;
-}
-
-.fact__progress__value-color_light[value]::-webkit-progress-bar {
-  background-color: transparent;
-}
-
-.fact__progress__value-color_light[value]::-webkit-progress-value {
-  background-color: #f4f4f4;
-}
-
-.fact__progress__value-color_main[value]::-webkit-progress-bar {
-  background-color: transparent;
-}
-
-.fact__progress__value-color_main[value]::-webkit-progress-value {
-  background-color: #613a93;
 }
 </style>

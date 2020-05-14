@@ -13,7 +13,11 @@
       <app-previews class="stories__container" :stories="stories">
       </app-previews>
 
-      <app-pagination class="stories__pagination"></app-pagination>
+      <app-pagination
+        class="stories__pagination"
+        :storiesCount="stories.length"
+        :storiesPerPage="storiesPerPage"
+      ></app-pagination>
     </app-container>
   </main>
 </template>
@@ -40,101 +44,118 @@ export default {
       theme: 'light',
       stories: [],
       size: 's',
+      storiesPerPage: 4,
     };
   },
   created() {
     this.stories = [
       {
+        id: 1,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 2,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 3,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 4,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 5,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 6,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 7,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 8,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 9,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 10,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 11,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 12,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 13,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 14,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 15,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:
           'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
       },
       {
+        id: 16,
         imageSrc: '',
         author: 'Владимир Тен',
         quote:

@@ -1,5 +1,4 @@
 export const state = () => ({
-  isPopupShown: false,
   currentQuestion: 1,
   questions: questions,
   answers: {},
@@ -20,18 +19,10 @@ const questions = {
 };
 
 // getters
-export const getters = {
-  getQuizVisibility(state) {
-    return state.isPopupShown;
-  },
-};
+export const getters = {};
 
 //mutations
-export const mutations = {
-  toggleQuiz(state) {
-    return (state.isPopupShown = !state.isPopupShown);
-  },
-};
+export const mutations = {};
 
 //actions
 export const actions = {};

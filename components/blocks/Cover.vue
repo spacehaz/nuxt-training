@@ -6,9 +6,11 @@
       class="cover__scroll"
       aria-label="Показать следующий раздел"
     >
-      <svg class="cover__scroll-arrow" xmlns="http://www.w3.org/2000/svg">
-        <path d="M37 1L19 13L1 1"></path>
-      </svg>
+      <img
+        class="cover__scroll-arrow"
+        src="/scroll.svg"
+        alt="Показать следующий блок"
+      />
     </a>
   </section>
 </template>
@@ -17,7 +19,7 @@
 .cover {
   position: relative;
   display: flex;
-  min-height: 689px;
+  min-height: calc(100vh - 76px);
   background-color: #613a93;
 }
 
@@ -36,9 +38,6 @@
   width: 38px;
   height: 15px;
   transform: translateX(-50%);
-  stroke: #fff;
-  stroke-width: 2px;
-  fill: none;
 }
 
 .cover__scroll-arrow:hover {

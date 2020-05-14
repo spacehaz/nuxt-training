@@ -13,20 +13,14 @@
           </app-paragraph>
         </div>
         <div class="intro__nav">
-          <button class="intro__nav-btn intro__nav-btn_disabled">
-            <img
-              class="intro__arrow intro__arrow_left"
-              src="/arrow-right.svg"
-              alt="Показать следующее видео"
-            />
-          </button>
-          <button class="intro__nav-btn">
-            <img
-              class="intro__arrow"
-              src="/arrow-right.svg"
-              alt="Показать предыдущее видео"
-            />
-          </button>
+          <button
+            class="intro__nav-btn intro__nav-btn_left intro__nav-btn_disabled"
+            aria-label="Показать следующее видео"
+          ></button>
+          <button
+            class="intro__nav-btn intro__nav-btn_right"
+            aria-label="Показать предыдущее видео"
+          ></button>
         </div>
       </div>
       <figure class="intro__video-container">
@@ -36,6 +30,7 @@
           <a
             href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
             class="intro__caption-link"
+            target="_blank"
           >
             YouTube канале.
           </a>
@@ -133,11 +128,16 @@ export default {
   cursor: default;
 }
 
-.intro__arrow {
-  margin: auto;
+.intro__nav-btn_right {
+  background-image: url('/arrow-right.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.intro__arrow_left {
+.intro__nav-btn_left {
+  background-image: url('/arrow-right.svg');
+  background-repeat: no-repeat;
+  background-position: center;
   transform: rotate(180deg);
 }
 </style>
