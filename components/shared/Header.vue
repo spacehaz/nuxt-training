@@ -11,7 +11,7 @@
         </button>
       </div>
     </app-flex-container>
-    <app-quiz v-if="isShown" @toggleQuiz="toggleQuiz"></app-quiz>
+    <app-quiz v-if="isPopupShown"></app-quiz>
   </header>
 </template>
 
@@ -26,14 +26,14 @@ export default {
     'app-navigation': Navigation,
     'app-quiz': Quiz,
   },
-  data() {
-    return {
-      isShown: false,
-    };
+  computed: {
+    isPopupShown() {
+      return this.$store.getters['quiz/getQuizVisibility'];
+    },
   },
   methods: {
     toggleQuiz() {
-      this.isShown = !this.isShown;
+      this.$store.commit('quiz/toggleQuiz');
     },
   },
 };
