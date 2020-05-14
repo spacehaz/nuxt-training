@@ -19,7 +19,7 @@
         <button class="quiz__back-btn" disabled>Назад</button>
         <app-button :size="size">Далее</app-button>
       </div>
-      <app-close-btn @toggleQuiz="$emit('toggleQuiz')" />
+      <app-close-btn @closeBtnClick="toggleQuiz" />
     </form>
   </div>
 </template>
@@ -44,6 +44,11 @@ export default {
       size: 's',
       theme: 'light',
     };
+  },
+  methods: {
+    toggleQuiz() {
+      this.$store.commit('quiz/toggleQuiz');
+    },
   },
 };
 </script>
