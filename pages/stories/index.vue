@@ -1,12 +1,12 @@
 <template>
   <main class="stories root__stories">
     <app-container>
-      <app-title :theme="theme" class="stories__title"
-        >Истории неизлечимых привычек</app-title
-      >
+      <h1 class="stories__title">
+        Истории неизлечимых привычек
+      </h1>
 
       <div class="stories__search">
-        <app-input class="stories__input" />
+        <app-input class="stories__input" :bordered="true" :type="'search'" />
         <app-button :size="size">Поиск</app-button>
       </div>
 
@@ -41,7 +41,6 @@ export default {
   },
   data() {
     return {
-      theme: 'light',
       stories: [],
       size: 's',
       storiesPerPage: 4,
@@ -173,6 +172,10 @@ export default {
 
 .stories__title {
   margin-bottom: 60px;
+  max-width: 413px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 36px;
 }
 
 .stories__search {
@@ -180,10 +183,6 @@ export default {
   grid-template-columns: 1fr max-content;
   grid-gap: 20px;
   margin-bottom: 70px;
-}
-
-.stories__input {
-  border: 1px solid #e8e8e8;
 }
 
 .stories__container {

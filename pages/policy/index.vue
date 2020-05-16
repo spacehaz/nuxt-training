@@ -6,9 +6,9 @@
       </h1>
       <div class="policy__content">
         <div class="policy__content-item">
-          <p class="policy__content-title">
+          <h2 class="policy__content-title">
             1. Общие положения.
-          </p>
+          </h2>
           <p class="policy__paragraph">
             Настоящая политика обработки персональных данных составлена в
             соответствии с требованиями Федерального закона от 27.07.2006.
@@ -38,9 +38,9 @@
         </div>
 
         <div class="policy__content-item">
-          <p class="policy__content-title">
+          <h2 class="policy__content-title">
             2. Основные понятия, используемые в Политике
-          </p>
+          </h2>
           <div class="policy__paragraph policy__paragraph_numbered">
             <span class="policy__number">1.</span>
             <p class="policy__text">
@@ -162,10 +162,10 @@
         </div>
 
         <div class="policy__content-item">
-          <p class="policy__content-title">
+          <h2 class="policy__content-title">
             3. Оператор может обрабатывать следующие персональные данные
             Пользователя
-          </p>
+          </h2>
           <div class="policy__paragraph policy__paragraph_numbered">
             <span class="policy__number">1.</span>
             <p class="policy__text">
@@ -214,9 +214,9 @@
         </div>
 
         <div class="policy__content-item">
-          <p class="policy__content-title">
+          <h2 class="policy__content-title">
             4. Цели обработки персональных данных
-          </p>
+          </h2>
           <div class="policy__paragraph policy__paragraph_numbered">
             <span class="policy__number">1.</span>
             <p class="policy__text">
@@ -247,9 +247,9 @@
         </div>
 
         <div class="policy__content-item">
-          <p class="policy__content-title">
+          <h2 class="policy__content-title">
             5. Правовые основания обработки персональных данных
-          </p>
+          </h2>
           <div class="policy__paragraph policy__paragraph_numbered">
             <span class="policy__number">1.</span>
             <p class="policy__text">
@@ -272,10 +272,10 @@
         </div>
 
         <div class="policy__content-item">
-          <p class="policy__content-title">
+          <h2 class="policy__content-title">
             6. Порядок сбора, хранения, передачи и других видов обработки
             персональных данных
-          </p>
+          </h2>
           <p class="policy__paragraph">
             Безопасность персональных данных, которые обрабатываются Оператором,
             обеспечивается путем реализации правовых, организационных и
@@ -322,9 +322,9 @@
         </div>
 
         <div class="policy__content-item">
-          <p class="policy__content-title">
+          <h2 class="policy__content-title">
             7. Трансграничная передача персональных данных
-          </p>
+          </h2>
           <div class="policy__paragraph policy__paragraph_numbered">
             <span class="policy__number">1.</span>
             <p class="policy__text">
@@ -349,9 +349,9 @@
         </div>
 
         <div class="policy__content-item">
-          <p class="policy__content-title">
+          <h2 class="policy__content-title">
             8. Заключительные положения
-          </p>
+          </h2>
           <div class="policy__paragraph policy__paragraph_numbered">
             <span class="policy__number">1.</span>
             <p class="policy__text">

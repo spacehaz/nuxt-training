@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-flex
+    <div
       class="fact"
       v-for="fact in statistics"
       :key="fact.id"
@@ -19,9 +19,9 @@
         <p class="fact__number">{{ fact.text }}</p>
         <p class="fact__source">{{ fact.source }}</p>
       </div>
-    </app-flex>
+    </div>
 
-    <app-flex class="fact" v-else>
+    <div class="fact" v-else>
       <p class="fact__text">
         {{ fact.title }}
       </p>
@@ -36,21 +36,22 @@
         <p class="fact__number">{{ fact.text }}</p>
         <p class="fact__source">{{ fact.source }}</p>
       </div>
-    </app-flex>
+    </div>
   </div>
 </template>
 
 <script>
-import Flex from '@/components/shared/Flex';
 import ProgressBar from '@/components/ui/ProgressBar';
 import DoubleProgressBar from '@/components/ui/DoubleProgressBar';
 
 export default {
   props: {
-    statistics: Array,
+    statistics: {
+      type: Array,
+      required: true,
+    },
   },
   components: {
-    'app-flex': Flex,
     'app-progress-bar': ProgressBar,
     'app-double-progress-bar': DoubleProgressBar,
   },
@@ -59,6 +60,8 @@ export default {
 
 <style scoped>
 .fact {
+  display: flex;
+  justify-content: space-between;
   flex-direction: column;
   padding: 20px;
   min-height: 300px;

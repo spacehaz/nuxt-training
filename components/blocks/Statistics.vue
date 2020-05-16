@@ -16,7 +16,10 @@ import Fact from '@/components/blocks/Fact';
 
 export default {
   props: {
-    statistics: Array,
+    statistics: {
+      type: Array,
+      required: true,
+    },
   },
   components: {
     'app-container': Container,

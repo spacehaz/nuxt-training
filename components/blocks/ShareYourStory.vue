@@ -50,7 +50,11 @@
               Оставить контакт (почту или номер телефона) и мы свяжемся с вами,
               зададим вопросы, уточним детали вашей истории.
             </p>
-            <app-button :size="size" class="tabs__btn">
+            <app-button
+              :size="size"
+              class="tabs__btn"
+              @click.native="toggleQuiz"
+            >
               Оставить контакт
             </app-button>
           </div>
@@ -130,7 +134,11 @@ export default {
 }
 
 .tabs__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   max-width: 640px;
+  min-height: 215px;
 }
 
 .tabs__variant-text {
@@ -139,10 +147,6 @@ export default {
 
 .tabs__variant-text:last-of-type {
   margin-bottom: 0;
-}
-
-.tabs__btn {
-  margin-top: 78px;
 }
 
 .tabs__variant_theme_light {

@@ -5,7 +5,9 @@
     <app-footer class="root__footer" />
     <app-overlay v-if="isPopupShown" />
     <app-popup v-if="isPopupShown">
-      <app-quiz />
+      <app-contact-us />
+      <!-- <app-quiz/> -->
+      <!-- <app-share-us/> -->
     </app-popup>
   </div>
 </template>
@@ -16,6 +18,8 @@ import Footer from '@/components/shared/Footer.vue';
 import Overlay from '@/components/ui/Overlay';
 import Popup from '@/components/ui/Popup';
 import Quiz from '@/components/blocks/Quiz';
+import ContactUs from '@/components/blocks/ContactUs';
+import ShareUs from '@/components/blocks/ShareUs';
 
 export default {
   components: {
@@ -24,6 +28,8 @@ export default {
     'app-overlay': Overlay,
     'app-popup': Popup,
     'app-quiz': Quiz,
+    'app-contact-us': ContactUs,
+    'app-share-us': ShareUs,
   },
   computed: {
     isPopupShown() {

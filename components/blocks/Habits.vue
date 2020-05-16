@@ -18,7 +18,10 @@ import MoreBtn from '@/components/ui/MoreBtn';
 
 export default {
   props: {
-    stories: Array,
+    stories: {
+      type: Array,
+      required: true,
+    },
   },
   components: {
     'app-container': Container,

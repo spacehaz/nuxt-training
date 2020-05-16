@@ -31,7 +31,10 @@ import Gallery from '@/components/blocks/Gallery';
 
 export default {
   props: {
-    gallery: Array,
+    gallery: {
+      type: Array,
+      required: true,
+    },
   },
   components: {
     'app-container': Container,
