@@ -1,17 +1,17 @@
 <template>
   <div class="popup">
     <slot></slot>
-    <app-close-btn @click.native="toggleQuiz" />
+    <img
+      src="/close.svg"
+      alt="Закрыть"
+      class="popup__close"
+      @click="toggleQuiz"
+    />
   </div>
 </template>
 
 <script>
-import CloseBtn from '@/components/ui/CloseBtn';
-
 export default {
-  components: {
-    'app-close-btn': CloseBtn,
-  },
   methods: {
     toggleQuiz() {
       this.$store.commit('popup/togglePopupVisibility');
@@ -30,5 +30,13 @@ export default {
   padding: 40px;
   transform: translate(-50%, -50%);
   background-color: #fff;
+  overflow: scroll;
+}
+
+.popup__close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
 }
 </style>

@@ -107,6 +107,7 @@ export default {
 
 <style scoped>
 .about {
+  min-height: 650px;
   background-color: #613a93;
 }
 
@@ -166,7 +167,7 @@ export default {
 }
 
 .tabs__variant-text {
-  margin-bottom: 36px;
+  margin-bottom: 24px;
 }
 
 .tabs__variant-text:last-of-type {

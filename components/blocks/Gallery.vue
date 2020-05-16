@@ -1,7 +1,7 @@
 <template>
   <ul class="gallery">
     <li class="gallery__item" v-for="(image, index) in gallery" :key="index">
-      <a href="#" class="gallery__link">
+      <a href="#" class="gallery__link" target="_blank">
         <img :src="image" alt="" class="gallery__image" />
       </a>
     </li>
@@ -11,7 +11,10 @@
 <script>
 export default {
   props: {
-    gallery: Array,
+    gallery: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>

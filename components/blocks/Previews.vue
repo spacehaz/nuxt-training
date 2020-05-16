@@ -1,14 +1,18 @@
 <template>
-  <div class="previews">
-    <app-preview-story
-      :imageSrc="story.imageSrc"
-      :author="story.author"
-      :quote="story.quote"
-      :id="story.id"
+  <ul class="previews">
+    <li
+      class="previews__item"
       v-for="(story, index) in stories"
       :key="story.id"
-    ></app-preview-story>
-  </div>
+    >
+      <app-preview-story
+        :imageSrc="story.imageSrc"
+        :author="story.author"
+        :quote="story.quote"
+        :id="story.id"
+      ></app-preview-story>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -19,7 +23,10 @@ export default {
     'app-preview-story': PreviewStory,
   },
   props: {
-    stories: Array,
+    stories: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>
@@ -29,5 +36,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 40px;
+  padding: 0;
+  list-style: none;
 }
 </style>

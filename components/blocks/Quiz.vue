@@ -10,7 +10,11 @@
           Если да – расскажите, пожалуйста, кратко, какой диагноз и текущий
           статус.
         </p>
-        <app-input class="quiz__input" placeholder="Напишите тут" />
+        <app-input
+          class="quiz__input"
+          placeholder="Напишите тут"
+          :bordered="false"
+        />
       </label>
     </fieldset>
     <div class="quiz__navigation">
@@ -46,8 +50,8 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 
-  width: 920px;
-  height: 600px;
+  width: 840px;
+  height: 520px;
 }
 
 .quiz__fieldset {
@@ -78,11 +82,6 @@ export default {
   color: #000;
 }
 
-.quiz__input {
-  border: none;
-  border-bottom: 1px solid #e7e7e7;
-}
-
 .quiz__back-btn {
   margin-right: 30px;
   padding: 0;
@@ -106,7 +105,7 @@ export default {
   cursor: default;
 }
 
-.quiz__back-btn_:disabled:hover {
+.quiz__back-btn:disabled:hover {
   color: #c0c0c0;
 }
 </style>
