@@ -1,9 +1,19 @@
 <template>
-  <button type="button" class="share-btn">
+  <button type="button" class="share-btn" @click="toggleShareUs">
     <slot>Поделитесь &#8599;</slot>
   </button>
 </template>
 
+<script>
+export default {
+  methods: {
+    toggleShareUs() {
+      this.$store.dispatch('share-us/showShareUs');
+      this.$store.commit('popup/togglePopupVisibility');
+    },
+  },
+};
+</script>
 <style scoped>
 .share-btn {
   padding: 0;

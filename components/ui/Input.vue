@@ -1,5 +1,11 @@
 <template>
-  <input :type="type" class="input" :class="{ input_bordered: bordered }" />
+  <input
+    :type="type"
+    :value="value"
+    class="input"
+    :class="{ input_bordered: bordered }"
+    @input="$emit('input', $event.target.value)"
+  />
 </template>
 
 <script>
@@ -12,6 +18,10 @@ export default {
     type: {
       type: String,
       default: 'text',
+    },
+    value: {
+      type: String,
+      default: '',
     },
   },
 };

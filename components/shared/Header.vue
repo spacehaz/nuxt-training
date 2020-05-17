@@ -10,6 +10,7 @@
           Рассказать историю
         </button>
       </div>
+      <app-mobile-icon class="header__mobile-icon"></app-mobile-icon>
     </app-flex-container>
   </header>
 </template>
@@ -17,14 +18,17 @@
 <script>
 import FlexContainer from '@/components/shared/FlexContainer';
 import Navigation from '@/components/shared/Navigation';
+import MobileIcon from '@/components/ui/MobileIcon';
 
 export default {
   components: {
     'app-flex-container': FlexContainer,
     'app-navigation': Navigation,
+    'app-mobile-icon': MobileIcon,
   },
   methods: {
     toggleQuiz() {
+      this.$store.dispatch('quiz/showQuiz');
       this.$store.commit('popup/togglePopupVisibility');
     },
   },
@@ -71,5 +75,19 @@ export default {
 
 .header__button:active {
   outline: none;
+}
+
+.header__mobile-icon {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header__links {
+    display: none;
+  }
+
+  .header__mobile-icon {
+    display: block;
+  }
 }
 </style>

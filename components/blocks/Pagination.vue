@@ -1,7 +1,7 @@
 <template>
   <nav class="pagination">
     <ul class="pagination__list">
-      <li class="pagination__item" v-for="index in buttonsCount" :key="index">
+      <li class="pagination__item" v-for="index in storiesLength" :key="index">
         <button
           class="pagination__link"
           :class="{ pagination__link_active: index === currentPage }"
@@ -17,10 +17,6 @@
 <script>
 export default {
   props: {
-    storiesCount: {
-      type: Number,
-      required: true,
-    },
     storiesPerPage: {
       type: Number,
       required: true,
@@ -34,9 +30,17 @@ export default {
   methods: {
     changeCurrentPage(index) {
       this.currentPage = index;
+      this.$store.dispatch('stories/changeStoriesPage', {
+        page: this.currentPage,
+      });
     },
   },
   computed: {
+    storiesLength() {
+      return Math.ceil(
+        this.$store.getters['stories/getStoriesQuantity'] / this.storiesPerPage
+      );
+    },
     buttonsCount() {
       if (this.storiesCount % this.storiesPerPage === 0) {
         return this.storiesCount / this.storiesPerPage;
