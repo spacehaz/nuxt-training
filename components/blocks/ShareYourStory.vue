@@ -53,7 +53,7 @@
             <app-button
               :size="size"
               class="tabs__btn"
-              @click.native="toggleQuiz"
+              @click.native="toggleContactUs"
             >
               Оставить контакт
             </app-button>
@@ -88,6 +88,11 @@ export default {
   },
   methods: {
     toggleQuiz() {
+      this.$store.dispatch('quiz/showQuiz');
+      this.$store.commit('popup/togglePopupVisibility');
+    },
+    toggleContactUs() {
+      this.$store.dispatch('contact-us/showContactUs');
       this.$store.commit('popup/togglePopupVisibility');
     },
     changeVariant(index) {

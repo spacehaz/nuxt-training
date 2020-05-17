@@ -1,6 +1,6 @@
 <template>
   <div class="share-us">
-    <app-title class="share-us__title">Поделитесь</app-title>
+    <app-title class="share-us__title" :theme="'light'">Поделитесь</app-title>
     <ul class="share-us__items">
       <li class="share-us__item">
         <a href="#" class="share-us__item-link share-us__item_fb"></a>

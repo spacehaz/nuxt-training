@@ -4,7 +4,7 @@
       <app-title :theme="theme" class="habits__title">
         Истории неизлечимых привычек
       </app-title>
-      <app-previews class="habits__content" :stories="stories"></app-previews>
+      <app-previews class="habits__content"></app-previews>
       <app-more-btn class="habits__more-btn" />
     </app-container>
   </section>
@@ -17,12 +17,6 @@ import Previews from '@/components/blocks/Previews';
 import MoreBtn from '@/components/ui/MoreBtn';
 
 export default {
-  props: {
-    stories: {
-      type: Array,
-      required: true,
-    },
-  },
   components: {
     'app-container': Container,
     'app-title': Title,

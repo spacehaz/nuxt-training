@@ -1,26 +1,70 @@
 <template>
   <form action="/" class="quiz" method="POST">
     <fieldset class="quiz__fieldset">
-      <app-title class="quiz__title" :theme="theme">Шаг 1 из 12</app-title>
-      <label class="quiz__question">
+      <app-title class="quiz__title" :theme="theme" v-if="!isQuizOver">
+        {{ currentQuestionTitle }}</app-title
+      >
+      <app-title
+        class="quiz__title quiz__title_centered"
+        :theme="theme"
+        v-if="isQuizOver"
+      >
+        Спасибо что приняли участие!
+      </app-title>
+      <label class="quiz__question" v-if="!isQuizOver">
         <p class="quiz__label">
           <span class="quiz__text-accent">
-            Было ли у вас онкологическое заболевание?
+            {{ currentQuestionText }}
           </span>
-          Если да – расскажите, пожалуйста, кратко, какой диагноз и текущий
-          статус.
+          {{ currentQuestionAdditionalText }}
         </p>
         <app-input
           class="quiz__input"
           placeholder="Напишите тут"
-          :bordered="false"
+          v-model="currentAnswer"
+          required
         />
       </label>
     </fieldset>
-    <div class="quiz__navigation">
-      <button class="quiz__back-btn" disabled>Назад</button>
-      <app-button :size="size">Далее</app-button>
+    <div class="quiz__navigation" v-if="!isQuizOver">
+      <app-button
+        :lowPriority="true"
+        :size="'content'"
+        @click.native.prevent="prevQuestion"
+        :disabled="isFirstQuestion"
+        class="quiz__btn"
+        >Назад</app-button
+      >
+      <app-button
+        :size="size"
+        @click.native.prevent="nextQuestion"
+        v-if="!isLastQuestion"
+        :disabled="isAnswerInvalid"
+        >Далее</app-button
+      >
+      <app-button
+        :size="size"
+        @click.native.prevent="nextQuestion"
+        v-if="isLastQuestion"
+        :disabled="isAnswerInvalid"
+        class="quiz__btn"
+        >Отправить</app-button
+      >
+      <app-policy
+        class="quiz__policy"
+        v-if="isLastQuestion"
+        :text="'Нажимая на кнопку «отправить», вы даете согласие на'"
+        :link="'на обработку персональных данных'"
+      >
+      </app-policy>
     </div>
+    <app-button
+      :size="size"
+      v-if="isQuizOver"
+      class="quiz__close-btn"
+      @click.native.prevent="toggleQuiz"
+      >Закрыть</app-button
+    >
   </form>
 </template>
 
@@ -28,18 +72,67 @@
 import Button from '@/components/ui/Button';
 import Title from '@/components/shared/Title';
 import Input from '@/components/ui/Input';
+import Policy from '@/components/ui/Policy.vue';
 
 export default {
+  computed: {
+    currentQuestionText() {
+      return this.$store.getters['quiz/getCurrentQuestionMainText'];
+    },
+    currentQuestionAdditionalText() {
+      return this.$store.getters['quiz/getCurrentQuestionAdditionalText'];
+    },
+    currentQuestionTitle() {
+      return this.$store.getters['quiz/getCurrentQuestionTitle'];
+    },
+    currentQuestionAnswer() {
+      return this.$store.getters['quiz/getCurrentQuestionAnswer'];
+    },
+    isAnswerInvalid() {
+      return !this.currentAnswer;
+    },
+    isFirstQuestion() {
+      return this.$store.getters['quiz/isFirstQuestion'];
+    },
+    isLastQuestion() {
+      return this.$store.getters['quiz/isLastQuestion'];
+    },
+    isQuizOver() {
+      return this.$store.getters['quiz/isQuizOver'];
+    },
+  },
+  methods: {
+    async nextQuestion() {
+      await this.$store.dispatch('quiz/saveAnswerAction', {
+        answer: this.currentAnswer,
+      });
+      this.currentAnswer = this.currentQuestionAnswer;
+    },
+    async prevQuestion() {
+      await this.$store.dispatch('quiz/getPreviousQuestionAction');
+      this.currentAnswer = this.currentQuestionAnswer;
+    },
+    toggleQuiz() {
+      this.$store.dispatch('quiz/closeQuiz');
+      this.$store.commit('popup/togglePopupVisibility');
+    },
+  },
   components: {
     'app-button': Button,
     'app-title': Title,
     'app-input': Input,
+    'app-policy': Policy,
   },
   data() {
     return {
       size: 's',
       theme: 'light',
+      currentAnswer: '',
     };
+  },
+  created() {
+    this.$store.dispatch('quiz/getQuestions');
+    this.currentAnswer = '' || this.currentQuestionAnswer;
   },
 };
 </script>
@@ -62,6 +155,7 @@ export default {
 
 .quiz__title {
   margin-bottom: 40px;
+  max-width: initial;
 }
 
 .quiz__question {
@@ -82,30 +176,25 @@ export default {
   color: #000;
 }
 
-.quiz__back-btn {
+.quiz__btn {
   margin-right: 30px;
-  padding: 0;
-
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 52px;
-  color: #666;
-
-  background: none;
-  border: 0;
-  cursor: pointer;
 }
 
-.quiz__back-btn:hover {
-  color: #000;
+.quiz__close-btn {
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.quiz__back-btn:disabled {
-  color: #c0c0c0;
-  cursor: default;
+.quiz__title_centered {
+  text-align: center;
 }
 
-.quiz__back-btn:disabled:hover {
-  color: #c0c0c0;
+.quiz__navigation {
+  display: flex;
+  align-items: center;
+}
+
+.quiz__policy {
+  max-width: 378px;
 }
 </style>

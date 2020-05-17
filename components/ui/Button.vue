@@ -1,5 +1,13 @@
 <template>
-  <button :class="['button', `button_size_${size}`]">
+  <button
+    :class="[
+      'button',
+      `button_size_${size}`,
+      { button_disabled: disabled },
+      { 'button_low-priority': lowPriority },
+    ]"
+    :disabled="disabled"
+  >
     <slot></slot>
   </button>
 </template>
@@ -9,7 +17,15 @@ export default {
   props: {
     size: {
       type: String,
-      required: true,
+      default: 'm',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    lowPriority: {
+      type: Boolean,
+      default: false,
     },
   },
 };
@@ -28,7 +44,12 @@ export default {
   cursor: pointer;
 }
 
-.button:hover {
+.button_disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+:not(.button_disabled).button:hover {
   opacity: 0.9;
 }
 
@@ -38,5 +59,15 @@ export default {
 
 .button_size_s {
   width: 226px;
+}
+
+.button_size_content {
+  width: initial;
+}
+
+.button_low-priority {
+  font-weight: normal;
+  color: #666;
+  background: none;
 }
 </style>

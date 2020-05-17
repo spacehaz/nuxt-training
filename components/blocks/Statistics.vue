@@ -4,7 +4,7 @@
       <app-title :theme="theme" class="statistics__title">
         Статистика по онкозаболеваниям
       </app-title>
-      <app-fact class="statistics__facts" :statistics="statistics" />
+      <app-fact class="statistics__facts" />
     </app-container>
   </section>
 </template>
@@ -15,12 +15,6 @@ import Title from '@/components/shared/Title';
 import Fact from '@/components/blocks/Fact';
 
 export default {
-  props: {
-    statistics: {
-      type: Array,
-      required: true,
-    },
-  },
   components: {
     'app-container': Container,
     'app-title': Title,

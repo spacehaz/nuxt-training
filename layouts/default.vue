@@ -1,13 +1,14 @@
 <template>
   <div class="root">
+    <app-mobile-menu />
     <app-header />
     <nuxt />
     <app-footer class="root__footer" />
     <app-overlay v-if="isPopupShown" />
     <app-popup v-if="isPopupShown">
-      <app-contact-us />
-      <!-- <app-quiz/> -->
-      <!-- <app-share-us/> -->
+      <app-contact-us slot="contact-us" />
+      <app-quiz slot="quiz" />
+      <app-share-us slot="share-us" />
     </app-popup>
   </div>
 </template>
@@ -20,6 +21,7 @@ import Popup from '@/components/ui/Popup';
 import Quiz from '@/components/blocks/Quiz';
 import ContactUs from '@/components/blocks/ContactUs';
 import ShareUs from '@/components/blocks/ShareUs';
+import MobileMenu from '@/components/shared/MobileMenu';
 
 export default {
   components: {
@@ -30,6 +32,7 @@ export default {
     'app-quiz': Quiz,
     'app-contact-us': ContactUs,
     'app-share-us': ShareUs,
+    'app-mobile-menu': MobileMenu,
   },
   computed: {
     isPopupShown() {

@@ -94,9 +94,16 @@ export default {
   data() {
     return {
       stories: [],
+      storiesPerPage: 4,
     };
   },
+  async fetch({ store }) {
+    await store.dispatch('stories/getStories');
+  },
   created() {
+    this.$store.dispatch('stories/setStoriesPerPage', {
+      storiesPerPage: this.storiesPerPage,
+    });
     this.stories = [
       {
         id: 1,

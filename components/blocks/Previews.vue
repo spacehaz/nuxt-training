@@ -19,14 +19,13 @@
 import PreviewStory from '@/components/blocks/PreviewStory';
 
 export default {
+  computed: {
+    stories() {
+      return this.$store.getters['stories/getStories'];
+    },
+  },
   components: {
     'app-preview-story': PreviewStory,
-  },
-  props: {
-    stories: {
-      type: Array,
-      required: true,
-    },
   },
 };
 </script>
