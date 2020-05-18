@@ -46,4 +46,52 @@ export default {
   font-weight: 800;
   font-size: 36px;
 }
+
+@media (max-width: 1280px) {
+  .callout__title {
+    font-size: 28px;
+  }
+
+  .callout__hashtag {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .callout__title {
+    max-width: 610px;
+    font-size: 24px;
+    line-height: 40px;
+  }
+
+  .callout__hashtag {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .callout__title {
+    max-width: 444px;
+    padding: 12px 0;
+    font-size: 22px;
+    line-height: 36px;
+  }
+
+  .callout__hashtag {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 425px) {
+  .callout__title {
+    max-width: 220px;
+    padding: 15px 0;
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .callout__hashtag {
+    font-size: 22px;
+  }
+}
 </style>

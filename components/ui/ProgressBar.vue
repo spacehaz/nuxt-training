@@ -36,26 +36,9 @@ export default {
   background-color: #613a93;
 }
 
-/* .fact__progress_short[value]::-webkit-progress-bar {
-  background-color: transparent;
-}
-
-.fact__progress_short[value]::-webkit-progress-value {
-  background-color: #613a93;
-} */
-
 .fact__progress_size_l {
   height: 40px;
 }
-
-/* .fact__progress_size_m {
-  height: 20px;
-  margin-bottom: -1px;
-}
-
-.fact__progress_size_m:last-of-type {
-  margin-bottom: 0;
-} */
 
 .fact__progress__value-color_light[value]::-webkit-progress-bar {
   background-color: transparent;
@@ -71,5 +54,17 @@ export default {
 
 .fact__progress__value-color_main[value]::-webkit-progress-value {
   background-color: #613a93;
+}
+
+@media (max-width: 1280px) {
+  .fact__progress_size_l {
+    height: 35px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .fact__progress_size_l {
+    height: 28px;
+  }
 }
 </style>

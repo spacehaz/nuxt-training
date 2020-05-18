@@ -44,4 +44,23 @@ export default {
   object-fit: cover;
   object-position: center center;
 }
+
+@media (max-width: 1280px) {
+  .gallery {
+    grid-gap: 27px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .gallery {
+    grid-gap: 20px;
+  }
+}
+
+@media (max-width: 568px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+}
 </style>

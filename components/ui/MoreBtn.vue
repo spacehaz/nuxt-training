@@ -19,4 +19,16 @@
 .more-btn:hover {
   background-color: #f8f8f8;
 }
+
+@media (max-width: 1024px) {
+  .more-btn {
+    padding: 17px 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .more-btn {
+    padding: 15px 0;
+  }
+}
 </style>

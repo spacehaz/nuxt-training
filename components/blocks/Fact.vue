@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-flex
+    <div
       class="fact"
       v-for="fact in statistics"
       :key="fact.id"
@@ -19,9 +19,9 @@
         <p class="fact__number">{{ fact.text }}</p>
         <p class="fact__source">{{ fact.source }}</p>
       </div>
-    </app-flex>
+    </div>
 
-    <app-flex class="fact" v-else>
+    <div class="fact" v-else>
       <p class="fact__text">
         {{ fact.title }}
       </p>
@@ -36,7 +36,7 @@
         <p class="fact__number">{{ fact.text }}</p>
         <p class="fact__source">{{ fact.source }}</p>
       </div>
-    </app-flex>
+    </div>
   </div>
 </template>
 
@@ -61,6 +61,8 @@ export default {
 
 <style scoped>
 .fact {
+  display: flex;
+  justify-content: space-between;
   flex-direction: column;
   padding: 20px;
   min-height: 300px;
@@ -89,5 +91,56 @@ export default {
 
 .fact__bars {
   margin-bottom: 20px;
+}
+
+@media (max-width: 1280px) {
+  .fact {
+    padding: 18px;
+    min-height: 265px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .fact {
+    min-height: 245px;
+  }
+
+  .fact__number {
+    font-size: 26px;
+    line-height: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .fact {
+    padding: 10px;
+    min-height: 208px;
+  }
+
+  .fact__text {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .fact__number {
+    margin-bottom: 10px;
+  }
+
+  .fact__source {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .fact__bars {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 810px) {
+  .fact {
+    padding: 10px;
+    min-height: 216px;
+    min-width: 216px;
+  }
 }
 </style>

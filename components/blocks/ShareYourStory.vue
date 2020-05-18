@@ -1,11 +1,11 @@
 <template>
   <section class="share-your-story" id="form">
-    <app-container>
+    <app-container class="share-your-story__container">
       <app-title :theme="theme" class="share-your-story__title">
         Расскажите свою историю
       </app-title>
       <app-flex>
-        <app-paragraph :theme="theme">
+        <app-paragraph :theme="theme" class="share-your-story__paragraph">
           Мы публикуем новые истории на сайте раз в неделю. Есть 2 варианта
           поделиться своей историей неизлечимых привычек, навязчивых идей и
           болезненных привязанностей.
@@ -111,10 +111,14 @@ export default {
   margin-bottom: 32px;
 }
 
+.share-your-story__paragraph {
+  margin-right: 50px;
+}
+
 .tabs {
   display: grid;
   grid-template-columns: max-content 1fr;
-  grid-gap: 40px;
+  column-gap: 40px;
   font-size: 18px;
   line-height: 22px;
 }
@@ -168,5 +172,103 @@ export default {
 
 .tabs__container_theme_light {
   color: #666;
+}
+
+@media (max-width: 1280px) {
+  .tabs__container {
+    max-width: 570px;
+  }
+
+  .share-your-story__title {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .share-your-story__title {
+    margin-bottom: 20px;
+  }
+
+  .tabs {
+    column-gap: 30px;
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .tabs__container {
+    max-width: 447px;
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .share-your-story__container {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .share-your-story__title {
+    margin-bottom: 26px;
+    text-align: center;
+  }
+
+  .share-your-story__paragraph {
+    margin-right: 0;
+    margin-bottom: 80px;
+  }
+
+  .tabs {
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+  }
+
+  .tabs__container {
+    min-height: 190px;
+    max-width: 100%;
+  }
+
+  .tabs__variants {
+    display: flex;
+  }
+
+  .tabs__variant {
+    margin-bottom: 0;
+    margin-right: 30px;
+  }
+
+  .tabs__variant_active {
+    border-bottom: 2px solid #613a93;
+  }
+}
+
+@media (max-width: 425px) {
+  .share-your-story__title {
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .share-your-story__paragraph {
+    margin-bottom: 40px;
+  }
+
+  .tabs {
+    row-gap: 20px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .tabs__container {
+    min-height: 166px;
+  }
+
+  .tabs__variant {
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .tabs__btn {
+    width: 100%;
+  }
 }
 </style>

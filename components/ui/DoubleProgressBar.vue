@@ -39,14 +39,6 @@ export default {
   width: 100%;
 }
 
-/* .fact__progress_full[value]::-webkit-progress-bar {
-  background-color: #f4f4f4;
-}
-
-.fact__progress_full[value]::-webkit-progress-value {
-  background-color: #613a93;
-} */
-
 .fact__progress_short[value]::-webkit-progress-bar {
   background-color: transparent;
 }
@@ -54,10 +46,6 @@ export default {
 .fact__progress_short[value]::-webkit-progress-value {
   background-color: #613a93;
 }
-
-/* .fact__progress_size_l {
-  height: 40px;
-} */
 
 .fact__progress_size_m {
   height: 20px;
@@ -82,5 +70,19 @@ export default {
 
 .fact__progress__value-color_main[value]::-webkit-progress-value {
   background-color: #613a93;
+}
+
+@media (max-width: 1280px) {
+  .fact__progress_size_m {
+    height: 18px;
+    margin-bottom: -2px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .fact__progress_size_m {
+    height: 14px;
+    margin-bottom: -6px;
+  }
 }
 </style>

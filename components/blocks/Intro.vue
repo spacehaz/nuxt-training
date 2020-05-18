@@ -12,10 +12,11 @@
             доказательство — люди с их историями.
           </app-paragraph>
         </div>
-        <div class="intro__nav">
+        <div class="intro__nav intro__nav_place_info">
           <button
-            class="intro__nav-btn intro__nav-btn_left intro__nav-btn_disabled"
+            class="intro__nav-btn intro__nav-btn_left"
             aria-label="Показать следующее видео"
+            disabled
           ></button>
           <button
             class="intro__nav-btn intro__nav-btn_right"
@@ -24,7 +25,18 @@
         </div>
       </div>
       <figure class="intro__video-container">
-        <iframe src="" class="intro__video"></iframe>
+        <div class="intro__video-content">
+          <iframe src="" class="intro__video"></iframe>
+          <button
+            class="intro__nav-btn intro__nav-btn_left intro__nav-btn_place_video"
+            aria-label="Показать следующее видео"
+            disabled
+          ></button>
+          <button
+            class="intro__nav-btn intro__nav-btn_right intro__nav-btn_place_video"
+            aria-label="Показать предыдущее видео"
+          ></button>
+        </div>
         <figcaption class="intro__caption">
           Все видео вы можете найте на нашем
           <a
@@ -70,6 +82,7 @@ export default {
   justify-content: space-between;
   min-height: 450px;
   padding-top: 10px;
+  margin-right: 20px;
 }
 
 .intro__title {
@@ -80,10 +93,18 @@ export default {
   width: 867px;
 }
 
+.intro__video-content {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.intro__nav-btn_place_video.intro__nav-btn {
+  display: none;
+}
+
 .intro__video {
   width: 100%;
   height: 450px;
-  margin-bottom: 10px;
   border: 0;
   background-color: #ededed;
 }
@@ -102,7 +123,7 @@ export default {
   opacity: 0.8;
 }
 
-.intro__nav {
+.intro__nav_place_info {
   display: flex;
 }
 
@@ -119,11 +140,11 @@ export default {
   background-color: #f4f4f4;
 }
 
-.intro__nav-btn_disabled {
+.intro__nav-btn:disabled {
   opacity: 0.2;
 }
 
-.intro__nav-btn_disabled:hover {
+.intro__nav-btn:disabled:hover {
   background-color: #fbfbfb;
   cursor: default;
 }
@@ -139,5 +160,145 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(180deg);
+}
+
+@media (max-width: 1280px) {
+  .intro__info {
+    min-height: 400px;
+  }
+
+  .intro__title {
+    margin-bottom: 30px;
+  }
+
+  .intro__video-container {
+    width: 773px;
+  }
+
+  .intro__video {
+    height: 400px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .intro__info {
+    min-height: 314px;
+  }
+
+  .intro__title {
+    margin-bottom: 20px;
+  }
+
+  .intro__video-container {
+    width: 606px;
+  }
+
+  .intro__video {
+    height: 314px;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro__container {
+    align-items: center;
+  }
+
+  .intro__info {
+    min-height: initial;
+    margin-bottom: 60px;
+    margin-right: 0;
+  }
+
+  .intro__title {
+    margin-bottom: 26px;
+    text-align: center;
+  }
+
+  .intro__video-container {
+    width: 100%;
+    padding-left: 54px;
+    padding-right: 54px;
+  }
+
+  .intro__video-content {
+    margin-bottom: 20px;
+  }
+
+  .intro__video {
+    height: 300px;
+  }
+
+  .intro__nav_place_info {
+    display: none;
+  }
+
+  .intro__nav-btn_place_video.intro__nav-btn {
+    position: absolute;
+    display: block;
+  }
+
+  .intro__nav-btn_place_video.intro__nav-btn_right {
+    right: -54px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .intro__nav-btn_place_video.intro__nav-btn_left {
+    left: -54px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+@media (max-width: 568px) {
+  .intro__video-container {
+    padding: 0;
+  }
+
+  .intro__nav-btn {
+    width: 8px;
+    height: 16px;
+    background-color: transparent;
+  }
+
+  .intro__nav-btn_place_video.intro__nav-btn {
+    display: none;
+  }
+
+  .intro__video-content:hover .intro__nav-btn_place_video.intro__nav-btn {
+    display: block;
+    background-color: transparent;
+  }
+
+  .intro__nav-btn_place_video.intro__nav-btn_right {
+    right: 6px;
+  }
+
+  .intro__nav-btn_place_video.intro__nav-btn_left {
+    left: 6px;
+  }
+}
+
+@media (max-width: 425px) {
+  .intro__title {
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .intro__video-container {
+    width: 100%;
+  }
+
+  .intro__video-content {
+    margin-bottom: 0;
+  }
+
+  .intro__video {
+    height: 150px;
+  }
+
+  .intro__caption {
+    display: none;
+  }
 }
 </style>
