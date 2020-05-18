@@ -1,11 +1,11 @@
 <template>
   <footer class="footer">
-    <app-flex-container class="footer__row">
+    <app-container class="footer__row">
       <div class="footer__info">
-        <app-title :theme="theme" class="footer__title">
+        <p class="footer__title">
           Спасибо всем, кто помог состояться этому проекту
-        </app-title>
-        <app-navigation></app-navigation>
+        </p>
+        <app-navigation class="footer__nav"></app-navigation>
       </div>
       <ul class="footer__socials">
         <li class="footer__socials-item">
@@ -27,36 +27,29 @@
           </a>
         </li>
         <li class="footer__socials-item">
-          <app-share-btn class="footer__socials-link"> </app-share-btn>
+          <app-share-btn class="footer__share-btn"></app-share-btn>
         </li>
       </ul>
-    </app-flex-container>
-    <app-flex-container class="footer__copyright">
+    </app-container>
+    <app-container class="footer__copyright">
       <p class="footer__copyright-info">Рак Лечится {{ year }}</p>
       <p class="footer__copyright-info">
         Сделано студентами Яндекс Практикум
       </p>
-    </app-flex-container>
+    </app-container>
   </footer>
 </template>
 
 <script>
-import FlexContainer from '@/components/shared/FlexContainer';
+import Container from '@/components/shared/Container';
 import Navigation from '@/components/shared/Navigation';
-import Title from '@/components/shared/Title';
 import ShareBtn from '@/components/ui/ShareBtn';
 
 export default {
   components: {
-    'app-flex-container': FlexContainer,
+    'app-container': Container,
     'app-navigation': Navigation,
-    'app-title': Title,
     'app-share-btn': ShareBtn,
-  },
-  data() {
-    return {
-      theme: 'light',
-    };
   },
   computed: {
     year() {
@@ -74,9 +67,14 @@ export default {
 .footer__title {
   max-width: 340px;
   margin-right: 102px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 36px;
 }
 
 .footer__row {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 110px;
 }
 
@@ -85,9 +83,15 @@ export default {
 }
 
 .footer__copyright {
+  display: flex;
+  justify-content: space-between;
   font-size: 18px;
   line-height: 18px;
   color: #898989;
+}
+
+.footer__nav {
+  margin-right: 20px;
 }
 
 .footer__socials {
@@ -109,9 +113,121 @@ export default {
 .footer__socials-link {
   text-decoration: none;
   color: inherit;
+  border-bottom: 1px solid #000;
 }
 
 .footer__socials-link:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 1280px) {
+  .footer__row {
+    margin-bottom: 104px;
+  }
+
+  .footer__socials {
+    min-width: 265px;
+  }
+
+  .footer__title {
+    max-width: 305px;
+    margin-right: 102px;
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .footer__socials-item {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .footer__copyright {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer__row {
+    margin-bottom: 90px;
+  }
+
+  .footer__socials {
+    min-width: 221px;
+  }
+
+  .footer__title {
+    max-width: 288px;
+    margin-right: 30px;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .footer__socials-item {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer__title {
+    max-width: 255px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer__title {
+    max-width: 268px;
+  }
+
+  .footer__socials-item {
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 670px) {
+  .footer__row {
+    display: block;
+    margin-bottom: 50px;
+  }
+
+  .footer__info {
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .footer__title {
+    max-width: 100%;
+    margin-bottom: 50px;
+    margin-right: 0;
+  }
+
+  .footer__copyright {
+    display: block;
+  }
+
+  .footer__copyright-info {
+    margin-bottom: 10px;
+  }
+
+  .footer__copyright-info:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .footer__title {
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .footer__socials-item {
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 15px;
+  }
+
+  .footer__copyright {
+    font-size: 13px;
+    line-height: 18px;
+  }
 }
 </style>

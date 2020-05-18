@@ -63,4 +63,11 @@ html {
   padding-top: 60px;
   padding-bottom: 60px;
 }
+
+@media (max-width: 1280px) {
+  .root__footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
 </style>

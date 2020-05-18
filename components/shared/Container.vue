@@ -11,4 +11,16 @@
   margin-right: auto;
   padding: 0 60px;
 }
+
+@media screen and (max-width: 1280px) {
+  .container {
+    padding: 0 50px;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .container {
+    padding: 0 15px;
+  }
+}
 </style>

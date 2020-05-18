@@ -54,4 +54,44 @@
 .navigation__link_active {
   border-bottom: 1px solid #000;
 }
+
+@media (max-width: 1280px) {
+  .navigation__link {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navigation__item {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation__list {
+    flex-direction: column;
+  }
+
+  .navigation__item {
+    margin-bottom: 14px;
+    margin-right: 0;
+  }
+
+  .navigation__item:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 670px) {
+  .navigation__item {
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 425px) {
+  .navigation__link {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
 </style>

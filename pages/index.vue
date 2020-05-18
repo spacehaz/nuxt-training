@@ -89,4 +89,94 @@ export default {
 .root__statistics {
   padding: 100px 0;
 }
+
+@media (max-width: 1280px) {
+  .root__intro {
+    padding-top: 90px;
+    padding-bottom: 64px;
+  }
+
+  .root__habits {
+    padding: 90px 0;
+  }
+
+  .root__instagram {
+    padding: 90px 0;
+  }
+
+  .root__share-your-story {
+    padding: 90px 0;
+  }
+
+  .root__about {
+    padding-top: 80px;
+    padding-bottom: 90px;
+  }
+
+  .root__statistics {
+    padding: 90px 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .root__intro {
+    padding-top: 80px;
+    padding-bottom: 54px;
+  }
+
+  .root__habits {
+    padding: 80px 0;
+  }
+
+  .root__instagram {
+    padding: 80px 0;
+  }
+
+  .root__share-your-story {
+    padding: 80px 0;
+  }
+
+  .root__about {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .root__statistics {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .root__intro {
+    padding-bottom: 44px;
+  }
+}
+
+@media (max-width: 425px) {
+  .root__intro {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .root__habits {
+    padding: 50px 0;
+  }
+
+  .root__instagram {
+    padding: 50px 0;
+  }
+
+  .root__share-your-story {
+    padding: 50px 0;
+  }
+
+  .root__about {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .root__statistics {
+    padding: 50px 0;
+  }
+}
 </style>

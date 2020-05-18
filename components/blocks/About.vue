@@ -7,7 +7,7 @@
           >О проекте</app-title
         >
         <app-flex>
-          <app-paragraph :theme="theme">
+          <app-paragraph :theme="theme" class="about__paragraph">
             Этот проект был создан благотворительным фондом Константина
             Хабенского.
           </app-paragraph>
@@ -120,6 +120,10 @@ export default {
   color: #fff;
 }
 
+.about__paragraph {
+  margin-right: 50px;
+}
+
 .about__content {
   max-width: 1320px;
   margin-left: auto;
@@ -128,11 +132,6 @@ export default {
 
 .about__content-title {
   margin-bottom: 32px;
-}
-
-.about__paragraph {
-  max-width: 340px;
-  margin-right: 146px;
 }
 
 .tabs {
@@ -193,5 +192,135 @@ export default {
 
 .tabs__container_theme_main {
   color: #dedede;
+}
+
+@media (max-width: 1280px) {
+  .about {
+    min-height: 626px;
+  }
+
+  .about__title {
+    margin-bottom: 60px;
+    font-size: 58px;
+    line-height: 70px;
+  }
+
+  .tabs__container {
+    max-width: 570px;
+  }
+
+  .about__content-title {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .about {
+    min-height: 570px;
+  }
+
+  .about__title {
+    margin-bottom: 46px;
+    font-size: 52px;
+    line-height: 63px;
+  }
+
+  .about__content-title {
+    margin-bottom: 20px;
+  }
+
+  .tabs {
+    column-gap: 30px;
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .tabs__container {
+    max-width: 447px;
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    min-height: 660px;
+  }
+
+  .about__title {
+    display: none;
+  }
+
+  .about__content {
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about__content-title {
+    margin: 0 auto 26px;
+    text-align: center;
+  }
+
+  .about__paragraph {
+    margin-right: 0;
+    margin-bottom: 80px;
+  }
+
+  .tabs {
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+  }
+
+  .tabs__container {
+    min-height: 190px;
+    max-width: 100%;
+  }
+
+  .tabs__variants {
+    display: flex;
+  }
+
+  .tabs__variant {
+    margin-bottom: 0;
+    margin-right: 30px;
+  }
+
+  .tabs__variant_active {
+    border-bottom: 2px solid #fff;
+  }
+}
+
+@media (max-width: 425px) {
+  .about {
+    min-height: initial;
+  }
+
+  .about__content-title {
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .about__paragraph {
+    margin-bottom: 40px;
+  }
+
+  .tabs {
+    row-gap: 20px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .tabs__container {
+    min-height: 166px;
+  }
+
+  .tabs__variant {
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .tabs__btn {
+    width: 100%;
+  }
 }
 </style>

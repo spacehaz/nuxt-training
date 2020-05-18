@@ -39,4 +39,42 @@ export default {
 .habits__content {
   margin-bottom: 70px;
 }
+
+@media (max-width: 1280px) {
+  .habits__title {
+    margin-bottom: 60px;
+  }
+
+  .habits__content {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .habits__title {
+    margin-bottom: 46px;
+  }
+
+  .habits__content {
+    margin-bottom: 46px;
+  }
+}
+
+@media (max-width: 768px) {
+  .habits__title {
+    margin: 0 auto 60px;
+    text-align: center;
+  }
+
+  .habits__content {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 425px) {
+  .habits__title {
+    margin-bottom: 40px;
+    text-align: left;
+  }
+}
 </style>

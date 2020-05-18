@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <app-flex-container class="header__container">
+    <div class="header__container">
       <p class="header__logo">
         Проект Благотворительного Фонда Константина Хабенского
       </p>
@@ -11,18 +11,16 @@
         </button>
       </div>
       <app-mobile-icon class="header__mobile-icon"></app-mobile-icon>
-    </app-flex-container>
+    </div>
   </header>
 </template>
 
 <script>
-import FlexContainer from '@/components/shared/FlexContainer';
 import Navigation from '@/components/shared/Navigation';
 import MobileIcon from '@/components/ui/MobileIcon';
 
 export default {
   components: {
-    'app-flex-container': FlexContainer,
     'app-navigation': Navigation,
     'app-mobile-icon': MobileIcon,
   },
@@ -41,8 +39,11 @@ export default {
 }
 
 .header__container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   min-height: 76px;
+  padding: 0 60px;
 }
 
 .header__logo {
@@ -81,6 +82,23 @@ export default {
   display: none;
 }
 
+@media (max-width: 1280px) {
+  .header__container {
+    min-height: 72px;
+    padding: 0 50px;
+  }
+
+  .header__button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header__button {
+    margin-left: 30px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .header__links {
     display: none;
@@ -88,6 +106,19 @@ export default {
 
   .header__mobile-icon {
     display: block;
+  }
+}
+
+@media (max-width: 425px) {
+  .header__container {
+    min-height: 64px;
+    padding: 0 15px;
+  }
+
+  .header__logo {
+    max-width: 216px;
+    font-size: 12px;
+    line-height: 14px;
   }
 }
 </style>

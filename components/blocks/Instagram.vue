@@ -11,7 +11,7 @@
             Инстаграм
           </a>
         </app-title>
-        <app-paragraph :theme="theme">
+        <app-paragraph :theme="theme" class="instagram__paragraph">
           Два раза в неделю мы просматриваем все посты по хештегу #этонелечится.
           Все истории, где нет нецензурных выражений и запрещенного контента
           попадают сюда. Следите за правильным написанием хештега, чтобы мы не
@@ -73,5 +73,49 @@ export default {
 .instagram__info {
   position: relative;
   margin-right: 110px;
+}
+
+@media (max-width: 1280px) {
+  .instagram__title {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .instagram__info {
+    margin-right: 60px;
+  }
+
+  .instagram__title {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .instagram__container {
+    grid-template-columns: 1fr;
+    row-gap: 60px;
+  }
+
+  .instagram__info {
+    justify-self: center;
+    margin-right: 0;
+  }
+
+  .instagram__title {
+    margin-bottom: 26px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .instagram__container {
+    row-gap: 40px;
+  }
+
+  .instagram__title {
+    margin-bottom: 16px;
+    text-align: left;
+  }
 }
 </style>
