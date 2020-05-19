@@ -1,7 +1,7 @@
 <template>
   <form action="/" class="contact-us" method="POST">
     <app-title class="contact-us__title" :theme="theme">
-      Оставьте контакт для связи
+      Оставьте контакт для&nbsp;связи
     </app-title>
     <p class="contact-us__text">
       Мы свяжемся с вами в течение недели, чтобы задать вопросы о вашей истории
@@ -151,5 +151,203 @@ export default {
 
 .contact-us__policy-link {
   color: inherit;
+}
+
+@media screen and (max-width: 1280px) {
+  .contact-us {
+    width: 720px;
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .contact-us {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .contact-us {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .contact-us {
+    width: 76vw;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .contact-us {
+    width: 72vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .contact-us {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .contact-us {
+    width: 80vw;
+    height: 585px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .contact-us__title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-us__title {
+    font-size: 26px;
+    line-height: 30px;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .contact-us__title {
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .contact-us__title {
+    font-size: 18px;
+    line-height: 21px;
+    max-width: 240px;
+    margin-bottom: 35px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .contact-us__text {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-us__text {
+    font-size: 15px;
+    line-height: 19px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .contact-us__text {
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 35px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .contact-us__input {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-us__input {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .contact-us__input {
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .contact-us__label {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-us__label {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .contact-us__label {
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-us__policy {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-us__policy-link {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-us__button {
+    width: 200px;
+    height: 46px;
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-us__button {
+    width: 100%;
+    height: 40px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .contact-us__button {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .contact-us__container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .contact-us__send-items {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .contact-us__policy {
+    width: 100%;
+  }
 }
 </style>

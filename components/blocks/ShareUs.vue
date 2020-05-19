@@ -60,8 +60,8 @@ export default {
   display: flex;
   justify-content: center;
   padding: 0;
-  padding-bottom: 100px;
   padding-top: 100px;
+  padding-bottom: 60px;
   list-style-type: none;
 }
 
@@ -107,5 +107,77 @@ export default {
 
 .share-us__item_youtube {
   background-image: url("data:image/svg+xml,%3Csvg width='30' height='22' viewBox='0 0 30 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M26.7379 1.14006C28.0229 1.48602 29.0361 2.4992 29.3821 3.7842C30.0246 6.1318 29.9999 11.0247 29.9999 11.0247C29.9999 11.0247 29.9999 15.8929 29.3821 18.2405C29.0361 19.5255 28.0229 20.5387 26.7379 20.8846C24.3903 21.5024 14.9999 21.5024 14.9999 21.5024C14.9999 21.5024 5.63424 21.5024 3.26193 20.8599C1.97693 20.5139 0.963752 19.5008 0.61779 18.2158C0 15.8929 0 11 0 11C0 11 0 6.1318 0.61779 3.7842C0.963752 2.4992 2.00164 1.46131 3.26193 1.11535C5.60953 0.497559 14.9999 0.497559 14.9999 0.497559C14.9999 0.497559 24.3903 0.497559 26.7379 1.14006ZM19.8187 11L12.0098 15.4975V6.50248L19.8187 11Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+@media screen and (max-width: 1280px) {
+  .share-us {
+    width: 720px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .share-us {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .share-us {
+    width: 77vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .share-us {
+    width: 86vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .share-us {
+    width: 86vw;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .share-us {
+    width: 81vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .share-us__items {
+    padding-top: 60px;
+    padding-bottom: 45px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .share-us__title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .share-us__title {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .share-us__item {
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .share-us__item-link {
+    width: 35px;
+    height: 35px;
+    /*		padding: 9px;*/
+    background-size: 65% 65%;
+  }
 }
 </style>

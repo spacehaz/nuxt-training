@@ -56,4 +56,28 @@ export default {
   right: 40px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 670px) {
+  .popup {
+    max-height: 94vh;
+    /*		margin-top: 3vh;*/
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .popup {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .popup__close {
+    top: 14px;
+    right: 10px;
+    width: 25px;
+  }
+}
 </style>
