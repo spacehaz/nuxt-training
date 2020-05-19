@@ -1,25 +1,31 @@
 <template>
   <main class="story root__story">
     <app-container>
-      <app-flex class="story__header">
+      <div class="story__header">
         <img
           src="https://avatars.mds.yandex.net/get-pdb/2491915/be6af928-1dd0-45fa-aa29-16a0bcc95b10/s1200"
           alt=""
-          class="story__img"
+          class="story__img story__img_place_outside"
         />
+
         <div class="story__main-description">
           <h1 class="story__title">
             <span class="story__title-accent">Александр Тарханов:</span>
             «Я не могу победить свою пунктуальность в отличии от рака»
           </h1>
-          <app-flex class="story__info">
+          <img
+            src="https://avatars.mds.yandex.net/get-pdb/2491915/be6af928-1dd0-45fa-aa29-16a0bcc95b10/s1200"
+            alt=""
+            class="story__img story__img_place_inside"
+          />
+          <div class="story__info">
             <app-share-btn class="social__link">
               Поделитесь &#8599;
             </app-share-btn>
             <span class="story__date">20 апреля 2018</span>
-          </app-flex>
+          </div>
         </div>
-      </app-flex>
+      </div>
       <div class="story__content-container">
         <div class="story__content">
           <p class="story__paragraph">
@@ -65,7 +71,7 @@
           </p>
         </div>
         <app-share-btn class="story__share-btn">
-          Поделитесь этой статьей в своих социальных сетях &#8599;
+          Поделитесь этой статьей в своих социальных&nbsp;сетях &#8599;
         </app-share-btn>
       </div>
 
@@ -78,7 +84,6 @@
 
 <script>
 import Container from '@/components/shared/Container';
-import Flex from '@/components/shared/Flex';
 import ShareBtn from '@/components/ui/ShareBtn';
 import Previews from '@/components/blocks/Previews';
 import MoreBtn from '@/components/ui/MoreBtn';
@@ -86,7 +91,6 @@ import MoreBtn from '@/components/ui/MoreBtn';
 export default {
   components: {
     'app-container': Container,
-    'app-flex': Flex,
     'app-share-btn': ShareBtn,
     'app-previews': Previews,
     'app-more-btn': MoreBtn,
@@ -144,17 +148,26 @@ export default {
   padding-bottom: 100px;
 }
 
+.story__header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .story__img {
   width: 580px;
   height: 580px;
+  margin-right: 60px;
   object-fit: cover;
+}
+
+.story__img_place_inside {
+  display: none;
 }
 
 .story__main-description {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 680px;
   padding: 30px 0;
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
@@ -171,6 +184,8 @@ export default {
 }
 
 .story__info {
+  display: flex;
+  justify-content: space-between;
   font-size: 18px;
   line-height: 24px;
   color: #121212;
@@ -210,5 +225,165 @@ export default {
 
 .story__previews {
   margin-bottom: 70px;
+}
+
+@media (max-width: 1280px) {
+  .root__story {
+    padding-bottom: 90px;
+  }
+
+  .story__img {
+    width: 518px;
+    height: 518px;
+  }
+
+  .story__title {
+    font-size: 34px;
+    line-height: 44px;
+  }
+
+  .story__content-container {
+    max-width: 720px;
+    padding-top: 120px;
+    padding-bottom: 150px;
+  }
+
+  .story__content {
+    margin-bottom: 60px;
+  }
+
+  .story__paragraph {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .story__previews {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .root__story {
+    padding-bottom: 80px;
+  }
+
+  .story__img {
+    width: 407px;
+    height: 407px;
+    margin-right: 40px;
+  }
+
+  .story__main-description {
+    padding: 20px 0;
+  }
+
+  .story__title {
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  .story__info {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .story__content-container {
+    max-width: 640px;
+    padding-top: 90px;
+    padding-bottom: 120px;
+  }
+
+  .story__content {
+    margin-bottom: 46px;
+  }
+
+  .story__paragraph {
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .story__share-btn {
+    padding: 24px 0;
+  }
+
+  .story__previews {
+    margin-bottom: 46px;
+  }
+}
+
+@media (max-width: 768px) {
+  .root__story {
+    padding-top: 80px;
+  }
+
+  .story__img {
+    width: 420px;
+    height: 420px;
+    margin: 60px auto;
+  }
+
+  .story__img_place_outside {
+    display: none;
+  }
+
+  .story__img_place_inside {
+    display: block;
+  }
+
+  .story__content-container {
+    max-width: 640px;
+    padding-top: 100px;
+  }
+
+  .story__content {
+    margin-bottom: 80px;
+  }
+
+  .story__previews {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 425px) {
+  .root__story {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .story__img {
+    max-width: 100%;
+    margin: 30px auto;
+  }
+
+  .story__title {
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .story__info {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .story__content-container {
+    max-width: 100%;
+    padding-top: 40px;
+    padding-bottom: 100px;
+  }
+
+  .story__content {
+    margin-bottom: 40px;
+  }
+
+  .story__paragraph {
+    margin-bottom: 20px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .story__share-btn {
+    padding: 20px 0;
+  }
 }
 </style>
