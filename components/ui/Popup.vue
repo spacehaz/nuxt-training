@@ -56,4 +56,27 @@ export default {
   right: 40px;
   cursor: pointer;
 }
+
+@media (max-width: 1280px) {
+}
+
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 568px) {
+}
+
+@media (max-width: 425px) {
+  .popup__close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .popup {
+    padding: 15px;
+  }
+}
 </style>

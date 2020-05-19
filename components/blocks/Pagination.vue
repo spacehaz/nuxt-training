@@ -94,4 +94,29 @@ export default {
 .pagination__link_active:hover {
   background-color: #f4f4f4;
 }
+
+@media (max-width: 1280px) {
+}
+
+@media (max-width: 1024px) {
+  .pagination__link {
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination__link {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 568px) {
+}
+
+@media (max-width: 425px) {
+}
 </style>

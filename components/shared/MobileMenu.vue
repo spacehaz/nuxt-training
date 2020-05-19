@@ -45,6 +45,7 @@ export default {
   },
   methods: {
     toggleQuiz() {
+      this.$store.dispatch('quiz/showQuiz');
       this.$store.commit('popup/togglePopupVisibility');
     },
   },

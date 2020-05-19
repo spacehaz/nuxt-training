@@ -32,7 +32,7 @@
         :size="'content'"
         @click.native.prevent="prevQuestion"
         :disabled="isFirstQuestion"
-        class="quiz__btn"
+        class="quiz__btn-back"
         >Назад</app-button
       >
       <app-button
@@ -40,6 +40,7 @@
         @click.native.prevent="nextQuestion"
         v-if="!isLastQuestion"
         :disabled="isAnswerInvalid"
+        class="quiz__btn"
         >Далее</app-button
       >
       <app-button
@@ -171,9 +172,18 @@ export default {
   color: #666;
 }
 
+.quiz__input {
+  font-size: 18px;
+  line-height: 24px;
+}
+
 .quiz__text-accent {
   font-weight: 500;
   color: #000;
+}
+
+.quiz__btn-back {
+  margin-right: 30px;
 }
 
 .quiz__btn {
@@ -196,5 +206,124 @@ export default {
 
 .quiz__policy {
   max-width: 378px;
+}
+
+@media (max-width: 1280px) {
+  .quiz {
+    width: 840px;
+    height: 520px;
+  }
+  .quiz__btn {
+    width: 200px;
+  }
+  .quiz__label {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .quiz__input {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .quiz {
+    width: 720px;
+    height: 520px;
+  }
+  .quiz__label {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .quiz__input {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .quiz__title {
+    font-size: 26px;
+    line-height: 30px;
+  }
+}
+
+@media (max-width: 850px) {
+  .quiz {
+    width: 520px;
+    height: 520px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quiz__label {
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .quiz__input {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+
+@media (max-width: 700px) {
+  .quiz {
+    width: 400px;
+    height: 520px;
+  }
+  .quiz__navigation {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .quiz__policy {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .quiz {
+    width: 290px;
+    height: 520px;
+  }
+  .quiz__btn {
+    width: 206px;
+    margin-right: 0;
+  }
+
+  .quiz__title {
+    margin-bottom: 30px;
+  }
+
+  .quiz__btn-back {
+    margin-right: 15px;
+  }
+
+  .quiz__label {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .quiz__input {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .quiz__title {
+    font-size: 18px;
+    line-height: 21px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .quiz {
+    width: 260px;
+    height: 520px;
+  }
+
+  .quiz__btn-back {
+    width: 39px;
+  }
 }
 </style>
