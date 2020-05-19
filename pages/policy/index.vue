@@ -387,12 +387,10 @@
   padding-top: 100px;
   padding-bottom: 130px;
 }
-
 .policy__container {
   max-width: 780px;
   margin: 0 auto;
 }
-
 .policy__title {
   padding: 30px 0;
   font-weight: 500;
@@ -403,38 +401,31 @@
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
 }
-
 .policy__content {
   padding: 100px 0;
   font-size: 22px;
   line-height: 30px;
 }
-
 .policy__content-item {
   margin-bottom: 90px;
 }
-
 .policy__content-title {
   margin-bottom: 40px;
   font-size: inherit;
   line-height: inherit;
   font-weight: 600;
 }
-
 .policy__paragraph {
   margin-bottom: 30px;
   font-weight: normal;
 }
-
 .policy__paragraph_numbered {
   display: flex;
   align-items: flex-start;
 }
-
 .policy__paragraph_numbered:last-of-type {
   margin-bottom: 0;
 }
-
 .policy__number {
   min-width: 30px;
   margin-right: 10px;
@@ -444,6 +435,10 @@
   .root__policy {
     padding-top: 90px;
     padding-bottom: 120px;
+  }
+  
+  .policy__container {
+    max-width: 700px;
   }
 
   .policy__container {
@@ -521,6 +516,7 @@
     font-size: 13px;
     line-height: 16px;
   }
+
 
   .policy__content-item {
     margin-bottom: 40px;

@@ -70,4 +70,18 @@ export default {
   color: #666;
   background: none;
 }
+
+@media (max-width: 1024px) {
+  .button {
+    font-size: 15px;
+    line-height: 46px;
+  }
+}
+
+@media (max-width: 425px) {
+  .button {
+    font-size: 13px;
+    line-height: 40px;
+  }
+}
 </style>

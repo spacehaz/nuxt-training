@@ -75,7 +75,7 @@
         </app-share-btn>
       </div>
 
-      <app-previews :stories="stories" class="story__previews"></app-previews>
+      <app-previews class="story__previews"></app-previews>
 
       <app-more-btn></app-more-btn>
     </app-container>
@@ -87,7 +87,6 @@ import Container from '@/components/shared/Container';
 import ShareBtn from '@/components/ui/ShareBtn';
 import Previews from '@/components/blocks/Previews';
 import MoreBtn from '@/components/ui/MoreBtn';
-
 export default {
   components: {
     'app-container': Container,
@@ -95,11 +94,18 @@ export default {
     'app-previews': Previews,
     'app-more-btn': MoreBtn,
   },
-  data() {
-    return {
-      stories: [],
-      storiesPerPage: 4,
-    };
+  computed: {
+    storiesPerPage() {
+      if (process.browser) {
+        if (window.innerWidth <= 320) {
+          return 2;
+        } else if (window.innerWidth <= 768) {
+          return 3;
+        } else {
+          return 4;
+        }
+      }
+    },
   },
   async fetch({ store }) {
     await store.dispatch('stories/getStories');
@@ -160,6 +166,7 @@ export default {
   object-fit: cover;
 }
 
+
 .story__img_place_inside {
   display: none;
 }
@@ -172,17 +179,14 @@ export default {
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
 }
-
 .story__title {
   font-weight: normal;
   font-size: 38px;
   line-height: 48px;
 }
-
 .story__title-accent {
   font-weight: 500;
 }
-
 .story__info {
   display: flex;
   justify-content: space-between;
@@ -190,39 +194,32 @@ export default {
   line-height: 24px;
   color: #121212;
 }
-
 .story__content-container {
   max-width: 780px;
   margin: 0 auto;
   padding-top: 130px;
   padding-bottom: 160px;
 }
-
 .story__content {
   margin-bottom: 70px;
 }
-
 .story__paragraph {
   margin-bottom: 40px;
   font-size: 22px;
   line-height: 30px;
 }
-
 .story__paragraph_highlighted {
   font-weight: 600;
 }
-
 .story__paragraph:last-of-type {
   margin-bottom: 0;
 }
-
 .story__share-btn {
   padding: 30px 0;
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
   width: 100%;
 }
-
 .story__previews {
   margin-bottom: 70px;
 }
@@ -248,6 +245,7 @@ export default {
     padding-bottom: 150px;
   }
 
+
   .story__content {
     margin-bottom: 60px;
   }
@@ -266,12 +264,12 @@ export default {
   .root__story {
     padding-bottom: 80px;
   }
-
   .story__img {
     width: 407px;
     height: 407px;
     margin-right: 40px;
   }
+
 
   .story__main-description {
     padding: 20px 0;
@@ -322,6 +320,7 @@ export default {
     height: 420px;
     margin: 60px auto;
   }
+
 
   .story__img_place_outside {
     display: none;

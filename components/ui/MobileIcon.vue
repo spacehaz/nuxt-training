@@ -82,13 +82,11 @@ export default {
 .mobile-button_type_close span::after {
   transform: rotate(45deg);
 }
-
 @media (max-width: 425px) {
   .mobile-button {
     width: 26px;
     height: 23px;
   }
-
   .mobile-button span,
   .mobile-button span::before,
   .mobile-button span::after {
@@ -96,7 +94,6 @@ export default {
     width: 26px;
     height: 3px;
   }
-
   .mobile-button_type_close span {
     height: 0;
   }

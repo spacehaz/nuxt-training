@@ -28,8 +28,20 @@ export default {
       stories: [],
       gallery: [],
       statistics: [],
-      storiesPerPage: 8,
     };
+  },
+  computed: {
+    storiesPerPage() {
+      if (process.browser) {
+        if (window.innerWidth <= 320) {
+          return 6;
+        } else if (window.innerWidth <= 768) {
+          return 9;
+        } else {
+          return 8;
+        }
+      }
+    },
   },
   components: {
     'app-cover': Cover,
