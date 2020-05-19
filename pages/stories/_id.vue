@@ -153,19 +153,24 @@ export default {
   padding-top: 100px;
   padding-bottom: 100px;
 }
+
 .story__header {
   display: flex;
   justify-content: space-between;
 }
+
 .story__img {
   width: 580px;
   height: 580px;
   margin-right: 60px;
   object-fit: cover;
 }
+
+
 .story__img_place_inside {
   display: none;
 }
+
 .story__main-description {
   display: flex;
   flex-direction: column;
@@ -218,34 +223,43 @@ export default {
 .story__previews {
   margin-bottom: 70px;
 }
+
 @media (max-width: 1280px) {
   .root__story {
     padding-bottom: 90px;
   }
+
   .story__img {
     width: 518px;
     height: 518px;
   }
+
   .story__title {
     font-size: 34px;
     line-height: 44px;
   }
+
   .story__content-container {
     max-width: 720px;
     padding-top: 120px;
     padding-bottom: 150px;
   }
+
+
   .story__content {
     margin-bottom: 60px;
   }
+
   .story__paragraph {
     font-size: 20px;
     line-height: 28px;
   }
+
   .story__previews {
     margin-bottom: 60px;
   }
 }
+
 @media (max-width: 1024px) {
   .root__story {
     padding-bottom: 80px;
@@ -255,93 +269,118 @@ export default {
     height: 407px;
     margin-right: 40px;
   }
+
+
   .story__main-description {
     padding: 20px 0;
   }
+
   .story__title {
     font-size: 30px;
     line-height: 38px;
   }
+
   .story__info {
     font-size: 16px;
     line-height: 24px;
   }
+
   .story__content-container {
     max-width: 640px;
     padding-top: 90px;
     padding-bottom: 120px;
   }
+
   .story__content {
     margin-bottom: 46px;
   }
+
   .story__paragraph {
     margin-bottom: 30px;
     font-size: 18px;
     line-height: 27px;
   }
+
   .story__share-btn {
     padding: 24px 0;
   }
+
   .story__previews {
     margin-bottom: 46px;
   }
 }
+
 @media (max-width: 768px) {
   .root__story {
     padding-top: 80px;
   }
+
   .story__img {
     width: 420px;
     height: 420px;
     margin: 60px auto;
   }
+
+
   .story__img_place_outside {
     display: none;
   }
+
   .story__img_place_inside {
     display: block;
   }
+
   .story__content-container {
     max-width: 640px;
     padding-top: 100px;
   }
+
   .story__content {
     margin-bottom: 80px;
   }
+
   .story__previews {
     margin-bottom: 40px;
   }
 }
+
 @media (max-width: 425px) {
   .root__story {
     padding-top: 50px;
     padding-bottom: 50px;
   }
+
   .story__img {
     max-width: 100%;
     margin: 30px auto;
   }
+
   .story__title {
     font-size: 18px;
     line-height: 21px;
   }
+
   .story__info {
     font-size: 13px;
     line-height: 16px;
   }
+
   .story__content-container {
     max-width: 100%;
     padding-top: 40px;
     padding-bottom: 100px;
   }
+
   .story__content {
     margin-bottom: 40px;
   }
+
   .story__paragraph {
     margin-bottom: 20px;
     font-size: 13px;
     line-height: 16px;
   }
+
   .story__share-btn {
     padding: 20px 0;
   }

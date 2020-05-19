@@ -42,6 +42,7 @@ export default {
   height: 28px;
   cursor: pointer;
 }
+
 .mobile-button span,
 .mobile-button span::before,
 .mobile-button span::after {
@@ -54,24 +55,30 @@ export default {
   height: 3px;
   background-color: #000;
 }
+
 .mobile-button span::before,
 .mobile-button span::after {
   content: '';
   display: block;
   transition: 0.2s;
 }
+
 .mobile-button span::before {
   transform: translateY(-9px);
 }
+
 .mobile-button span::after {
   transform: translateY(9px);
 }
+
 .mobile-button_type_close span {
   height: 0;
 }
+
 .mobile-button_type_close span::before {
   transform: rotate(-45deg);
 }
+
 .mobile-button_type_close span::after {
   transform: rotate(45deg);
 }

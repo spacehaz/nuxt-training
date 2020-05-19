@@ -430,82 +430,106 @@
   min-width: 30px;
   margin-right: 10px;
 }
+
 @media (max-width: 1280px) {
   .root__policy {
     padding-top: 90px;
     padding-bottom: 120px;
   }
+  
   .policy__container {
     max-width: 700px;
   }
+
+  .policy__container {
+    max-width: 700px;
+  }
+
   .policy__title {
     font-size: 34px;
     line-height: 44px;
   }
+
   .policy__content {
     padding: 90px 0;
     font-size: 20px;
     line-height: 28px;
   }
+
   .policy__content-item {
     margin-bottom: 80px;
   }
 }
+
 @media (max-width: 1024px) {
   .root__policy {
     padding-top: 80px;
     padding-bottom: 110px;
   }
+
   .policy__container {
     max-width: 640px;
   }
+
   .policy__title {
     font-size: 30px;
     line-height: 38px;
   }
+
   .policy__content {
     padding: 80px 0;
     font-size: 18px;
     line-height: 27px;
   }
+
   .policy__content-item {
     margin-bottom: 70px;
   }
 }
+
 @media (max-width: 768px) {
   .policy__container {
     max-width: 640px;
     padding: 0 40px;
   }
 }
+
 @media (max-width: 425px) {
   .root__policy {
     padding-top: 50px;
     padding-bottom: 50px;
   }
+
   .policy__container {
     max-width: 100%;
     padding: 0 15px;
   }
+
   .policy__title {
     font-size: 18px;
     line-height: 21px;
     padding: 20px 0;
   }
+
   .policy__content {
     padding: 40px 0;
     font-size: 13px;
     line-height: 16px;
   }
+
+
   .policy__content-item {
     margin-bottom: 40px;
   }
+
   .policy__content-title {
     margin-bottom: 20px;
   }
+
   .policy__paragraph {
     margin-bottom: 20px;
   }
+
   .policy__number {
     min-width: 16px;
   }
