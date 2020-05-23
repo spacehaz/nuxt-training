@@ -1,9 +1,9 @@
 <template>
   <header class="header">
-    <div class="header__container">
-      <p class="header__logo">
-        Проект Благотворительного Фонда Константина Хабенского
-      </p>
+    <app-container class="header__container">
+      <nuxt-link to="/" class="header__logo">
+        {{ title }}
+      </nuxt-link>
       <div class="header__links">
         <app-navigation></app-navigation>
         <button class="header__button" @click="toggleQuiz">
@@ -11,23 +11,30 @@
         </button>
       </div>
       <app-mobile-icon class="header__mobile-icon"></app-mobile-icon>
-    </div>
+    </app-container>
   </header>
 </template>
 
 <script>
 import Navigation from '@/components/shared/Navigation';
 import MobileIcon from '@/components/ui/MobileIcon';
+import Container from '@/components/shared/Container';
 
 export default {
   components: {
     'app-navigation': Navigation,
     'app-mobile-icon': MobileIcon,
+    'app-container': Container,
   },
   methods: {
     toggleQuiz() {
       this.$store.dispatch('quiz/showQuiz');
       this.$store.commit('popup/togglePopupVisibility');
+    },
+  },
+  computed: {
+    title() {
+      return this.$store.getters['blocks/getBlocks'].header.title;
     },
   },
 };
@@ -43,7 +50,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   min-height: 76px;
-  padding: 0 60px;
 }
 
 .header__logo {
@@ -52,6 +58,13 @@ export default {
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
+  text-decoration: none;
+  color: #000000;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+  color: #121212;
 }
 
 .header__links {

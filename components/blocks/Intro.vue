@@ -1,15 +1,12 @@
 <template>
-  <section class="intro" id="intro">
+  <section class="intro">
     <app-flex-container class="intro__container">
       <div class="intro__info">
         <div class="intro__text-container">
           <app-title :theme="theme" class="intro__title">
-            Истории людей, победивших рак, но не свои привычки
+            {{ title }}
           </app-title>
-          <app-paragraph :theme="theme" class="intro__paragraph">
-            Есть вещи, которые не лечатся. Вещи ставшие частью нашего «я»,
-            фобии, страхи. Но это точно не рак. Рак лечится. Лучшее
-            доказательство — люди с их историями.
+          <app-paragraph :theme="theme" class="intro__paragraph" v-html="text">
           </app-paragraph>
         </div>
         <div class="intro__nav intro__nav_place_info">
@@ -38,13 +35,14 @@
           ></button>
         </div>
         <figcaption class="intro__caption">
-          Все видео вы можете найте на нашем
+          <!--Все видео вы можете найте на нашем-->
           <a
             href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
             class="intro__caption-link"
             target="_blank"
           >
-            YouTube канале.
+            <!--YouTube канале.-->
+            {{ note }}
           </a>
         </figcaption>
       </figure>
@@ -62,6 +60,17 @@ export default {
     'app-flex-container': FlexContainer,
     'app-title': Title,
     'app-paragraph': Paragraph,
+  },
+  computed: {
+    title() {
+      return this.$store.getters['blocks/getBlocks'].videos.title;
+    },
+    note() {
+      return this.$store.getters['blocks/getBlocks'].videos.note;
+    },
+    text() {
+      return this.$store.getters['blocks/getBlocks'].videos.text;
+    },
   },
   data() {
     return {

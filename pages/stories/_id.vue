@@ -3,15 +3,15 @@
     <app-container>
       <div class="story__header">
         <img
-          src="https://avatars.mds.yandex.net/get-pdb/2491915/be6af928-1dd0-45fa-aa29-16a0bcc95b10/s1200"
+          :src="API_URL + currentStory.ImageUrl[0].url"
           alt=""
           class="story__img story__img_place_outside"
         />
 
         <div class="story__main-description">
           <h1 class="story__title">
-            <span class="story__title-accent">Александр Тарханов:</span>
-            «Я не могу победить свою пунктуальность в отличии от рака»
+            <span class="story__title-accent">{{ currentStory.author }}</span>
+            «{{ currentStory.title }}»
           </h1>
           <img
             src="https://avatars.mds.yandex.net/get-pdb/2491915/be6af928-1dd0-45fa-aa29-16a0bcc95b10/s1200"
@@ -22,53 +22,51 @@
             <app-share-btn class="social__link">
               Поделитесь &#8599;
             </app-share-btn>
-            <span class="story__date">20 апреля 2018</span>
+            <span class="story__date">{{ currentStory.date | localDate }}</span>
           </div>
         </div>
       </div>
       <div class="story__content-container">
-        <div class="story__content">
-          <p class="story__paragraph">
-            Я из военной семьи. Отец хоть и не был военным сам, но нас всех
-            держал в ежовых рукавицах. Думаю, поэтому мы и выросли такими
-            ответственными.
-          </p>
-          <p class="story__paragraph">
-            У меня дома до сих пор стоят часы в каждой комнате, хотя они и не
-            нужны особо — я сам чувствую, опаздываю куда-то или нет, отстаю от
-            нужного графика или опережаю. Вот такие встроенные внутренние часы!
-            Будильник мне тоже не нужен — я всегда встаю раньше. Одеваюсь тоже
-            быстро, как в армии, за 45 секунд.
-          </p>
-          <p class="story__paragraph story__paragraph_highlighted">
-            «В футболе если команда опоздала на 15 минут, ей засчитывается
-            поражение».
-          </p>
-          <p class="story__paragraph">
-            Опаздывать я тоже не люблю, на все встречи прихожу заранее. Если
-            знаю, что могу попасть по дороге в пробку, то не еду на машине. В
-            аэропорт приезжаю задолго до начала регистрации. Лучше подожду и
-            кофе попью, чем опоздаю!
-          </p>
-          <p class="story__paragraph">
-            Когда мне было 16 лет, мне в школе геометрию нужно было пересдавать.
-            Я билеты выучил, знал абсолютно все. Пришел в нужное время, а
-            учительница — нет. Ну, я какое-то время подождал ее и ушел. Потом
-            она спрашивала: «Почему не дождался?». Я ответил: «В футболе если
-            команда опоздала на 15 минут, ей засчитывается поражение». Экзамен
-            мне все-таки поставили! Сейчас если кто-то из футболистов моей
-            команды опаздывает — начинаю злиться, могу и прикрикнуть потом. А
-            если кто-то опоздал на тренировку перед игрой — все, подготовка
-            насмарку. Я сразу начинаю думать тогда: «Значит, точно проиграем».
-            Такая болезненная пунктуальность уже не лечится. В отличие от рака.
-          </p>
-          <p class="story__paragraph story__paragraph_highlighted">
-            «Сейчас если кто-то из футболистов моей команды опаздывает — начинаю
-            злиться, могу и прикрикнуть потом. А если кто-то опоздал на
-            тренировку перед игрой — все, подготовка насмарку. Я сразу начинаю
-            думать тогда: «Значит, точно проиграем». Такая болезненная
-            пунктуальность уже не лечится».
-          </p>
+        <div class="story__content" v-html="currentStory.text">
+          <!--<div class="story__paragraph" v-html="currentStory.text">-->
+
+          <!--</div>-->
+          <!--<p class="story__paragraph">-->
+          <!--У меня дома до сих пор стоят часы в каждой комнате, хотя они и не-->
+          <!--нужны особо — я сам чувствую, опаздываю куда-то или нет, отстаю от-->
+          <!--нужного графика или опережаю. Вот такие встроенные внутренние часы!-->
+          <!--Будильник мне тоже не нужен — я всегда встаю раньше. Одеваюсь тоже-->
+          <!--быстро, как в армии, за 45 секунд.-->
+          <!--</p>-->
+          <!--<p class="story__paragraph story__paragraph_highlighted">-->
+          <!--«В футболе если команда опоздала на 15 минут, ей засчитывается-->
+          <!--поражение».-->
+          <!--</p>-->
+          <!--<p class="story__paragraph">-->
+          <!--Опаздывать я тоже не люблю, на все встречи прихожу заранее. Если-->
+          <!--знаю, что могу попасть по дороге в пробку, то не еду на машине. В-->
+          <!--аэропорт приезжаю задолго до начала регистрации. Лучше подожду и-->
+          <!--кофе попью, чем опоздаю!-->
+          <!--</p>-->
+          <!--<p class="story__paragraph">-->
+          <!--Когда мне было 16 лет, мне в школе геометрию нужно было пересдавать.-->
+          <!--Я билеты выучил, знал абсолютно все. Пришел в нужное время, а-->
+          <!--учительница — нет. Ну, я какое-то время подождал ее и ушел. Потом-->
+          <!--она спрашивала: «Почему не дождался?». Я ответил: «В футболе если-->
+          <!--команда опоздала на 15 минут, ей засчитывается поражение». Экзамен-->
+          <!--мне все-таки поставили! Сейчас если кто-то из футболистов моей-->
+          <!--команды опаздывает — начинаю злиться, могу и прикрикнуть потом. А-->
+          <!--если кто-то опоздал на тренировку перед игрой — все, подготовка-->
+          <!--насмарку. Я сразу начинаю думать тогда: «Значит, точно проиграем».-->
+          <!--Такая болезненная пунктуальность уже не лечится. В отличие от рака.-->
+          <!--</p>-->
+          <!--<p class="story__paragraph story__paragraph_highlighted">-->
+          <!--«Сейчас если кто-то из футболистов моей команды опаздывает — начинаю-->
+          <!--злиться, могу и прикрикнуть потом. А если кто-то опоздал на-->
+          <!--тренировку перед игрой — все, подготовка насмарку. Я сразу начинаю-->
+          <!--думать тогда: «Значит, точно проиграем». Такая болезненная-->
+          <!--пунктуальность уже не лечится».-->
+          <!--</p>-->
         </div>
         <app-share-btn class="story__share-btn">
           Поделитесь этой статьей в своих социальных&nbsp;сетях &#8599;
@@ -88,6 +86,11 @@ import ShareBtn from '@/components/ui/ShareBtn';
 import Previews from '@/components/blocks/Previews';
 import MoreBtn from '@/components/ui/MoreBtn';
 export default {
+  data() {
+    return {
+      API_URL: process.env.API_URL,
+    };
+  },
   components: {
     'app-container': Container,
     'app-share-btn': ShareBtn,
@@ -106,6 +109,19 @@ export default {
         }
       }
     },
+    currentStory() {
+      return this.$store.getters['stories/getCurrentStory'];
+    },
+  },
+  filters: {
+    localDate(value) {
+      const date = new Date(value);
+      return date.toLocaleString('ru', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+    },
   },
   async fetch({ store }) {
     await store.dispatch('stories/getStories');
@@ -114,41 +130,19 @@ export default {
     this.$store.dispatch('stories/setStoriesPerPage', {
       storiesPerPage: this.storiesPerPage,
     });
-    this.stories = [
-      {
-        id: 1,
-        imageSrc: '',
-        author: 'Владимир Тен',
-        quote:
-          'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
-      },
-      {
-        id: 2,
-        imageSrc: '',
-        author: 'Владимир Тен',
-        quote:
-          'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
-      },
-      {
-        id: 3,
-        imageSrc: '',
-        author: 'Владимир Тен',
-        quote:
-          'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
-      },
-      {
-        id: 4,
-        imageSrc: '',
-        author: 'Владимир Тен',
-        quote:
-          'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
-      },
-    ];
+  },
+  async fetch({ store, route }) {
+    await store.dispatch('stories/getStory', { id: route.params.id });
+    await store.dispatch('blocks/getBlocks');
   },
 };
 </script>
 
 <style scoped>
+.story__paragraph blockquote {
+  font-weight: 600;
+}
+
 .root__story {
   padding-top: 100px;
   padding-bottom: 100px;
@@ -165,7 +159,6 @@ export default {
   margin-right: 60px;
   object-fit: cover;
 }
-
 
 .story__img_place_inside {
   display: none;
@@ -202,16 +195,25 @@ export default {
 }
 .story__content {
   margin-bottom: 70px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 40px;
 }
-.story__paragraph {
-  margin-bottom: 40px;
+.story__content >>> p {
   font-size: 22px;
   line-height: 30px;
 }
+
+.story__content >>> blockquote {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
 .story__paragraph_highlighted {
   font-weight: 600;
 }
-.story__paragraph:last-of-type {
+.story__content >>> p:last-of-type {
   margin-bottom: 0;
 }
 .story__share-btn {
@@ -245,14 +247,19 @@ export default {
     padding-bottom: 150px;
   }
 
-
   .story__content {
     margin-bottom: 60px;
   }
 
-  .story__paragraph {
+  .story__content >>> p {
     font-size: 20px;
     line-height: 28px;
+  }
+
+  .story__content >>> blockquote {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
   }
 
   .story__previews {
@@ -269,7 +276,6 @@ export default {
     height: 407px;
     margin-right: 40px;
   }
-
 
   .story__main-description {
     padding: 20px 0;
@@ -293,12 +299,18 @@ export default {
 
   .story__content {
     margin-bottom: 46px;
+    grid-gap: 30px;
   }
 
-  .story__paragraph {
-    margin-bottom: 30px;
+  .story__content >>> p {
     font-size: 18px;
     line-height: 27px;
+  }
+
+  .story__content >>> blockquote {
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 600;
   }
 
   .story__share-btn {
@@ -320,7 +332,6 @@ export default {
     height: 420px;
     margin: 60px auto;
   }
-
 
   .story__img_place_outside {
     display: none;
@@ -373,12 +384,18 @@ export default {
 
   .story__content {
     margin-bottom: 40px;
+    grid-gap: 20px;
   }
 
-  .story__paragraph {
-    margin-bottom: 20px;
+  .story__content >>> p {
     font-size: 13px;
     line-height: 16px;
+  }
+
+  .story__content >>> blockquote {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 600;
   }
 
   .story__share-btn {

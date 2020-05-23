@@ -2,14 +2,14 @@
   <section class="share-your-story" id="form">
     <app-container class="share-your-story__container">
       <app-title :theme="theme" class="share-your-story__title">
-        Расскажите свою историю
+        {{ title }}
       </app-title>
       <app-flex>
-        <app-paragraph :theme="theme" class="share-your-story__paragraph">
-          Мы публикуем новые истории на сайте раз в неделю. Есть 2 варианта
-          поделиться своей историей неизлечимых привычек, навязчивых идей и
-          болезненных привязанностей.
-        </app-paragraph>
+        <app-paragraph
+          :theme="theme"
+          class="share-your-story__paragraph"
+          v-html="text"
+        />
 
         <div class="share-your-story__tabs tabs">
           <ul class="tabs__variants">
@@ -17,12 +17,13 @@
               :class="[
                 'tabs__variant',
                 'tabs__variant_theme_light',
-                { tabs__variant_active: currentVariant === index },
+                { tabs__variant_active: currentVariant === item.id },
               ]"
-              @click="changeVariant(index)"
-              v-for="index in 2"
+              @click="changeVariant(item.id)"
+              v-for="item in extraTexts"
+              :key="item.id"
             >
-              {{ index }}-й вариант
+              {{ item.title }}
             </li>
           </ul>
 
@@ -30,12 +31,7 @@
             class="tabs__container tabs__container_theme_light"
             v-if="currentVariant === 1"
           >
-            <p class="tabs__variant-text">
-              Заполнить подробную форму прямо на сайте и мы опубликуем вашу
-              историю после проверки. Пожалуйста, заполняйте все пункты
-              корректно, если вы испытаете какие-то сложности, воспользуйтесь
-              2-м вариантом.
-            </p>
+            <div class="tabs__variant-text" v-html="firstText"></div>
             <app-button
               :size="size"
               class="tabs__btn"
@@ -46,10 +42,7 @@
           </div>
 
           <div class="tabs__container tabs__container_theme_light" v-else>
-            <p class="tabs__variant-text">
-              Оставить контакт (почту или номер телефона) и мы свяжемся с вами,
-              зададим вопросы, уточним детали вашей истории.
-            </p>
+            <div class="tabs__variant-text" v-html="secondText"></div>
             <app-button
               :size="size"
               class="tabs__btn"
@@ -82,7 +75,7 @@ export default {
   data() {
     return {
       theme: 'light',
-      currentVariant: 1,
+      currentVariant: 0,
       size: 'm',
     };
   },
@@ -95,9 +88,38 @@ export default {
       this.$store.dispatch('contact-us/showContactUs');
       this.$store.commit('popup/togglePopupVisibility');
     },
-    changeVariant(index) {
-      this.currentVariant = index;
+    changeVariant(id) {
+      this.currentVariant = id;
     },
+  },
+  computed: {
+    title() {
+      return this.$store.getters['blocks/getBlocks'].story.title;
+    },
+    text() {
+      return this.$store.getters['blocks/getBlocks'].story.text;
+    },
+    extraTexts() {
+      return this.$store.getters['blocks/getBlocks'].story.extraTexts;
+    },
+    firstText() {
+      const texts = this.$store.getters['blocks/getBlocks'].story.extraTexts;
+      if (texts && texts[0]) {
+        return texts[0].text;
+      }
+    },
+    secondText() {
+      const texts = this.$store.getters['blocks/getBlocks'].story.extraTexts;
+      if (texts && texts[1]) {
+        return texts[1].text;
+      }
+    },
+  },
+  mounted() {
+    const texts = this.$store.getters['blocks/getBlocks'].story.extraTexts;
+    if (texts && texts[0]) {
+      this.currentVariant = texts[0].id;
+    }
   },
 };
 </script>
@@ -148,6 +170,14 @@ export default {
   justify-content: space-between;
   max-width: 640px;
   min-height: 215px;
+}
+
+.tabs__variant-text >>> p {
+  margin-bottom: 36px;
+}
+
+.tabs__variant-text >>> p:last-of-type {
+  margin-bottom: 0;
 }
 
 .tabs__variant-text {

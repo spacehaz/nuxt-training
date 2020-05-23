@@ -1,14 +1,10 @@
 <template>
   <ul class="previews">
-    <li
-      class="previews__item"
-      v-for="(story, index) in stories"
-      :key="story.id"
-    >
+    <li class="previews__item" v-for="story in stories" :key="story.id">
       <app-preview-story
-        :imageSrc="story.imageSrc"
+        :imageSrc="API_URL + story.ImageUrl[0].url"
         :author="story.author"
-        :quote="story.quote"
+        :quote="story.title"
         :id="story.id"
       ></app-preview-story>
     </li>
@@ -26,6 +22,11 @@ export default {
   },
   components: {
     'app-preview-story': PreviewStory,
+  },
+  data() {
+    return {
+      API_URL: process.env.API_URL,
+    };
   },
 };
 </script>

@@ -5,11 +5,13 @@
     <nuxt />
     <app-footer class="root__footer" />
     <app-overlay v-if="isPopupShown" />
-    <app-popup v-if="isPopupShown">
-      <app-contact-us slot="contact-us" />
-      <app-quiz slot="quiz" />
-      <app-share-us slot="share-us" />
-    </app-popup>
+    <transition name="fade">
+      <app-popup v-if="isPopupShown">
+        <app-contact-us slot="contact-us" />
+        <app-quiz slot="quiz" />
+        <app-share-us slot="share-us" />
+      </app-popup>
+    </transition>
   </div>
 </template>
 

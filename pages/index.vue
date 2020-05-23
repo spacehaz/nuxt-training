@@ -2,9 +2,9 @@
   <main class="main">
     <app-cover />
     <app-intro class="root__intro" />
-    <app-callout :title="'И В ОТЛИЧИЕ ОТ РАКА'" />
+    <app-callout :block="'note-1'" />
     <app-habits class="root__habits" />
-    <app-callout :title="'РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ'" />
+    <app-callout :block="'note-2'" />
     <app-instagram class="root__instagram" :gallery="gallery" />
     <app-share-your-story class="root__share-your-story" />
     <app-statistics class="root__statistics" />
@@ -25,9 +25,7 @@ import About from '@/components/blocks/About';
 export default {
   data() {
     return {
-      stories: [],
       gallery: [],
-      statistics: [],
     };
   },
   computed: {
@@ -56,6 +54,7 @@ export default {
   async fetch({ store }) {
     await store.dispatch('stories/getStories');
     await store.dispatch('statistics/getStatictics');
+    await store.dispatch('blocks/getBlocks');
   },
   created() {
     this.$store.dispatch('stories/setStoriesPerPage', {

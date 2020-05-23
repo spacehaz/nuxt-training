@@ -1,31 +1,30 @@
 <template>
   <form action="/" class="quiz" method="POST">
-    <fieldset class="quiz__fieldset">
-      <app-title class="quiz__title" :theme="theme" v-if="!isQuizOver">
-        {{ currentQuestionTitle }}</app-title
-      >
-      <app-title
-        class="quiz__title quiz__title_centered"
-        :theme="theme"
-        v-if="isQuizOver"
-      >
-        Спасибо что приняли участие!
-      </app-title>
-      <label class="quiz__question" v-if="!isQuizOver">
-        <p class="quiz__label">
-          <span class="quiz__text-accent">
-            {{ currentQuestionText }}
-          </span>
-          {{ currentQuestionAdditionalText }}
-        </p>
-        <app-input
-          class="quiz__input"
-          placeholder="Напишите тут"
-          v-model="currentAnswer"
-          required
-        />
-      </label>
-    </fieldset>
+    <transition name="fade" mode="out-in" appear>
+      <fieldset class="quiz__fieldset" :key="currentQuestionTitle">
+        <app-title
+          class="quiz__title"
+          :theme="theme"
+          :class="{ quiz__title_centered: isQuizOver }"
+        >
+          {{ currentQuestionTitle }}</app-title
+        >
+        <label class="quiz__question" v-if="!isQuizOver">
+          <p class="quiz__label">
+            <span class="quiz__text-accent">
+              {{ currentQuestionText }}
+            </span>
+            {{ currentQuestionAdditionalText }}
+          </p>
+          <app-input
+            class="quiz__input"
+            placeholder="Напишите тут"
+            v-model="currentAnswer"
+            required
+          />
+        </label>
+      </fieldset>
+    </transition>
     <div class="quiz__navigation" v-if="!isQuizOver">
       <app-button
         :lowPriority="true"
@@ -115,6 +114,7 @@ export default {
     },
     toggleQuiz() {
       this.$store.dispatch('quiz/closeQuiz');
+      this.$store.dispatch('quiz/finishQuiz');
       this.$store.commit('popup/togglePopupVisibility');
     },
   },

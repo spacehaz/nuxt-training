@@ -3,14 +3,15 @@
     <app-container>
       <p class="about__title">#РАКЛЕЧИТСЯ</p>
       <div class="about__content">
-        <app-title :theme="theme" class="about__content-title"
-          >О проекте</app-title
-        >
+        <app-title :theme="theme" class="about__content-title">{{
+          title
+        }}</app-title>
         <app-flex>
-          <app-paragraph :theme="theme" class="about__paragraph">
-            Этот проект был создан благотворительным фондом Константина
-            Хабенского.
-          </app-paragraph>
+          <app-paragraph
+            :theme="theme"
+            class="about__paragraph"
+            v-html="text"
+          />
 
           <div class="about__tabs tabs">
             <ul class="tabs__variants">
@@ -18,54 +19,57 @@
                 :class="[
                   'tabs__variant',
                   'tabs__variant_theme_main',
-                  { tabs__variant_active: currentVariant === firstVariant },
+                  { tabs__variant_active: currentVariant === item.id },
                 ]"
-                @click="changeVariant"
+                @click="changeVariant(item.id)"
+                v-for="item in extraTexts"
+                :key="item.id"
               >
-                Рак Лечится
-              </li>
-              <li
-                :class="[
-                  'tabs__variant',
-                  'tabs__variant_theme_main',
-                  { tabs__variant_active: currentVariant === secondVariant },
-                ]"
-                @click="changeVariant"
-              >
-                Фонд Хабенского
+                {{ item.title }}
               </li>
             </ul>
 
             <div
               class="tabs__container tabs__container_theme_main"
-              v-if="currentVariant === firstVariant"
+              v-if="currentVariant === 2"
             >
-              <p class="tabs__variant-text">
-                Есть вещи, которые не лечатся. Особенности характера, страстные
-                увлечения, привычки, ставшие частью нашего «я», фобии, которые
-                мы приобрели в детстве. Список можно продолжать до
-                бесконечности, но одна болезнь в него точно не войдет. Эта
-                болезнь — рак. Рак лечится, и лучшее доказательство — люди с их
-                неизлечимыми особенностями, которые сумели победить рак.
-              </p>
-              <p class="tabs__variant-text">
-                Рак лечится — проект Благотворительного Фонда Константина
-                Хабенского и Leo Burnett Moscow. С его помощью мы надеемся
-                изменить отношение людей к раку и заставить каждого поверить:
-                онкологическое заболевание — это не приговор.
-              </p>
+              <div class="tabs__variant-text" v-html="firstText"></div>
             </div>
 
             <div class="tabs__container tabs__container_theme_main" v-else>
-              <p class="tabs__variant-text">
-                Благотворительный Фонд Константина Хабенского с 2008 года
-                помогает детям с онкологическими и другими тяжелыми
-                заболеваниями головного мозга. Фонд не только поддерживает семью
-                заболевшего ребенка в самый сложный момент, оплачивая
-                обследования, лечение и медицинские препараты, но и в целом
-                меняет систему оказания помощи детям с опухолями мозга в России.
-              </p>
+              <div class="tabs__variant-text" v-html="secondText"></div>
             </div>
+
+            <!--<div-->
+            <!--class="tabs__container tabs__container_theme_main"-->
+            <!--v-if="currentVariant === firstVariant"-->
+            <!--&gt;-->
+            <!--<p class="tabs__variant-text">-->
+            <!--Есть вещи, которые не лечатся. Особенности характера, страстные-->
+            <!--увлечения, привычки, ставшие частью нашего «я», фобии, которые-->
+            <!--мы приобрели в детстве. Список можно продолжать до-->
+            <!--бесконечности, но одна болезнь в него точно не войдет. Эта-->
+            <!--болезнь — рак. Рак лечится, и лучшее доказательство — люди с их-->
+            <!--неизлечимыми особенностями, которые сумели победить рак.-->
+            <!--</p>-->
+            <!--<p class="tabs__variant-text">-->
+            <!--Рак лечится — проект Благотворительного Фонда Константина-->
+            <!--Хабенского и Leo Burnett Moscow. С его помощью мы надеемся-->
+            <!--изменить отношение людей к раку и заставить каждого поверить:-->
+            <!--онкологическое заболевание — это не приговор.-->
+            <!--</p>-->
+            <!--</div>-->
+
+            <!--<div class="tabs__container tabs__container_theme_main" v-else>-->
+            <!--<p class="tabs__variant-text">-->
+            <!--Благотворительный Фонд Константина Хабенского с 2008 года-->
+            <!--помогает детям с онкологическими и другими тяжелыми-->
+            <!--заболеваниями головного мозга. Фонд не только поддерживает семью-->
+            <!--заболевшего ребенка в самый сложный момент, оплачивая-->
+            <!--обследования, лечение и медицинские препараты, но и в целом-->
+            <!--меняет систему оказания помощи детям с опухолями мозга в России.-->
+            <!--</p>-->
+            <!--</div>-->
           </div>
         </app-flex>
       </div>
@@ -89,18 +93,44 @@ export default {
   data() {
     return {
       theme: 'main',
-      currentVariant: 1,
+      currentVariant: 0,
       firstVariant: 1,
       secondVariant: 2,
     };
   },
   methods: {
-    changeVariant() {
-      this.currentVariant =
-        this.currentVariant === this.firstVariant
-          ? this.secondVariant
-          : this.firstVariant;
+    changeVariant(id) {
+      this.currentVariant = id;
     },
+  },
+  computed: {
+    title() {
+      return this.$store.getters['blocks/getBlocks'].about.title;
+    },
+    text() {
+      return this.$store.getters['blocks/getBlocks'].about.text;
+    },
+    extraTexts() {
+      return this.$store.getters['blocks/getBlocks'].about.extraTexts;
+    },
+    firstText() {
+      const texts = this.$store.getters['blocks/getBlocks'].about.extraTexts;
+      if (texts && texts[0]) {
+        return texts[0].text;
+      }
+    },
+    secondText() {
+      const texts = this.$store.getters['blocks/getBlocks'].about.extraTexts;
+      if (texts && texts[1]) {
+        return texts[1].text;
+      }
+    },
+  },
+  mounted() {
+    const texts = this.$store.getters['blocks/getBlocks'].about.extraTexts;
+    if (texts && texts[0]) {
+      this.currentVariant = texts[0].id;
+    }
   },
 };
 </script>
@@ -163,6 +193,14 @@ export default {
 
 .tabs__container {
   max-width: 640px;
+}
+
+.tabs__variant-text >>> p {
+  margin-bottom: 24px;
+}
+
+.tabs__variant-text >>> p:last-of-type {
+  margin-bottom: 0;
 }
 
 .tabs__variant-text {

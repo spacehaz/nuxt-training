@@ -1,5 +1,3 @@
-import { store } from './index';
-
 export const state = () => ({
   currentQuestion: 1,
   questions: {},
@@ -21,6 +19,8 @@ export const getters = {
       : '';
   },
   getCurrentQuestionTitle: state => {
+    if (state.isQuizOver) return 'Спасибо что приняли участие!';
+
     return state.questions[state.currentQuestion]
       ? state.questions[state.currentQuestion].title
       : '';
@@ -76,6 +76,10 @@ export const mutations = {
   closeQuiz: state => {
     state.isQuizShown = false;
   },
+  finishQuiz: state => {
+    state.currentQuestion = 1;
+    (state.answers = {}), (state.isQuizOver = false);
+  },
 };
 
 //actions
@@ -114,5 +118,8 @@ export const actions = {
   },
   closeQuiz: async ({ commit }) => {
     commit('closeQuiz');
+  },
+  finishQuiz: async ({ commit }) => {
+    commit('finishQuiz');
   },
 };

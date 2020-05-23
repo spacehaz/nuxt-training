@@ -436,7 +436,7 @@
     padding-top: 90px;
     padding-bottom: 120px;
   }
-  
+
   .policy__container {
     max-width: 700px;
   }
@@ -516,7 +516,6 @@
     font-size: 13px;
     line-height: 16px;
   }
-
 
   .policy__content-item {
     margin-bottom: 40px;
