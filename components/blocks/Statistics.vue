@@ -1,27 +1,36 @@
 <template>
   <section class="statistics">
-    <app-title :theme="theme" class="statistics__title">
-      Статистика по онкозаболеваниям
-    </app-title>
-    <div class="statistics__facts-container">
-      <app-fact class="statistics__facts" />
-    </div>
+    <app-container class="statistics__container">
+      <app-title :theme="theme" class="statistics__title">
+        {{ title }}
+      </app-title>
+      <div class="statistics__facts-container">
+        <app-fact class="statistics__facts" />
+      </div>
+    </app-container>
   </section>
 </template>
 
 <script>
 import Title from '@/components/shared/Title';
 import Fact from '@/components/blocks/Fact';
+import Container from '@/components/shared/Container';
 
 export default {
   components: {
     'app-title': Title,
     'app-fact': Fact,
+    'app-container': Container,
   },
   data() {
     return {
       theme: 'light',
     };
+  },
+  computed: {
+    title() {
+      return this.$store.getters['blocks/getBlocks'].statistics.title;
+    },
   },
 };
 </script>
@@ -29,7 +38,6 @@ export default {
 <style scoped>
 .statistics__title {
   margin-bottom: 70px;
-  padding: 0 60px;
 }
 
 .statistics__facts {
@@ -39,17 +47,14 @@ export default {
 }
 
 .statistics__facts {
-  padding: 0 60px;
 }
 
 @media (max-width: 1280px) {
   .statistics__title {
     margin-bottom: 60px;
-    padding: 0 50px;
   }
 
   .statistics__facts {
-    padding: 0 50px;
   }
 }
 
@@ -61,6 +66,10 @@ export default {
   .statistics__facts {
     grid-gap: 30px;
   }
+
+  .statistics__facts-container {
+    overflow: visible;
+  }
 }
 
 @media (max-width: 810px) {
@@ -69,27 +78,30 @@ export default {
   }
 
   .statistics__facts {
-    padding: 0 40px;
   }
 }
 
 @media (max-width: 768px) {
   .statistics__title {
     margin: 0 auto 60px;
-    padding: 0 40px;
+    padding-right: 40px;
     text-align: center;
   }
 
   .statistics__facts {
     grid-gap: 20px;
   }
+
+  .statistics__container {
+    padding-right: 0;
+  }
 }
 
 @media (max-width: 425px) {
   .statistics__title {
     margin-bottom: 30px;
-    padding: 0 15px;
     text-align: left;
+    padding: 0 15px;
   }
 
   .statistics__facts {

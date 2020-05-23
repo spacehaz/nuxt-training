@@ -13,11 +13,19 @@
 import Container from '@/components/shared/Container';
 
 export default {
+  computed: {
+    title() {
+      return this.$store.getters['blocks/getBlocks'][this.block].title;
+    },
+    hashtag() {
+      return this.$store.getters['blocks/getBlocks'][this.block].hashtag;
+    },
+  },
   components: {
     'app-container': Container,
   },
   props: {
-    title: {
+    block: {
       type: String,
       required: true,
     },

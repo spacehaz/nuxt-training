@@ -51,13 +51,16 @@ export default {
         if (window.innerWidth <= 320) {
           return 9;
         } else {
-          return 6; //потом поменяем на 12
+          return 12; //потом поменяем на 12
         }
+      } else {
+        return 12;
       }
     },
   },
   async fetch({ store }) {
     await store.dispatch('stories/getStories');
+    await store.dispatch('blocks/getBlocks');
   },
   created() {
     this.$store.dispatch('stories/setStoriesPerPage', {

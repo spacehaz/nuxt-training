@@ -1,7 +1,13 @@
 <template>
-  <p :class="['paragraph', `paragraph_theme_${theme}`]">
-    <slot></slot>
-  </p>
+  <div
+    class="paragraph__container"
+    :class="['paragraph', `paragraph_theme_${theme}`]"
+  >
+    <!--<p :class="['paragraph', `paragraph_theme_${theme}`]">-->
+    <!--<slot></slot>-->
+    <!--</p>  -->
+    <!--<slot></slot>-->
+  </div>
 </template>
 
 <script>
@@ -16,22 +22,26 @@ export default {
 </script>
 
 <style scoped>
-.paragraph {
+.paragraph__container {
+  display: inline-block;
+}
+
+.paragraph >>> p {
   max-width: 340px;
   font-size: 18px;
   line-height: 22px;
 }
 
-.paragraph_theme_light {
+.paragraph_theme_light >>> p {
   color: #666;
 }
 
-.paragraph_theme_main {
+.paragraph_theme_main >>> p {
   color: #dedede;
 }
 
 @media (max-width: 1280px) {
-  .paragraph {
+  .paragraph >>> p {
     max-width: 305px;
     font-size: 16px;
     line-height: 20px;
@@ -39,7 +49,7 @@ export default {
 }
 
 @media (max-width: 1024px) {
-  .paragraph {
+  .paragraph >>> p {
     max-width: 260px;
     font-size: 13px;
     line-height: 16px;
@@ -47,13 +57,13 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .paragraph {
+  .paragraph >>> p {
     max-width: 380px;
   }
 }
 
 @media (max-width: 425px) {
-  .paragraph {
+  .paragraph >>> p {
     max-width: 100%;
   }
 }

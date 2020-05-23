@@ -1,8 +1,9 @@
 <template>
-  <section class="cover">
-    <h1 class="cover__main-title">#РАКЛЕЧИТСЯ</h1>
+  <section class="cover" ref="cover">
+    <h1 class="cover__main-title">{{ hashtag }}</h1>
     <a
       href="#intro"
+      @click.prevent="scrollDownSection"
       class="cover__scroll"
       aria-label="Показать следующий раздел"
     >
@@ -15,6 +16,24 @@
   </section>
 </template>
 
+<script>
+export default {
+  computed: {
+    hashtag() {
+      return this.$store.getters['blocks/getBlocks'].cover.hashtag;
+    },
+  },
+  methods: {
+    scrollDownSection() {
+      const el = this.$refs.cover;
+      const sibling = el.nextElementSibling;
+      if (sibling) {
+        window.scrollTo({ top: sibling.offsetTop, behavior: 'smooth' });
+      }
+    },
+  },
+};
+</script>
 <style scoped>
 .cover {
   position: relative;

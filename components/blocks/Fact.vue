@@ -4,10 +4,10 @@
       class="fact"
       v-for="fact in statistics"
       :key="fact.id"
-      v-if="fact.type === 1"
+      v-if="fact.id <= 2"
     >
       <p class="fact__text">
-        {{ fact.title }}
+        {{ fact.description }}
       </p>
       <div class="fact__container">
         <div class="fact__bars">
@@ -16,24 +16,24 @@
             :maxValue="fact.maxValue"
           />
         </div>
-        <p class="fact__number">{{ fact.text }}</p>
+        <p class="fact__number">{{ fact.summary }}</p>
         <p class="fact__source">{{ fact.source }}</p>
       </div>
     </div>
 
     <div class="fact" v-else>
       <p class="fact__text">
-        {{ fact.title }}
+        {{ fact.description }}
       </p>
       <div class="fact__container">
         <div class="fact__bars">
           <app-double-progress-bar
-            :previousValue="fact.bars.previousValue"
-            :currentValue="fact.bars.currentValue"
-            :maxValue="fact.bars.maxValue"
+            :previousValue="fact.oldValue"
+            :currentValue="fact.currentValue"
+            :maxValue="fact.maxValue"
           />
         </div>
-        <p class="fact__number">{{ fact.text }}</p>
+        <p class="fact__number">{{ fact.summary }}</p>
         <p class="fact__source">{{ fact.source }}</p>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <app-container class="footer__row">
       <div class="footer__info">
         <p class="footer__title">
-          Спасибо всем, кто помог состояться этому проекту
+          {{ title }}
         </p>
         <app-navigation class="footer__nav"></app-navigation>
       </div>
@@ -54,6 +54,9 @@ export default {
   computed: {
     year() {
       return new Date().getFullYear();
+    },
+    title() {
+      return this.$store.getters['blocks/getBlocks'].footer.title;
     },
   },
 };

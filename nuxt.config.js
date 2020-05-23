@@ -15,7 +15,7 @@ export default {
       },
     ],
     link: [
-      // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       // { rel: 'stylesheet', href: '@/assets/fonts/fonts.css' },
     ],
   },
@@ -26,7 +26,10 @@ export default {
   /*
    ** Global CSS
    */
-  css: [{ lang: 'css', src: '~/assets/fonts/fonts.css' }],
+  css: [
+    { lang: 'css', src: '~/assets/fonts/fonts.css' },
+    '~assets/styles/main.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    */
@@ -56,5 +59,12 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+  },
+  env: {
+    API_URL: 'https://strapi.kruzhok.io',
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in',
   },
 };

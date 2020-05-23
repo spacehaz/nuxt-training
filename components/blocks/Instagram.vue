@@ -8,15 +8,14 @@
             class="instagram__link"
             target="_blank"
           >
-            Инстаграм
+            {{ title }}
           </a>
         </app-title>
-        <app-paragraph :theme="theme" class="instagram__paragraph">
-          Два раза в неделю мы просматриваем все посты по хештегу #этонелечится.
-          Все истории, где нет нецензурных выражений и запрещенного контента
-          попадают сюда. Следите за правильным написанием хештега, чтобы мы не
-          пропустили вашу историю.
-        </app-paragraph>
+        <app-paragraph
+          :theme="theme"
+          class="instagram__paragraph"
+          v-html="text"
+        />
       </div>
       <app-gallery :gallery="gallery" />
     </app-container>
@@ -46,6 +45,14 @@ export default {
     return {
       theme: 'light',
     };
+  },
+  computed: {
+    title() {
+      return this.$store.getters['blocks/getBlocks'].instagram.title;
+    },
+    text() {
+      return this.$store.getters['blocks/getBlocks'].instagram.text;
+    },
   },
 };
 </script>

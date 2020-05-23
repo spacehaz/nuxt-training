@@ -2,7 +2,7 @@
   <section class="habits">
     <app-container>
       <app-title :theme="theme" class="habits__title">
-        Истории неизлечимых привычек
+        {{ title }}
       </app-title>
       <app-previews class="habits__content"></app-previews>
       <app-more-btn class="habits__more-btn" />
@@ -27,6 +27,11 @@ export default {
     return {
       theme: 'light',
     };
+  },
+  computed: {
+    title() {
+      return this.$store.getters['blocks/getBlocks'].stories.title;
+    },
   },
 };
 </script>
