@@ -4,7 +4,7 @@
       class="fact"
       v-for="fact in statistics"
       :key="fact.id"
-      v-if="fact.id <= 2"
+      v-if="fact.oldValue === 0"
     >
       <p class="fact__text">
         {{ fact.description }}

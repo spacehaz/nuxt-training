@@ -1,9 +1,11 @@
 <template>
-  <progress
-    :value="currentValue"
-    :max="maxValue"
-    class="fact__progress fact__progress_full fact__progress_size_l"
-  ></progress>
+  <div class="progress-bar" :class="`progress-bar_size_${size}`">
+    <div
+      class="progress-bar__container"
+      :style="innerBarStyle"
+      :class="`progress-bar__container_theme_${theme}`"
+    ></div>
+  </div>
 </template>
 
 <script>
@@ -17,54 +19,76 @@ export default {
       type: Number,
       required: true,
     },
+    theme: {
+      type: String,
+      default: 'main',
+    },
+    size: {
+      type: String,
+      default: 'l',
+    },
+  },
+  computed: {
+    innerBarStyle() {
+      return `width: ${(this.currentValue / this.maxValue) * 100}%`;
+    },
   },
 };
 </script>
 
 <style scoped>
-.fact__progress {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
+.progress-bar_size_m {
+  height: 20px;
 }
 
-.fact__progress_full[value]::-webkit-progress-bar {
-  background-color: #f4f4f4;
-}
-
-.fact__progress_full[value]::-webkit-progress-value {
-  background-color: #613a93;
-}
-
-.fact__progress_size_l {
+.progress-bar_size_l {
   height: 40px;
 }
 
-.fact__progress__value-color_light[value]::-webkit-progress-bar {
-  background-color: transparent;
-}
-
-.fact__progress__value-color_light[value]::-webkit-progress-value {
+.progress-bar_theme_main {
   background-color: #f4f4f4;
 }
 
-.fact__progress__value-color_main[value]::-webkit-progress-bar {
+.progress-bar_theme_dark {
   background-color: transparent;
 }
 
-.fact__progress__value-color_main[value]::-webkit-progress-value {
+.progress-bar {
+  position: relative;
+}
+
+.progress-bar__container_theme_main {
   background-color: #613a93;
 }
 
+.progress-bar__container_theme_dark {
+  background-color: #f4f4f4;
+}
+
+.progress-bar__container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
 @media (max-width: 1280px) {
-  .fact__progress_size_l {
-    height: 35px;
+  .progress-bar_size_l {
+    height: 36px;
+  }
+
+  .progress-bar_size_m {
+    height: 18px;
   }
 }
 
 @media (max-width: 1024px) {
-  .fact__progress_size_l {
+  .progress-bar_size_l {
     height: 28px;
+  }
+
+  .progress-bar_size_m {
+    height: 14px;
   }
 }
 </style>

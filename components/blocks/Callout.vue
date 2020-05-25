@@ -36,7 +36,7 @@ export default {
 <style scoped>
 .callout {
   background: #613a93;
-  border: 1px solid #000000;
+  border: 1px solid #000;
 }
 
 .callout__title {

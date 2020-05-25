@@ -1,36 +1,28 @@
 <template>
   <section class="cover" ref="cover">
     <h1 class="cover__main-title">{{ hashtag }}</h1>
-    <a
-      href="#intro"
-      @click.prevent="scrollDownSection"
-      class="cover__scroll"
-      aria-label="Показать следующий раздел"
-    >
-      <img
-        class="cover__scroll-arrow"
-        src="/scroll.svg"
-        alt="Показать следующий блок"
-      />
-    </a>
+    <app-scroll-down-arrow class="cover__scroll" :hash="hash" />
   </section>
 </template>
 
 <script>
+import ScrollDownArrow from '@/components/ui/ScrollDownArrow';
 export default {
   computed: {
     hashtag() {
       return this.$store.getters['blocks/getBlocks'].cover.hashtag;
     },
   },
-  methods: {
-    scrollDownSection() {
-      const el = this.$refs.cover;
-      const sibling = el.nextElementSibling;
-      if (sibling) {
-        window.scrollTo({ top: sibling.offsetTop, behavior: 'smooth' });
-      }
-    },
+  data() {
+    return {
+      hash: null,
+    };
+  },
+  components: {
+    'app-scroll-down-arrow': ScrollDownArrow,
+  },
+  mounted() {
+    this.hash = this.$refs.cover;
   },
 };
 </script>
@@ -50,17 +42,11 @@ export default {
   line-height: 111px;
 }
 
-.cover__scroll-arrow {
+.cover__scroll {
   position: absolute;
   bottom: 40px;
   left: 50%;
-  width: 38px;
-  height: 15px;
   transform: translateX(-50%);
-}
-
-.cover__scroll-arrow:hover {
-  opacity: 0.8;
 }
 
 @media (max-width: 1280px) {

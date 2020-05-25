@@ -27,12 +27,12 @@ export default {
 .policy {
   font-size: 14px;
   line-height: 17px;
-  color: #666666;
+  color: #666;
   display: inline-block;
 }
 .policy__link {
   text-decoration: none;
-  color: #666666;
-  border-bottom: 1px solid #666666;
+  color: #666;
+  border-bottom: 1px solid #666;
 }
 </style>

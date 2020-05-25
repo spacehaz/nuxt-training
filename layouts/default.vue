@@ -4,7 +4,7 @@
     <app-header />
     <nuxt />
     <app-footer class="root__footer" />
-    <app-overlay v-if="isPopupShown" />
+    <app-overlay v-if="isPopupShown" @click.native="closePopupUp" />
     <transition name="fade">
       <app-popup v-if="isPopupShown">
         <app-contact-us slot="contact-us" />
@@ -39,6 +39,11 @@ export default {
   computed: {
     isPopupShown() {
       return this.$store.getters['popup/getPopupVisibility'];
+    },
+  },
+  methods: {
+    closePopupUp() {
+      this.$store.commit('popup/togglePopupVisibility');
     },
   },
 };

@@ -13,7 +13,6 @@
           <button
             class="intro__nav-btn intro__nav-btn_left"
             aria-label="Показать следующее видео"
-            disabled
           ></button>
           <button
             class="intro__nav-btn intro__nav-btn_right"
@@ -23,11 +22,11 @@
       </div>
       <figure class="intro__video-container">
         <div class="intro__video-content">
-          <iframe src="" class="intro__video"></iframe>
+          <app-slider class="intro__video"></app-slider>
+          <!--<iframe src="" class="intro__video"></iframe>-->
           <button
             class="intro__nav-btn intro__nav-btn_left intro__nav-btn_place_video"
             aria-label="Показать следующее видео"
-            disabled
           ></button>
           <button
             class="intro__nav-btn intro__nav-btn_right intro__nav-btn_place_video"
@@ -54,12 +53,14 @@
 import FlexContainer from '@/components/shared/FlexContainer';
 import Title from '@/components/shared/Title';
 import Paragraph from '@/components/shared/Paragraph';
+import Slider from '@/components/ui/Slider';
 
 export default {
   components: {
     'app-flex-container': FlexContainer,
     'app-title': Title,
     'app-paragraph': Paragraph,
+    'app-slider': Slider,
   },
   computed: {
     title() {
@@ -142,6 +143,10 @@ export default {
   display: flex;
   border: none;
   background-color: #fbfbfb;
+}
+
+.intro__nav-btn:focus {
+  outline: none;
 }
 
 .intro__nav-btn:hover {
