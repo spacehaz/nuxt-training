@@ -55,6 +55,7 @@ export default {
     await store.dispatch('stories/getStories');
     await store.dispatch('statistics/getStatictics');
     await store.dispatch('blocks/getBlocks');
+    await store.dispatch('videos/getVideos');
   },
   created() {
     this.$store.dispatch('stories/setStoriesPerPage', {

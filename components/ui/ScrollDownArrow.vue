@@ -1,0 +1,44 @@
+<template>
+  <a
+    @click.prevent="scrollDownSection"
+    class="scroll"
+    aria-label="Показать следующий раздел"
+  >
+    <img
+      class="scroll__scroll-arrow"
+      src="/scroll.svg"
+      alt="Показать следующий блок"
+    />
+  </a>
+</template>
+
+<script>
+export default {
+  props: {
+    hash: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    scrollDownSection() {
+      const el = this.hash;
+      const sibling = el.nextElementSibling;
+      if (sibling) {
+        window.scrollTo({ top: sibling.offsetTop, behavior: 'smooth' });
+      }
+    },
+  },
+};
+</script>
+<style scoped>
+.scroll__scroll-arrow {
+  width: 38px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.scroll__scroll-arrow:hover {
+  opacity: 0.8;
+}
+</style>

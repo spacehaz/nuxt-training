@@ -23,6 +23,9 @@ export const getters = {
   getCurrentStory: state => {
     return state.currentStory;
   },
+  getStoriesPerPage: state => {
+    return state.storiesPerPage;
+  },
 };
 
 export const mutations = {

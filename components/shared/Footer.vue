@@ -2,9 +2,9 @@
   <footer class="footer">
     <app-container class="footer__row">
       <div class="footer__info">
-        <p class="footer__title">
+        <h2 class="footer__title">
           {{ title }}
-        </p>
+        </h2>
         <app-navigation class="footer__nav"></app-navigation>
       </div>
       <ul class="footer__socials">

@@ -1,19 +1,25 @@
 <template>
   <div>
-    <progress
-      :value="previousValue"
-      :max="maxValue"
-      class="fact__progress fact__progress_short fact__progress_size_m fact__progress__value-color_light"
-    ></progress>
-    <progress
-      :value="currentValue"
-      :max="maxValue"
-      class="fact__progress fact__progress_short fact__progress_size_m fact__progress__value-color_main"
-    ></progress>
+    <app-progress-bar
+      class="progress-bar"
+      theme="dark"
+      size="m"
+      :currentValue="previousValue"
+      :maxValue="maxValue"
+    />
+    <app-progress-bar
+      class="progress-bar"
+      theme="main"
+      size="m"
+      :currentValue="currentValue"
+      :maxValue="maxValue"
+    />
   </div>
 </template>
 
 <script>
+import ProgressBar from '@/components/ui/ProgressBar';
+
 export default {
   props: {
     previousValue: {
@@ -29,60 +35,8 @@ export default {
       required: true,
     },
   },
+  components: {
+    'app-progress-bar': ProgressBar,
+  },
 };
 </script>
-
-<style scoped>
-.fact__progress {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-}
-
-.fact__progress_short[value]::-webkit-progress-bar {
-  background-color: transparent;
-}
-
-.fact__progress_short[value]::-webkit-progress-value {
-  background-color: #613a93;
-}
-
-.fact__progress_size_m {
-  height: 20px;
-  margin-bottom: -1px;
-}
-
-.fact__progress_size_m:last-of-type {
-  margin-bottom: 0;
-}
-
-.fact__progress__value-color_light[value]::-webkit-progress-bar {
-  background-color: transparent;
-}
-
-.fact__progress__value-color_light[value]::-webkit-progress-value {
-  background-color: #f4f4f4;
-}
-
-.fact__progress__value-color_main[value]::-webkit-progress-bar {
-  background-color: transparent;
-}
-
-.fact__progress__value-color_main[value]::-webkit-progress-value {
-  background-color: #613a93;
-}
-
-@media (max-width: 1280px) {
-  .fact__progress_size_m {
-    height: 18px;
-    margin-bottom: -2px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .fact__progress_size_m {
-    height: 14px;
-    margin-bottom: -6px;
-  }
-}
-</style>

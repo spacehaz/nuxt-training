@@ -13,10 +13,7 @@
 
       <app-previews class="stories__container"> </app-previews>
 
-      <app-pagination
-        class="stories__pagination"
-        :storiesPerPage="storiesPerPage"
-      ></app-pagination>
+      <app-pagination class="stories__pagination"></app-pagination>
     </app-container>
   </main>
 </template>
@@ -50,11 +47,11 @@ export default {
       if (process.browser) {
         if (window.innerWidth <= 320) {
           return 9;
-        } else {
+        } else if (window.innerWidth <= 1024) {
           return 12; //потом поменяем на 12
+        } else {
+          return 16;
         }
-      } else {
-        return 12;
       }
     },
   },
@@ -153,7 +150,8 @@ export default {
     width: 46px;
     height: 46px;
     display: block;
-    background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5.91304' cy='5.91304' r='5.41304' stroke='white'/%3E%3Cline x1='10.0918' y1='10.0813' x2='16.3527' y2='16.3421' stroke='white'/%3E%3C/svg%3E%0A");
+    /*background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5.91304' cy='5.91304' r='5.41304' stroke='white'/%3E%3Cline x1='10.0918' y1='10.0813' x2='16.3527' y2='16.3421' stroke='white'/%3E%3C/svg%3E%0A");*/
+    background-image: url('~assets/images/search.svg');
     background-position: center;
     background-repeat: no-repeat;
   }

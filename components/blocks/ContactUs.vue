@@ -1,5 +1,5 @@
 <template>
-  <form action="/" class="contact-us" method="POST">
+  <form class="contact-us">
     <app-title class="contact-us__title" :theme="theme">
       Оставьте контакт для&nbsp;связи
     </app-title>

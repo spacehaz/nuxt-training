@@ -1,5 +1,5 @@
 <template>
-  <form action="/" class="quiz" method="POST">
+  <form class="quiz">
     <transition name="fade" mode="out-in" appear>
       <fieldset class="quiz__fieldset" :key="currentQuestionTitle">
         <app-title

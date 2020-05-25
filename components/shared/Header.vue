@@ -5,12 +5,12 @@
         {{ title }}
       </nuxt-link>
       <div class="header__links">
-        <app-navigation></app-navigation>
+        <app-navigation />
         <button class="header__button" @click="toggleQuiz">
           Рассказать историю
         </button>
       </div>
-      <app-mobile-icon class="header__mobile-icon"></app-mobile-icon>
+      <app-mobile-icon class="header__mobile-icon" />
     </app-container>
   </header>
 </template>
@@ -87,7 +87,7 @@ export default {
   opacity: 0.8;
 }
 
-.header__button:active {
+.header__button:focus {
   outline: none;
 }
 

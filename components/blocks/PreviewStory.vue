@@ -1,17 +1,19 @@
 <template>
-  <nuxt-link
-    class="preview-story"
-    :key="id"
-    :to="{ name: 'stories-id', params: { id: id } }"
-  >
-    <div class="preview-story__image-container">
-      <img class="preview-story__image" :src="imageSrc" alt="" />
-    </div>
-    <p class="preview-story__author">{{ author }}</p>
-    <blockquote class="preview-story__blockquote">
-      {{ quote }}
-    </blockquote>
-  </nuxt-link>
+  <transition name="fade" mode="out-in" appear>
+    <nuxt-link
+      class="preview-story"
+      :key="id"
+      :to="{ name: 'stories-id', params: { id: id } }"
+    >
+      <div class="preview-story__image-container">
+        <img class="preview-story__image" :src="imageSrc" alt="" />
+      </div>
+      <p class="preview-story__author">{{ author }}</p>
+      <blockquote class="preview-story__blockquote">
+        {{ quote }}
+      </blockquote>
+    </nuxt-link>
+  </transition>
 </template>
 
 <script>

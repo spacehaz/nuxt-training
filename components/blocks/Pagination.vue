@@ -1,62 +1,221 @@
 <template>
-  <nav class="pagination">
-    <ul class="pagination__list">
-      <li class="pagination__item" v-for="index in storiesLength" :key="index">
-        <button
-          class="pagination__link"
-          :class="{ pagination__link_active: index === currentPage }"
-          @click="changeCurrentPage(index)"
-        >
-          {{ index }}
-        </button>
-      </li>
-    </ul>
-  </nav>
+  <div class="pagination">
+    <div class="pagination__default-container">
+      <ul class="pagination__list">
+        <li class="pagination__item">
+          <app-pagination-btn
+            theme="transparent"
+            size="content"
+            @click.native="setFirstPageGroup"
+            :disabled="firstRecordDisabled"
+            >Первая</app-pagination-btn
+          >
+        </li>
+        <li class="pagination__item">
+          <app-pagination-btn
+            theme="transparent"
+            direction="left"
+            @click.native="previousPageGroup"
+          ></app-pagination-btn>
+        </li>
+      </ul>
+      <ul class="pagination__list">
+        <li class="pagination__item" v-for="index in pages" :key="index">
+          <app-pagination-btn
+            :active="index === currentPage"
+            @click.native="changeCurrentPage(index)"
+          >
+            {{ index }}
+          </app-pagination-btn>
+        </li>
+      </ul>
+      <ul class="pagination__list">
+        <li class="pagination__item">
+          <app-pagination-btn
+            theme="transparent"
+            direction="right"
+            @click.native="nextPageGroup"
+          ></app-pagination-btn>
+        </li>
+        <li class="pagination__item">
+          <app-pagination-btn
+            theme="transparent"
+            size="content"
+            @click.native="setLastPageGroup"
+            :disabled="finalRecordDisabled"
+            >Последняя</app-pagination-btn
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="pagination__mobile-container">
+      <div class="pagination__mobile-container-top">
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              direction="left"
+              @click.native="previousPageGroup"
+            ></app-pagination-btn>
+          </li>
+        </ul>
+        <ul class="pagination__list">
+          <li class="pagination__item" v-for="index in pages" :key="index">
+            <app-pagination-btn
+              :active="index === currentPage"
+              @click.native="changeCurrentPage(index)"
+            >
+              {{ index }}
+            </app-pagination-btn>
+          </li>
+        </ul>
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              direction="right"
+              @click.native="nextPageGroup"
+            ></app-pagination-btn>
+          </li>
+        </ul>
+      </div>
+      <div class="pagination__mobile-container-bottom">
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              size="content"
+              @click.native="setFirstPageGroup"
+              :disabled="firstRecordDisabled"
+              >Первая</app-pagination-btn
+            >
+          </li>
+        </ul>
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              size="content"
+              @click.native="setLastPageGroup"
+              :disabled="finalRecordDisabled"
+              >Последняя</app-pagination-btn
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import PaginationBtn from '@/components/ui/PaginationBtn.vue';
+
 export default {
-  props: {
-    storiesPerPage: {
-      type: Number,
-      required: true,
-    },
+  components: {
+    'app-pagination-btn': PaginationBtn,
   },
   data() {
     return {
+      //текущая страница пагинации
       currentPage: 1,
+      //стартовый индекс пагинации
+      startIndex: 1,
     };
   },
   methods: {
+    //как только клацаем по кнопке меняем переходим на страницу историй
+    //соответствующих позиции пагинизации
     changeCurrentPage(index) {
       this.currentPage = index;
       this.$store.dispatch('stories/changeStoriesPage', {
         page: this.currentPage,
       });
     },
+    //получить следующую пачку кнопок навигации
+    nextPageGroup() {
+      this.startIndex = Math.min(
+        this.startIndex + this.navBtnsQuantity,
+        this.storiesLength - this.navBtnsQuantity + 1
+      );
+    },
+    //получить предыдущую пачку кнопок навигации
+    previousPageGroup() {
+      this.startIndex = Math.max(this.startIndex - this.navBtnsQuantity, 1);
+    },
+    //уйти на первую страницу
+    setFirstPageGroup() {
+      this.startIndex = 1;
+      this.changeCurrentPage(1);
+    },
+    //уйти на последнюю страницу
+    setLastPageGroup() {
+      this.startIndex = Math.max(
+        this.storiesLength - this.navBtnsQuantity + 1,
+        1
+      );
+      this.changeCurrentPage(this.storiesLength);
+    },
   },
   computed: {
+    //максимально возможное количество кнопок
     storiesLength() {
       return Math.ceil(
         this.$store.getters['stories/getStoriesQuantity'] / this.storiesPerPage
       );
     },
-    buttonsCount() {
-      if (this.storiesCount % this.storiesPerPage === 0) {
-        return this.storiesCount / this.storiesPerPage;
-      } else {
-        return Math.floor(this.storiesCount / this.storiesPerPage) + 1;
+    //сколько история показывать на странице
+    storiesPerPage() {
+      return this.$store.getters['stories/getStoriesPerPage'];
+    },
+    //сколько пагинация будет содержать кнопок за раз
+    navBtnsQuantity() {
+      if (process.browser) {
+        if (window.innerWidth <= 600) {
+          return Math.min(3, this.storiesLength);
+        } else if (window.innerWidth <= 768) {
+          return Math.min(4, this.storiesLength);
+        } else {
+          return Math.min(5, this.storiesLength);
+        }
       }
+    },
+    //индекс самой правой видимой кнопки в пагинации
+    finalIndex() {
+      return Math.min(
+        this.startIndex + this.navBtnsQuantity - 1,
+        this.storiesLength
+      );
+    },
+    //массив для отрисовки кнопок в разметке
+    pages() {
+      const arrToReturn = [];
+      for (let i = this.startIndex; i <= this.finalIndex; i++) {
+        arrToReturn.push(i);
+      }
+      return arrToReturn;
+    },
+    //дизейбл "первая", если мы и так на первой странице пагинации
+    firstRecordDisabled() {
+      return this.currentPage === 1;
+    },
+    //дизейбл "последняя", если мы и так на первой странице пагинации
+    finalRecordDisabled() {
+      return this.currentPage === this.storiesLength;
     },
   },
 };
 </script>
 
 <style scoped>
+.pagination__default-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 .pagination__list {
   padding: 0;
   list-style: none;
   display: flex;
+  align-items: center;
 }
 
 .pagination__item {
@@ -67,54 +226,34 @@ export default {
   margin-right: 0;
 }
 
-.pagination__link {
-  display: inline-block;
-  width: 58px;
-  height: 58px;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 58px;
-  color: #000000;
-  margin: auto;
-  text-decoration: none;
-  background-color: #fbfbfb;
-  text-align: center;
-  border: 0;
-  cursor: pointer;
-}
-
-.pagination__link:hover {
-  background-color: #f8f8f8;
-}
-
-.pagination__link_active {
-  background-color: #f4f4f4;
-}
-
-.pagination__link_active:hover {
-  background-color: #f4f4f4;
+.pagination__mobile-container {
+  display: none;
 }
 
 @media (max-width: 1280px) {
 }
 
 @media (max-width: 1024px) {
-  .pagination__link {
-    display: inline-block;
-    width: 56px;
-    height: 56px;
-  }
 }
 
 @media (max-width: 768px) {
-  .pagination__link {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-  }
 }
 
 @media (max-width: 568px) {
+  .pagination__default-container {
+    display: none;
+  }
+  .pagination__mobile-container {
+    display: block;
+  }
+  .pagination__mobile-container-top {
+    display: flex;
+    margin-bottom: 34px;
+  }
+  .pagination__mobile-container-bottom {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 425px) {

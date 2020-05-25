@@ -29,6 +29,10 @@ export default {
   opacity: 0.8;
 }
 
+.share-btn:focus {
+  outline: none;
+}
+
 @media (max-width: 1280px) {
   .share-btn {
     font-size: 16px;
