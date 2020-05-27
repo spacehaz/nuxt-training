@@ -5,7 +5,9 @@
         {{ title }}
       </app-title>
       <div class="statistics__facts-container">
-        <app-fact class="statistics__facts" />
+        <app-flex class="statistics__facts">
+          <app-fact v-for="fact in statistics" :key="fact.id" :fact="fact" />
+        </app-flex>
       </div>
     </app-container>
   </section>
@@ -15,12 +17,14 @@
 import Title from '@/components/shared/Title';
 import Fact from '@/components/blocks/Fact';
 import Container from '@/components/shared/Container';
+import Flex from '@/components/shared/Flex';
 
 export default {
   components: {
     'app-title': Title,
     'app-fact': Fact,
     'app-container': Container,
+    'app-flex': Flex,
   },
   data() {
     return {
@@ -30,6 +34,9 @@ export default {
   computed: {
     title() {
       return this.$store.getters['blocks/getBlocks'].statistics.title;
+    },
+    statistics() {
+      return this.$store.getters['statistics/getStatictics'];
     },
   },
 };
