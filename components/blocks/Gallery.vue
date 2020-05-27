@@ -1,8 +1,12 @@
 <template>
   <ul class="gallery">
     <li class="gallery__item" v-for="(image, index) in gallery" :key="index">
-      <a href="#" class="gallery__link" target="_blank">
-        <img :src="image" alt="" class="gallery__image" />
+      <a :href="image.url" class="gallery__link" target="_blank">
+        <img
+          :src="image.display_url"
+          :alt="image.accessibility_caption"
+          class="gallery__image"
+        />
       </a>
     </li>
   </ul>
@@ -10,10 +14,9 @@
 
 <script>
 export default {
-  props: {
-    gallery: {
-      type: Array,
-      required: true,
+  computed: {
+    gallery() {
+      return this.$store.getters['gallery/getPhotos'];
     },
   },
 };

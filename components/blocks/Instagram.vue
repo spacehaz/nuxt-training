@@ -17,7 +17,7 @@
           v-html="text"
         />
       </div>
-      <app-gallery :gallery="gallery" />
+      <app-gallery />
     </app-container>
   </section>
 </template>
@@ -29,12 +29,6 @@ import Paragraph from '@/components/shared/Paragraph';
 import Gallery from '@/components/blocks/Gallery';
 
 export default {
-  props: {
-    gallery: {
-      type: Array,
-      required: true,
-    },
-  },
   components: {
     'app-container': Container,
     'app-title': Title,
