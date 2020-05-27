@@ -5,7 +5,7 @@
     <app-callout :block="'note-1'" />
     <app-habits class="root__habits" />
     <app-callout :block="'note-2'" />
-    <app-instagram class="root__instagram" :gallery="gallery" />
+    <app-instagram class="root__instagram" />
     <app-share-your-story class="root__share-your-story" />
     <app-statistics class="root__statistics" />
     <app-about class="root__about" />
@@ -56,21 +56,12 @@ export default {
     await store.dispatch('statistics/getStatictics');
     await store.dispatch('blocks/getBlocks');
     await store.dispatch('videos/getVideos');
+    await store.dispatch('gallery/getPhotos');
   },
   created() {
     this.$store.dispatch('stories/setStoriesPerPage', {
       storiesPerPage: this.storiesPerPage,
     });
-    this.gallery = [
-      'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-      'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-      'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-      'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-      'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-      'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-      'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-      'https://images.unsplash.com/photo-1588894051921-5e60abf4eab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-    ];
   },
 };
 </script>

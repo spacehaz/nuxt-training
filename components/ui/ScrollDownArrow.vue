@@ -14,12 +14,7 @@
 
 <script>
 export default {
-  props: {
-    hash: {
-      type: String,
-      required: true,
-    },
-  },
+  props: ['hash'],
   methods: {
     scrollDownSection() {
       const el = this.hash;
