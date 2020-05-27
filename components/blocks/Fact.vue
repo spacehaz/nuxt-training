@@ -1,41 +1,34 @@
 <template>
-  <div>
-    <div
-      class="fact"
-      v-for="fact in statistics"
-      :key="fact.id"
-      v-if="fact.oldValue === 0"
-    >
-      <p class="fact__text">
-        {{ fact.description }}
-      </p>
-      <div class="fact__container">
-        <div class="fact__bars">
-          <app-progress-bar
-            :currentValue="fact.currentValue"
-            :maxValue="fact.maxValue"
-          />
-        </div>
-        <p class="fact__number">{{ fact.summary }}</p>
-        <p class="fact__source">{{ fact.source }}</p>
+  <div class="fact" v-if="fact.oldValue === 0">
+    <p class="fact__text">
+      {{ fact.description }}
+    </p>
+    <div class="fact__container">
+      <div class="fact__bars">
+        <app-progress-bar
+          :currentValue="fact.currentValue"
+          :maxValue="fact.maxValue"
+        />
       </div>
+      <p class="fact__number">{{ fact.summary }}</p>
+      <p class="fact__source">{{ fact.source }}</p>
     </div>
+  </div>
 
-    <div class="fact" v-else>
-      <p class="fact__text">
-        {{ fact.description }}
-      </p>
-      <div class="fact__container">
-        <div class="fact__bars">
-          <app-double-progress-bar
-            :previousValue="fact.oldValue"
-            :currentValue="fact.currentValue"
-            :maxValue="fact.maxValue"
-          />
-        </div>
-        <p class="fact__number">{{ fact.summary }}</p>
-        <p class="fact__source">{{ fact.source }}</p>
+  <div class="fact" v-else>
+    <p class="fact__text">
+      {{ fact.description }}
+    </p>
+    <div class="fact__container">
+      <div class="fact__bars">
+        <app-double-progress-bar
+          :previousValue="fact.oldValue"
+          :currentValue="fact.currentValue"
+          :maxValue="fact.maxValue"
+        />
       </div>
+      <p class="fact__number">{{ fact.summary }}</p>
+      <p class="fact__source">{{ fact.source }}</p>
     </div>
   </div>
 </template>
@@ -46,9 +39,10 @@ import ProgressBar from '@/components/ui/ProgressBar';
 import DoubleProgressBar from '@/components/ui/DoubleProgressBar';
 
 export default {
-  computed: {
-    statistics() {
-      return this.$store.getters['statistics/getStatictics'];
+  props: {
+    fact: {
+      type: Object,
+      required: true,
     },
   },
   components: {
