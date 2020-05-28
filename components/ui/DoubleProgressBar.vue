@@ -2,14 +2,14 @@
   <div>
     <app-progress-bar
       class="progress-bar"
-      theme="dark"
+      theme="dark-transparent"
       size="m"
       :currentValue="previousValue"
       :maxValue="maxValue"
     />
     <app-progress-bar
       class="progress-bar"
-      theme="main"
+      theme="main-transparent"
       size="m"
       :currentValue="currentValue"
       :maxValue="maxValue"

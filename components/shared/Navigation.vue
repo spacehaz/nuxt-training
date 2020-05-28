@@ -24,6 +24,16 @@
   </nav>
 </template>
 
+<script>
+export default {
+  props: {
+    decorate: {
+      type: Boolean,
+      default: true,
+    },
+  },
+};
+</script>
 <style scoped>
 .navigation__list {
   display: flex;

@@ -43,6 +43,9 @@ export default {
   },
   methods: {
     closePopupUp() {
+      this.$store.dispatch('quiz/closeQuiz');
+      this.$store.dispatch('contact-us/closeContactUs');
+      this.$store.dispatch('share-us/closeShareUs');
       this.$store.commit('popup/togglePopupVisibility');
     },
   },

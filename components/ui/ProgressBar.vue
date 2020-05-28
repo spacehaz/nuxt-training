@@ -1,9 +1,17 @@
 <template>
-  <div class="progress-bar" :class="`progress-bar_size_${size}`">
+  <div
+    :class="[
+      'progress-bar',
+      `progress-bar_size_${size}`,
+      `progress-bar_theme_${theme}`,
+    ]"
+  >
     <div
-      class="progress-bar__container"
       :style="innerBarStyle"
-      :class="`progress-bar__container_theme_${theme}`"
+      :class="[
+        'progress-bar__container',
+        `progress-bar__container_theme_${theme}`,
+      ]"
     ></div>
   </div>
 </template>
@@ -62,6 +70,30 @@ export default {
 }
 
 .progress-bar__container_theme_dark {
+  background-color: #f4f4f4;
+}
+
+.progress-bar_theme_main {
+  background-color: #f4f4f4;
+}
+
+.progress-bar_theme_dark {
+  background-color: transparent;
+}
+
+.progress-bar_theme_main-transparent {
+  background-color: transparent;
+}
+
+.progress-bar__container_theme_main-transparent {
+  background-color: #613a93;
+}
+
+.progress-bar_theme_dark-transparent {
+  background-color: transparent;
+}
+
+.progress-bar__container_theme_dark-transparent {
   background-color: #f4f4f4;
 }
 

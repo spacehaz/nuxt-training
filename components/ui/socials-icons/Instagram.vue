@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="instagram"></a>
+  <a href="https://www.instagram.com/raklechitsa/" class="instagram"></a>
 </template>
 
 <script>
