@@ -1,5 +1,6 @@
 export const state = () => ({
   isContactUsShown: false,
+  answers: {},
 });
 
 // getters
@@ -17,6 +18,10 @@ export const mutations = {
   closeContactUs: state => {
     state.isContactUsShown = false;
   },
+  saveAnswers: (state, payload) => {
+    state.answers = payload;
+    console.log(state.answers);
+  },
 };
 
 //actions
@@ -26,5 +31,8 @@ export const actions = {
   },
   closeContactUs: async ({ commit }) => {
     commit('closeContactUs');
+  },
+  saveAnswers: async ({ commit }, payload) => {
+    commit('saveAnswers', payload);
   },
 };

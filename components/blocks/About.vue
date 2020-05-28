@@ -203,7 +203,7 @@ export default {
 
 @media (max-width: 1280px) {
   .about {
-    min-height: 626px;
+    min-height: 692px;
   }
 
   .about__title {

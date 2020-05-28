@@ -16,7 +16,7 @@
       placeholder="Напишите тут"
       id="name"
       :bordered="false"
-      required
+      v-model="answers.name"
     />
 
     <div class="contact-us__container">
@@ -31,7 +31,7 @@
           :bordered="false"
           :type="'email'"
           id="email"
-          required
+          v-model="answers.email"
         />
       </div>
       <div class="contact-us__item">
@@ -42,7 +42,7 @@
           :bordered="false"
           :type="'tel'"
           id="phone"
-          required
+          v-model="answers.phone"
         />
       </div>
     </div>
@@ -55,10 +55,16 @@
       placeholder="Телефон / почта и удобное время"
       :bordered="false"
       id="comments"
+      v-model="answers.preferred"
     />
 
     <div class="contact-us__send-items">
-      <app-button :size="size" class="contact-us__button">Отправить</app-button>
+      <app-button
+        :size="size"
+        class="contact-us__button"
+        @click.native.prevent="saveAnswers"
+        >Отправить</app-button
+      >
       <span class="contact-us__policy">
         Нажимая на кнопку «отправить», вы даете согласие на
         <a href="/policy" class="contact-us__policy-link" target="_blank">
@@ -83,7 +89,18 @@ export default {
     return {
       size: 's',
       theme: 'light',
+      answers: {
+        name: '',
+        email: '',
+        phone: '',
+        preferred: '',
+      },
     };
+  },
+  methods: {
+    saveAnswers() {
+      this.$store.dispatch('contact-us/saveAnswers', this.answers);
+    },
   },
 };
 </script>
