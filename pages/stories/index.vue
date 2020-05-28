@@ -6,12 +6,28 @@
       </app-title>
 
       <div class="stories__search">
-        <app-input class="stories__input" :bordered="true" :type="'search'" />
-        <app-button :size="size" class="stories__search-btn">Поиск</app-button>
-        <app-button :size="size" class="stories__mini-search-btn"></app-button>
+        <app-input
+          class="stories__input"
+          :bordered="true"
+          :type="'search'"
+          v-model="query"
+          @keyup.native.enter="searchStories"
+        />
+        <app-button
+          :size="size"
+          class="stories__search-btn"
+          @click.native="searchStories"
+          >Поиск</app-button
+        >
+        <app-button
+          :size="size"
+          class="stories__mini-search-btn"
+          @click.native="searchStories"
+        ></app-button>
       </div>
 
-      <app-previews class="stories__container"> </app-previews>
+      <app-previews :class="{ stories__container: storiesLength }">
+      </app-previews>
 
       <app-pagination class="stories__pagination"></app-pagination>
     </app-container>
@@ -40,7 +56,13 @@ export default {
       stories: [],
       size: 's',
       theme: 'light',
+      query: '',
     };
+  },
+  methods: {
+    searchStories() {
+      this.$store.dispatch('stories/searchStories', this.query);
+    },
   },
   computed: {
     storiesPerPage() {
@@ -53,6 +75,9 @@ export default {
           return 16;
         }
       }
+    },
+    storiesLength() {
+      return this.$store.getters['stories/getStoriesQuantity'];
     },
   },
   async fetch({ store }) {

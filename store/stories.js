@@ -2,15 +2,17 @@ import axios from 'axios';
 
 export const state = () => ({
   stories: [],
+  filteredStories: [],
   storiesPerPage: 0,
   currentPage: 1,
   currentStory: {},
+  query: '',
 });
 
 export const getters = {
   getStories: state => {
     if (state.stories) {
-      return state.stories.slice(
+      return state.filteredStories.slice(
         state.storiesPerPage * (state.currentPage - 1),
         (state.currentPage - 1) * state.storiesPerPage + state.storiesPerPage
       );
@@ -18,7 +20,7 @@ export const getters = {
     return state.stories;
   },
   getStoriesQuantity: state => {
-    return state.stories ? state.stories.length : 0;
+    return state.filteredStories ? state.filteredStories.length : 0;
   },
   getCurrentStory: state => {
     return state.currentStory;
@@ -31,6 +33,7 @@ export const getters = {
 export const mutations = {
   setStories: (state, { stories }) => {
     state.stories = stories;
+    state.filteredStories = state.stories;
   },
   setStoriesPerPage: (state, { storiesPerPage }) => {
     state.storiesPerPage = storiesPerPage;
@@ -42,10 +45,18 @@ export const mutations = {
   setStory: (state, { story }) => {
     state.currentStory = story;
   },
+  searchStories: (state, query) => {
+    state.query = query.toLowerCase();
+    state.filteredStories = state.stories.filter(
+      story =>
+        story.title.toLowerCase().includes(state.query) ||
+        story.author.toLowerCase().includes(state.query) ||
+        story.text.toLowerCase().includes(state.query)
+    );
+  },
 };
 
 export const actions = {
-  //эмуляция получения данных с сервера
   getStories: async ({ commit }) => {
     return axios.get(process.env.API_URL + '/stories').then(response => {
       return commit('setStories', { stories: response.data });
@@ -61,5 +72,8 @@ export const actions = {
   },
   changeStoriesPage: ({ commit }, { page }) => {
     commit('changeStoriesPage', { page });
+  },
+  searchStories({ commit }, query) {
+    commit('searchStories', query);
   },
 };

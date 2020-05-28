@@ -1,56 +1,17 @@
 <template>
   <div class="pagination">
-    <div class="pagination__default-container">
-      <ul class="pagination__list">
-        <li class="pagination__item">
-          <app-pagination-btn
-            theme="transparent"
-            size="content"
-            @click.native="setFirstPageGroup"
-            :disabled="firstRecordDisabled"
-            >Первая</app-pagination-btn
-          >
-        </li>
-        <li class="pagination__item">
-          <app-pagination-btn
-            theme="transparent"
-            direction="left"
-            @click.native="previousPageGroup"
-          ></app-pagination-btn>
-        </li>
-      </ul>
-      <ul class="pagination__list">
-        <li class="pagination__item" v-for="index in pages" :key="index">
-          <app-pagination-btn
-            :active="index === currentPage"
-            @click.native="changeCurrentPage(index)"
-          >
-            {{ index }}
-          </app-pagination-btn>
-        </li>
-      </ul>
-      <ul class="pagination__list">
-        <li class="pagination__item">
-          <app-pagination-btn
-            theme="transparent"
-            direction="right"
-            @click.native="nextPageGroup"
-          ></app-pagination-btn>
-        </li>
-        <li class="pagination__item">
-          <app-pagination-btn
-            theme="transparent"
-            size="content"
-            @click.native="setLastPageGroup"
-            :disabled="finalRecordDisabled"
-            >Последняя</app-pagination-btn
-          >
-        </li>
-      </ul>
-    </div>
-    <div class="pagination__mobile-container">
-      <div class="pagination__mobile-container-top">
+    <template v-if="storiesLength !== 0">
+      <div class="pagination__default-container">
         <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              size="content"
+              @click.native="setFirstPageGroup"
+              :disabled="firstRecordDisabled"
+              >Первая</app-pagination-btn
+            >
+          </li>
           <li class="pagination__item">
             <app-pagination-btn
               theme="transparent"
@@ -77,21 +38,6 @@
               @click.native="nextPageGroup"
             ></app-pagination-btn>
           </li>
-        </ul>
-      </div>
-      <div class="pagination__mobile-container-bottom">
-        <ul class="pagination__list">
-          <li class="pagination__item">
-            <app-pagination-btn
-              theme="transparent"
-              size="content"
-              @click.native="setFirstPageGroup"
-              :disabled="firstRecordDisabled"
-              >Первая</app-pagination-btn
-            >
-          </li>
-        </ul>
-        <ul class="pagination__list">
           <li class="pagination__item">
             <app-pagination-btn
               theme="transparent"
@@ -103,7 +49,64 @@
           </li>
         </ul>
       </div>
-    </div>
+      <div class="pagination__mobile-container">
+        <div class="pagination__mobile-container-top">
+          <ul class="pagination__list">
+            <li class="pagination__item">
+              <app-pagination-btn
+                theme="transparent"
+                direction="left"
+                @click.native="previousPageGroup"
+              ></app-pagination-btn>
+            </li>
+          </ul>
+          <ul class="pagination__list">
+            <li class="pagination__item" v-for="index in pages" :key="index">
+              <app-pagination-btn
+                :active="index === currentPage"
+                @click.native="changeCurrentPage(index)"
+              >
+                {{ index }}
+              </app-pagination-btn>
+            </li>
+          </ul>
+          <ul class="pagination__list">
+            <li class="pagination__item">
+              <app-pagination-btn
+                theme="transparent"
+                direction="right"
+                @click.native="nextPageGroup"
+              ></app-pagination-btn>
+            </li>
+          </ul>
+        </div>
+        <div class="pagination__mobile-container-bottom">
+          <ul class="pagination__list">
+            <li class="pagination__item">
+              <app-pagination-btn
+                theme="transparent"
+                size="content"
+                @click.native="setFirstPageGroup"
+                :disabled="firstRecordDisabled"
+                >Первая</app-pagination-btn
+              >
+            </li>
+          </ul>
+          <ul class="pagination__list">
+            <li class="pagination__item">
+              <app-pagination-btn
+                theme="transparent"
+                size="content"
+                @click.native="setLastPageGroup"
+                :disabled="finalRecordDisabled"
+                >Последняя</app-pagination-btn
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </template>
+    <p class="error-message" v-else>По этому запросу ничего не найдено.</p>
   </div>
 </template>
 
@@ -230,13 +233,8 @@ export default {
   display: none;
 }
 
-@media (max-width: 1280px) {
-}
-
-@media (max-width: 1024px) {
-}
-
-@media (max-width: 768px) {
+.error-message {
+  font-size: 18px;
 }
 
 @media (max-width: 568px) {
