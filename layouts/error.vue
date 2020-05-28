@@ -14,10 +14,8 @@
 
 <style scoped>
 .error {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 334px;
-  margin-top: calc(334px - 76px);
+  margin: auto;
+  padding: 100px 0;
   text-align: center;
 }
 
@@ -41,8 +39,7 @@
 
 @media (max-width: 1280px) {
   .error {
-    margin-bottom: 238px;
-    margin-top: calc(238px - 72px);
+    padding: 90px 0;
   }
 
   .error__message {
@@ -53,15 +50,13 @@
 
 @media (max-width: 768px) {
   .error {
-    margin-bottom: 400px;
-    margin-top: calc(400px - 72px);
+    padding: 80px 0;
   }
 }
 
 @media (max-width: 425px) {
   .error {
-    margin-bottom: 288px;
-    margin-top: calc(288px - 64px);
+    padding: 50px 0;
   }
   .error__status-code {
     margin-bottom: 4px;

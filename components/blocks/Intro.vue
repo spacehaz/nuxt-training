@@ -23,7 +23,6 @@
       <figure class="intro__video-container">
         <div class="intro__video-content">
           <app-slider class="intro__video"></app-slider>
-          <!--<iframe src="" class="intro__video"></iframe>-->
           <button
             class="intro__nav-btn intro__nav-btn_left intro__nav-btn_place_video"
             aria-label="Показать следующее видео"
@@ -281,7 +280,9 @@ export default {
 
   .intro__video-content:hover .intro__nav-btn_place_video.intro__nav-btn {
     display: block;
-    background-color: transparent;
+    z-index: 1000;
+    background-color: #613a93;
+    padding: 10px;
   }
 
   .intro__nav-btn_place_video.intro__nav-btn_right {
