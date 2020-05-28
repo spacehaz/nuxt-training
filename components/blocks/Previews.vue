@@ -2,7 +2,7 @@
   <ul class="previews">
     <li class="previews__item" v-for="story in stories" :key="story.id">
       <app-preview-story
-        :imageSrc="API_URL + story.ImageUrl[0].url"
+        :imageSrc="`${API_URL}${story.ImageUrl[0].url}`"
         :author="story.author"
         :quote="story.title"
         :id="story.id"

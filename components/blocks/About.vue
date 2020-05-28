@@ -1,7 +1,7 @@
 <template>
   <section class="about">
     <app-container>
-      <p class="about__title">#РАКЛЕЧИТСЯ</p>
+      <p class="about__hashtag">#РАКЛЕЧИТСЯ</p>
       <div class="about__content">
         <app-title :theme="theme" class="about__content-title">{{
           title
@@ -110,7 +110,7 @@ export default {
   background-color: #613a93;
 }
 
-.about__title {
+.about__hashtag {
   margin-bottom: 70px;
   font-weight: 800;
   font-size: 64px;
@@ -206,7 +206,7 @@ export default {
     min-height: 692px;
   }
 
-  .about__title {
+  .about__hashtag {
     margin-bottom: 60px;
     font-size: 58px;
     line-height: 70px;
@@ -226,7 +226,7 @@ export default {
     min-height: 570px;
   }
 
-  .about__title {
+  .about__hashtag {
     margin-bottom: 46px;
     font-size: 52px;
     line-height: 63px;
@@ -253,7 +253,7 @@ export default {
     min-height: 660px;
   }
 
-  .about__title {
+  .about__hashtag {
     display: none;
   }
 

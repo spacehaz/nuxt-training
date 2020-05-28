@@ -1,6 +1,6 @@
 <template>
   <nav class="navigation">
-    <ul class="navigation__list">
+    <ul class="navigation__list" v-if="decorate">
       <li class="navigation__item">
         <nuxt-link
           to="/"
@@ -17,6 +17,18 @@
           class="navigation__link"
           active-class="navigation__link_active"
         >
+          Истории
+        </nuxt-link>
+      </li>
+    </ul>
+    <ul class="navigation__list" v-else>
+      <li class="navigation__item">
+        <nuxt-link to="/" class="navigation__link">
+          Главная
+        </nuxt-link>
+      </li>
+      <li class="navigation__item">
+        <nuxt-link to="/stories" class="navigation__link">
           Истории
         </nuxt-link>
       </li>

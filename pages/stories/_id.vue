@@ -123,17 +123,17 @@ export default {
       });
     },
   },
-  async fetch({ store }) {
-    await store.dispatch('stories/getStories');
-  },
   created() {
     this.$store.dispatch('stories/setStoriesPerPage', {
       storiesPerPage: this.storiesPerPage,
     });
   },
-  async fetch({ store, route }) {
-    await store.dispatch('stories/getStory', { id: route.params.id });
-    await store.dispatch('blocks/getBlocks');
+  async fetch({ store, route, error }) {
+    await store
+      .dispatch('stories/getStory', { id: route.params.id })
+      .catch(e => {
+        error({ statusCode: 404, message: 'Post not found' });
+      });
   },
 };
 </script>
