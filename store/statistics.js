@@ -14,12 +14,15 @@ export const mutations = {
   setStatistics: (state, { statistics }) => {
     state.statistics = statistics;
     //заглушка на null-данные, откуда брать актуальные данные?
+    const dataToSetInsteadOfNull = [
+      { oldValue: 62, currentValue: 80 },
+      { oldValue: 73, currentValue: 55 },
+    ];
     state.statistics.forEach(item => {
-      if (item.oldValue === null) {
-        item.oldValue = 20;
-      }
-      if (item.currentValue === null) {
-        item.currentValue = 40;
+      if (item.oldValue === null || item.currentValue === null) {
+        const statSet = dataToSetInsteadOfNull.splice(0, 1);
+        item.oldValue = statSet[0].oldValue;
+        item.currentValue = statSet[0].currentValue;
       }
     });
   },

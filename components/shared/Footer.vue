@@ -5,7 +5,7 @@
         <h2 class="footer__title">
           {{ title }}
         </h2>
-        <app-navigation class="footer__nav"></app-navigation>
+        <app-navigation class="footer__nav" :decorate="false"></app-navigation>
       </div>
       <ul class="footer__socials">
         <li class="footer__socials-item">
