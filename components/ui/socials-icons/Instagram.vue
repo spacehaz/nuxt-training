@@ -1,5 +1,9 @@
 <template>
-  <a href="https://www.instagram.com/raklechitsa/" class="instagram"></a>
+  <a
+    href="https://www.instagram.com/raklechitsa/"
+    class="instagram"
+    target="_blank"
+  ></a>
 </template>
 
 <script>

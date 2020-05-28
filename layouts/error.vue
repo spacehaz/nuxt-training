@@ -1,20 +1,16 @@
 <template>
-  <div class="error">
-    <span class="error__status-code">404</span>
-    <p class="error__message">
-      <span class="error__page-not-found">Страница не найдена.</span>
-      <nuxt-link to="/" class="error__redirect">Перейти на главную.</nuxt-link>
-    </p>
+  <div>
+    <div class="error">
+      <span class="error__status-code">404</span>
+      <p class="error__message">
+        <span class="error__page-not-found">Страница не найдена.</span>
+        <nuxt-link to="/" class="error__redirect"
+          >Перейти на главную.</nuxt-link
+        >
+      </p>
+    </div>
   </div>
 </template>
-
-<script>
-export default {
-  async fetch({ store }) {
-    await store.dispatch('blocks/getBlocks');
-  },
-};
-</script>
 
 <style scoped>
 .error {
@@ -37,6 +33,10 @@ export default {
   flex-direction: column;
   font-size: 18px;
   line-height: 24px;
+}
+
+.error__redirect {
+  color: #000;
 }
 
 @media (max-width: 1280px) {

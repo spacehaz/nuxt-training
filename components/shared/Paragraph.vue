@@ -1,13 +1,5 @@
 <template>
-  <div
-    class="paragraph__container"
-    :class="['paragraph', `paragraph_theme_${theme}`]"
-  >
-    <!--<p :class="['paragraph', `paragraph_theme_${theme}`]">-->
-    <!--<slot></slot>-->
-    <!--</p>  -->
-    <!--<slot></slot>-->
-  </div>
+  <div :class="['paragraph', `paragraph_theme_${theme}`]"></div>
 </template>
 
 <script>
@@ -22,7 +14,7 @@ export default {
 </script>
 
 <style scoped>
-.paragraph__container {
+.paragraph {
   display: inline-block;
 }
 

@@ -382,13 +382,6 @@
   </main>
 </template>
 
-<script>
-export default {
-  async fetch({ store }) {
-    await store.dispatch('blocks/getBlocks');
-  },
-};
-</script>
 <style scoped>
 .root__policy {
   padding-top: 100px;
