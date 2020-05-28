@@ -6,12 +6,28 @@
       </app-title>
 
       <div class="stories__search">
-        <app-input class="stories__input" :bordered="true" :type="'search'" />
-        <app-button :size="size" class="stories__search-btn">Поиск</app-button>
-        <app-button :size="size" class="stories__mini-search-btn"></app-button>
+        <app-input
+          class="stories__input"
+          :bordered="true"
+          :type="'search'"
+          v-model="query"
+          @keyup.native.enter="searchStories"
+        />
+        <app-button
+          :size="size"
+          class="stories__search-btn"
+          @click.native="searchStories"
+          >Поиск</app-button
+        >
+        <app-button
+          :size="size"
+          class="stories__mini-search-btn"
+          @click.native="searchStories"
+        ></app-button>
       </div>
 
-      <app-previews class="stories__container"> </app-previews>
+      <app-previews :class="{ stories__container: storiesLength }">
+      </app-previews>
 
       <app-pagination class="stories__pagination"></app-pagination>
     </app-container>
@@ -40,7 +56,13 @@ export default {
       stories: [],
       size: 's',
       theme: 'light',
+      query: '',
     };
+  },
+  methods: {
+    searchStories() {
+      this.$store.dispatch('stories/searchStories', this.query);
+    },
   },
   computed: {
     storiesPerPage() {
@@ -54,9 +76,13 @@ export default {
         }
       }
     },
+    storiesLength() {
+      return this.$store.getters['stories/getStoriesQuantity'];
+    },
   },
   async fetch({ store }) {
     await store.dispatch('stories/getStories');
+    await store.dispatch('blocks/getBlocks');
   },
   created() {
     this.$store.dispatch('stories/setStoriesPerPage', {
@@ -149,7 +175,6 @@ export default {
     width: 46px;
     height: 46px;
     display: block;
-    /*background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5.91304' cy='5.91304' r='5.41304' stroke='white'/%3E%3Cline x1='10.0918' y1='10.0813' x2='16.3527' y2='16.3421' stroke='white'/%3E%3C/svg%3E%0A");*/
     background-image: url('~assets/images/search.svg');
     background-position: center;
     background-repeat: no-repeat;

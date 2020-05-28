@@ -20,9 +20,11 @@ export const mutations = {
 };
 
 export const actions = {
-  getBlocks: ({ commit }) => {
-    return axios.get(process.env.API_URL + '/blocks').then(response => {
-      return commit('setBlocks', { blocks: response.data });
-    });
+  getBlocks: ({ commit, state }) => {
+    if (Object.keys(state.blocks).length === 0) {
+      return axios.get(process.env.API_URL + '/blocks').then(response => {
+        return commit('setBlocks', { blocks: response.data });
+      });
+    }
   },
 };
