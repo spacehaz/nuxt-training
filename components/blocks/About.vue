@@ -16,6 +16,7 @@
           <div class="about__tabs tabs">
             <ul class="tabs__variants">
               <li
+                :title="item.title"
                 :class="[
                   'tabs__variant',
                   'tabs__variant_theme_main',
@@ -151,6 +152,15 @@ export default {
   cursor: pointer;
 }
 
+.tabs__variant::after {
+  display: block;
+  content: attr(title);
+  font-weight: 500;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
 .tabs__variant_active {
   font-weight: 500;
   cursor: default;
@@ -250,7 +260,7 @@ export default {
 
 @media (max-width: 768px) {
   .about {
-    min-height: 660px;
+    min-height: 662px;
   }
 
   .about__hashtag {

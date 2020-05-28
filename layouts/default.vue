@@ -69,6 +69,13 @@ html {
   margin: 0;
 }
 
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
 .root__footer {
   padding-top: 60px;
   padding-bottom: 60px;
