@@ -20,7 +20,6 @@
             class="quiz__input"
             placeholder="Напишите тут"
             v-model="currentAnswer"
-            required
           />
         </label>
       </fieldset>
