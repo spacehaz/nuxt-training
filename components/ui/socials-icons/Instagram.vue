@@ -1,13 +1,16 @@
 <template>
-  <a
-    href="https://www.instagram.com/raklechitsa/"
-    class="instagram"
-    target="_blank"
-  ></a>
+  <a :href="href" class="instagram" target="_blank"></a>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    href: {
+      type: String,
+      required: true,
+    },
+  },
+};
 </script>
 
 <style scoped>

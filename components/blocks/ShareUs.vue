@@ -3,22 +3,32 @@
     <app-title class="share-us__title" theme="light">Поделитесь</app-title>
     <ul class="share-us__items">
       <li class="share-us__item">
-        <app-fb class="share-us__item-link" />
+        <app-fb class="share-us__item-link" :href="socialsLink.facebook" />
       </li>
       <li class="share-us__item">
-        <app-twitter class="share-us__item-link" />
+        <app-twitter class="share-us__item-link" :href="socialsLink.twitter" />
       </li>
       <li class="share-us__item">
-        <app-vk class="share-us__item-link" />
+        <app-vk class="share-us__item-link" :href="socialsLink.vk" />
       </li>
       <li class="share-us__item">
-        <app-odnoklassniki class="share-us__item-link" />
+        <app-odnoklassniki
+          class="share-us__item-link"
+          :href="socialsLink.odnoklassniki"
+        />
       </li>
       <li class="share-us__item">
-        <app-instagram class="share-us__item-link" />
+        <app-instagram
+          class="share-us__item-link"
+          :href="socialsLink.instagram"
+        />
       </li>
       <li class="share-us__item">
-        <app-youtube href="#" class="share-us__item-link" />
+        <app-youtube
+          href="#"
+          class="share-us__item-link"
+          :href="socialsLink.youtube"
+        />
       </li>
     </ul>
   </div>
@@ -47,6 +57,23 @@ export default {
     return {
       size: 's',
       theme: 'light',
+      socialsLink: {
+        instagram: 'https://www.instagram.com/raklechitsa/',
+        youtube:
+          'https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F',
+        facebook: `https://www.facebook.com/sharer.php?src=sp&u=${encodeURI(
+          window.location.href
+        )}&title=${document.querySelector('title').innerText}`,
+        vk: `https://vk.com/share.php?url=${encodeURI(
+          window.location.href
+        )}&title=${document.querySelector('title').innerText}`,
+        odnoklassniki: `https://connect.ok.ru/offer?url=${encodeURI(
+          window.location.href
+        )}&amp;title=${document.querySelector('title').innerText}`,
+        twitter: `https://twitter.com/intent/tweet?text=${
+          document.querySelector('title').innerText
+        }&url=${encodeURI(window.location.href)}`,
+      },
     };
   },
 };

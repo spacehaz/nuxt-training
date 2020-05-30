@@ -28,6 +28,12 @@ export default {
       gallery: [],
     };
   },
+  head() {
+    return {
+      title:
+        'РАКЛЕЧИТСЯ.РФ — истории людей, победивших рак, но не свои привычки',
+    };
+  },
   computed: {
     storiesPerPage() {
       if (process.browser) {
