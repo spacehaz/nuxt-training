@@ -14,7 +14,10 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // { rel: 'stylesheet', href: '@/assets/fonts/fonts.css' },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -23,11 +26,14 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    { lang: 'css', src: '~/assets/fonts/fonts.css' },
+    '~assets/styles/main.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '~/plugins/route.js' }, { src: '~/plugins/swiper.js' }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -53,5 +59,15 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+  },
+  env: {
+    API_URL: 'https://strapi.kruzhok.io',
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in',
+  },
+  router: {
+    middleware: 'sharedData',
   },
 };

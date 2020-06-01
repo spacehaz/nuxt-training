@@ -1,15 +1,60 @@
 <template>
-  <div>
+  <div class="root">
+    <app-mobile-menu />
+    <app-header />
     <nuxt />
+    <app-footer class="root__footer" />
+    <app-overlay v-if="isPopupShown" @click.native="closePopupUp" />
+    <transition name="fade">
+      <app-popup v-if="isPopupShown">
+        <app-contact-us slot="contact-us" />
+        <app-quiz slot="quiz" />
+        <app-share-us slot="share-us" />
+      </app-popup>
+    </transition>
   </div>
 </template>
 
+<script>
+import Header from '@/components/shared/Header.vue';
+import Footer from '@/components/shared/Footer.vue';
+import Overlay from '@/components/ui/Overlay';
+import Popup from '@/components/ui/Popup';
+import Quiz from '@/components/blocks/Quiz';
+import ContactUs from '@/components/blocks/ContactUs';
+import ShareUs from '@/components/blocks/ShareUs';
+import MobileMenu from '@/components/shared/MobileMenu';
+
+export default {
+  components: {
+    'app-header': Header,
+    'app-footer': Footer,
+    'app-overlay': Overlay,
+    'app-popup': Popup,
+    'app-quiz': Quiz,
+    'app-contact-us': ContactUs,
+    'app-share-us': ShareUs,
+    'app-mobile-menu': MobileMenu,
+  },
+  computed: {
+    isPopupShown() {
+      return this.$store.getters['popup/getPopupVisibility'];
+    },
+  },
+  methods: {
+    closePopupUp() {
+      this.$store.dispatch('quiz/closeQuiz');
+      this.$store.dispatch('contact-us/closeContactUs');
+      this.$store.dispatch('share-us/closeShareUs');
+      this.$store.commit('popup/togglePopupVisibility');
+    },
+  },
+};
+</script>
+
 <style>
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
+  font-family: Inter, Arial, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -18,38 +63,28 @@ html {
 }
 
 *,
-*:before,
-*:after {
-  box-sizing: border-box;
+*::before,
+*::after {
+  box-sizing: inherit;
   margin: 0;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+.root__footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+@media (max-width: 1280px) {
+  .root__footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
 }
 </style>
