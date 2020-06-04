@@ -1,34 +1,36 @@
 <template>
-  <app-container v-if="isMobileMenuOpened" class="mobile-menu">
-    <div class="mobile-menu__links">
-      <nav class="navigation">
-        <ul class="navigation__list">
-          <li class="navigation__item">
-            <nuxt-link
-              to="/"
-              class="navigation__link"
-              active-class="navigation__link_active"
-              exact
-            >
-              Главная
-            </nuxt-link>
-          </li>
-          <li class="navigation__item">
-            <nuxt-link
-              to="/stories"
-              class="navigation__link"
-              active-class="navigation__link_active"
-            >
-              Истории
-            </nuxt-link>
-          </li>
-        </ul>
-      </nav>
-      <button class="mobile-menu__button" @click="toggleQuiz">
-        Рассказать историю
-      </button>
-    </div>
-  </app-container>
+  <transition name="fade">
+    <app-container v-if="isMobileMenuOpened" class="mobile-menu">
+      <div class="mobile-menu__links">
+        <nav class="navigation">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <nuxt-link
+                to="/"
+                class="navigation__link"
+                active-class="navigation__link_active"
+                exact
+              >
+                Главная
+              </nuxt-link>
+            </li>
+            <li class="navigation__item">
+              <nuxt-link
+                to="/stories"
+                class="navigation__link"
+                active-class="navigation__link_active"
+              >
+                Истории
+              </nuxt-link>
+            </li>
+          </ul>
+        </nav>
+        <button class="mobile-menu__button" @click="toggleQuiz">
+          Рассказать историю
+        </button>
+      </div>
+    </app-container>
+  </transition>
 </template>
 
 <script>

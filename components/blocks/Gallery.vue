@@ -35,8 +35,12 @@ export default {
   display: block;
   padding-top: 100%;
   position: relative;
+  transition: opacity 0.2s linear;
 }
 
+.gallery__link:hover {
+  opacity: 0.8;
+}
 .gallery__image {
   position: absolute;
   top: 0;

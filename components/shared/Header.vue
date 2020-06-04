@@ -60,6 +60,7 @@ export default {
   line-height: 20px;
   text-decoration: none;
   color: #000000;
+  transition: opacity 0.2s linear;
 }
 
 .header__logo:hover {
@@ -81,6 +82,7 @@ export default {
   line-height: 24px;
   color: #121212;
   cursor: pointer;
+  transition: opacity 0.2s linear;
 }
 
 .header__button:hover {

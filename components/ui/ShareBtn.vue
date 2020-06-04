@@ -23,6 +23,7 @@ export default {
   background-color: transparent;
   cursor: pointer;
   border: 0;
+  transition: opacity 0.2s linear;
 }
 
 .share-btn:hover {
