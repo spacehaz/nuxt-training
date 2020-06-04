@@ -117,6 +117,7 @@ export default {
   text-decoration: none;
   color: inherit;
   border-bottom: 1px solid #000;
+  transition: opacity 0.2s linear;
 }
 
 .footer__socials-link:hover {

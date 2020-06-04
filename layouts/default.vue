@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <app-mobile-menu />
+    <app-mobile-menu class="root__mobile-menu" />
     <app-header />
     <nuxt />
     <app-footer class="root__footer" />
@@ -79,6 +79,10 @@ html {
 .root__footer {
   padding-top: 60px;
   padding-bottom: 60px;
+}
+
+.root__mobile-menu {
+  width: 100%;
 }
 
 @media (max-width: 1280px) {

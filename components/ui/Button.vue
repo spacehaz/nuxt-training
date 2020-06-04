@@ -42,6 +42,7 @@ export default {
   background: #613a93;
   border: 0;
   cursor: pointer;
+  transition: opacity 0.2s linear;
 }
 
 .button_disabled {

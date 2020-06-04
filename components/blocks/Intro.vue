@@ -142,6 +142,7 @@ export default {
   display: flex;
   border: none;
   background-color: #fbfbfb;
+  transition: background-color 0.2s linear;
 }
 
 .intro__nav-btn:focus {

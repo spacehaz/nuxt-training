@@ -53,6 +53,7 @@ export default {
   text-align: center;
   outline: none;
   justify-content: center;
+  transition: all 0.2s linear;
 }
 
 .pagination-btn:focus {
@@ -83,6 +84,10 @@ export default {
 
 .pagination-btn_theme_transparent {
   background-color: transparent;
+}
+
+.pagination-btn_theme_transparent:hover {
+  opacity: 0.8;
 }
 
 .pagination-btn_direction_default {

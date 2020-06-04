@@ -1,0 +1,76 @@
+<template>
+  <keep-alive>
+    <transition name="fade" mode="out-in">
+      <div class="video-preview" v-if="isVisible">
+        <button
+          class="video-preview__play-btn"
+          @click.stop="toggleVisibility"
+        ></button>
+        <div
+          class="swiper__video-preview-picture"
+          :style="{ backgroundImage: `url(${imageUrl})` }"
+        ></div>
+      </div>
+    </transition>
+  </keep-alive>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isVisible: true,
+    };
+  },
+  props: {
+    imageUrl: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    toggleVisibility() {
+      this.isVisible = !this.isVisible;
+    },
+  },
+};
+</script>
+
+<style scoped>
+.video-preview {
+  position: relative;
+}
+
+.video-preview__play-btn {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-image: url('~assets/images/play-btn.svg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 40;
+}
+
+.video-preview__play-btn:focus {
+  outline: none;
+}
+
+.swiper__video-preview-picture {
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+</style>

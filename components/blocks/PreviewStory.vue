@@ -43,6 +43,7 @@ export default {
 .preview-story {
   display: block;
   text-decoration: none;
+  transition: opacity 0.2s linear;
 }
 
 .preview-story:hover {

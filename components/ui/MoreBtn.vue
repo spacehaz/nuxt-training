@@ -6,14 +6,13 @@
 .more-btn {
   display: block;
   padding: 30px 0;
-
   font-size: 16px;
   line-height: 20px;
   color: #000;
   text-align: center;
   text-decoration: none;
-
   background-color: #fbfbfb;
+  transition: background-color 0.2s linear;
 }
 
 .more-btn:hover {
