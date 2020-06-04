@@ -1,7 +1,12 @@
 <template>
   <section class="cover" ref="cover">
-    <h1 class="cover__main-title">{{ hashtag }}</h1>
-    <app-scroll-down-arrow class="cover__scroll" :hash="hash" />
+    <div class="cover__content">
+      <h1 class="cover__main-title">{{ hashtag }}</h1>
+      <app-scroll-down-arrow class="cover__scroll" :hash="hash" />
+    </div>
+    <video autoplay muted loop class="cover__video-background">
+      <source src="@/assets/videos/rak.mp4" type="video/mp4" />
+    </video>
   </section>
 </template>
 
@@ -27,11 +32,30 @@ export default {
 };
 </script>
 <style scoped>
+.cover__video-background {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.cover__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  background-color: rgba(97, 58, 147, 0.9);
+  min-height: calc(100vh - 76px);
+  width: 100%;
+}
 .cover {
   position: relative;
   display: flex;
   min-height: calc(100vh - 76px);
-  background-color: #613a93;
 }
 
 .cover__main-title {
