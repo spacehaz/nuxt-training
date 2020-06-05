@@ -110,10 +110,6 @@ export default {
       return this.$store.getters['stories/getStoriesQuantity'];
     },
   },
-  async fetch({ store }) {
-    await store.dispatch('stories/getStories');
-    await store.dispatch('blocks/getBlocks');
-  },
   created() {
     this.$store.dispatch('stories/setStoriesPerPage', {
       storiesPerPage: this.storiesPerPage,

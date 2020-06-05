@@ -73,7 +73,7 @@
         </app-share-btn>
       </div>
 
-      <app-previews class="story__previews"></app-previews>
+      <app-previews class="story__previews" :random="true"></app-previews>
 
       <app-more-btn></app-more-btn>
     </app-container>

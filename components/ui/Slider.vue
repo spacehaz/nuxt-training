@@ -13,7 +13,10 @@
           :index="video.id"
           :key="video.id"
         ></app-video-preview>
-        <iframe :src="video.url" class="swiper__video"></iframe>
+        <iframe
+          :src="video.url + '?enablejsapi=1'"
+          class="swiper__video"
+        ></iframe>
       </div>
     </div>
   </div>
@@ -60,6 +63,15 @@ export default {
       } else if (realIndex === this.videos.length - 1) {
         this.$refs.mySwiper.swiper.slideToLoop(realIndex, 500, true);
       }
+      Array.prototype.forEach.call(
+        this.$refs.mySwiper.querySelectorAll('.swiper__video'),
+        iframe => {
+          iframe.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: 'pauseVideo' }),
+            '*'
+          );
+        }
+      );
     },
   },
 };
