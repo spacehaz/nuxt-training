@@ -37,7 +37,6 @@ export default {
 <style scoped>
 .mobile-button {
   position: relative;
-  display: block;
   width: 32px;
   height: 28px;
   cursor: pointer;

@@ -45,7 +45,7 @@ export default {
   border: 0;
   padding: 0;
   cursor: pointer;
-  background-image: url('~assets/images/play-btn.svg');
+  background-image: url('~assets/images/play-btn-default.svg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -57,6 +57,10 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 40;
+}
+
+.video-preview__play-btn:hover {
+  background-image: url('~assets/images/play-btn-hover.svg');
 }
 
 .video-preview__play-btn:focus {
@@ -72,5 +76,19 @@ export default {
   top: 0;
   bottom: 0;
   right: 0;
+}
+
+@media (max-width: 1280px) {
+  .video-preview__play-btn {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+@media (max-width: 425px) {
+  .video-preview__play-btn {
+    width: 38px;
+    height: 38px;
+  }
 }
 </style>

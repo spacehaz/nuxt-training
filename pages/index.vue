@@ -58,7 +58,6 @@ export default {
     'app-about': About,
   },
   async fetch({ store }) {
-    await store.dispatch('stories/getStories');
     await store.dispatch('statistics/getStatictics');
     await store.dispatch('videos/getVideos');
     await store.dispatch('gallery/getPhotos');
