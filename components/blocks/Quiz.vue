@@ -5,11 +5,11 @@
         <app-title
           class="quiz__title"
           :theme="theme"
-          :class="{ quiz__title_centered: isQuizOver }"
+          :class="{ quiz__title_centered: isQuizSent }"
         >
           {{ currentQuestionTitle }}</app-title
         >
-        <label class="quiz__question" v-if="!isQuizOver">
+        <label class="quiz__question" v-if="!isQuizSent">
           <p class="quiz__label">
             <span class="quiz__text-accent">
               {{ currentQuestionText }}
@@ -24,7 +24,7 @@
         </label>
       </fieldset>
     </transition>
-    <div class="quiz__navigation" v-if="!isQuizOver">
+    <div class="quiz__navigation" v-if="!isQuizSent">
       <app-button
         :lowPriority="true"
         :size="'content'"
@@ -59,7 +59,7 @@
     </div>
     <app-button
       :size="size"
-      v-if="isQuizOver"
+      v-if="isQuizSent"
       class="quiz__close-btn"
       @click.native.prevent="toggleQuiz"
       >Закрыть</app-button
@@ -99,21 +99,52 @@ export default {
     isQuizOver() {
       return this.$store.getters['quiz/isQuizOver'];
     },
+    isFormValid() {
+      return this.$store.getters['quiz/getFormValidity'];
+    },
+    isQuizOverAndSent() {
+      return (
+        this.$store.getters['quiz/isQuizOver'] &&
+        this.$store.getters['quiz/getFormValidity']
+      );
+    },
+    isQuizSent() {
+      return this.$store.getters['quiz/isQuizSent'];
+    },
   },
   methods: {
     async nextQuestion() {
       await this.$store.dispatch('quiz/saveAnswerAction', {
         answer: this.currentAnswer,
       });
-      this.currentAnswer = this.currentQuestionAnswer;
+
+      if (this.isFormValid && !this.isQuizOver) {
+        await this.$store.dispatch('quiz/setNextQuestion');
+      }
+      if (!this.isQuizOver) {
+        this.currentAnswer = this.currentQuestionAnswer;
+      }
+
+      if (this.isQuizOver && !this.isQuizSent) {
+        await this.$store.dispatch('quiz/finishQuiz');
+        await this.$store.dispatch('quiz/sendDataToServer');
+        if (!this.isFormValid) {
+          this.$store.dispatch('popup/setContentInvalid', {
+            errorText:
+              'Ошибка отправки данных, пожалуйста, попробуйте еще раз.',
+          });
+        }
+      } else {
+        this.$store.dispatch('popup/setContentValid');
+      }
     },
     async prevQuestion() {
       await this.$store.dispatch('quiz/getPreviousQuestionAction');
+      await this.$store.dispatch('popup/setContentValid');
       this.currentAnswer = this.currentQuestionAnswer;
     },
     toggleQuiz() {
       this.$store.dispatch('quiz/closeQuiz');
-      this.$store.dispatch('quiz/finishQuiz');
       this.$store.commit('popup/togglePopupVisibility');
     },
   },
@@ -136,6 +167,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('popup/setContentValid');
+    this.$store.commit('quiz/setFormValid');
   },
 };
 </script>
