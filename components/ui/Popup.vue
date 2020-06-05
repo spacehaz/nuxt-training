@@ -1,15 +1,20 @@
 <template>
   <div class="popup">
-    <slot name="quiz" v-if="isQuizShown"></slot>
-    <slot name="contact-us" v-if="isContactUsShown"></slot>
-    <slot name="share-us" v-if="isShareUsShown"></slot>
-    <slot></slot>
-    <img
-      src="/close.svg"
-      alt="Закрыть"
-      class="popup__close"
-      @click="toggleQuiz"
-    />
+    <div class="popup__content">
+      <slot name="quiz" v-if="isQuizShown"></slot>
+      <slot name="contact-us" v-if="isContactUsShown"></slot>
+      <slot name="share-us" v-if="isShareUsShown"></slot>
+      <slot></slot>
+      <img
+        src="/close.svg"
+        alt="Закрыть"
+        class="popup__close"
+        @click="toggleQuiz"
+      />
+    </div>
+    <div class="popup__error" v-if="!isContentValid">
+      <p class="popup__error-text">{{ errorText }}</p>
+    </div>
   </div>
 </template>
 
@@ -24,6 +29,12 @@ export default {
     },
     isShareUsShown() {
       return this.$store.getters['share-us/getShareUsVisibility'];
+    },
+    isContentValid() {
+      return this.$store.getters['popup/getContentValidity'];
+    },
+    errorText() {
+      return this.$store.getters['popup/getErrorText'];
     },
   },
   methods: {
@@ -43,9 +54,13 @@ export default {
   top: 50%;
   left: 50%;
   z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+.popup__content {
   display: inline-block;
   padding: 40px;
-  transform: translate(-50%, -50%);
+  vertical-align: bottom;
   background-color: #fff;
   overflow: auto;
 }
@@ -55,6 +70,20 @@ export default {
   top: 40px;
   right: 40px;
   cursor: pointer;
+}
+
+.popup__error {
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+}
+
+.popup__error-text {
+  color: #f00;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 @media (max-width: 1280px) {
@@ -75,8 +104,18 @@ export default {
     right: 12px;
   }
 
-  .popup {
+  .popup__content {
     padding: 15px;
+  }
+
+  .popup__error {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .popup__error-text {
+    font-size: 11px;
+    line-height: 13px;
   }
 }
 </style>

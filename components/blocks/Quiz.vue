@@ -134,6 +134,9 @@ export default {
     this.$store.dispatch('quiz/getQuestions');
     this.currentAnswer = '' || this.currentQuestionAnswer;
   },
+  mounted() {
+    this.$store.dispatch('popup/setContentValid');
+  },
 };
 </script>
 
