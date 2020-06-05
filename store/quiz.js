@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const state = () => ({
   currentQuestion: 1,
   questions: {},
@@ -5,6 +7,8 @@ export const state = () => ({
   isQuizOver: false,
   isQuizShown: false,
   keys: {},
+  result: {},
+  isFormValid: true,
 });
 
 // getters
@@ -45,6 +49,9 @@ export const getters = {
   getQuizVisibility: state => {
     return state.isQuizShown;
   },
+  getFormValidity: state => {
+    return state.isFormValid;
+  },
 };
 
 //mutations
@@ -79,14 +86,19 @@ export const mutations = {
     state.isQuizShown = false;
   },
   finishQuiz: state => {
-    const result = Object.keys(state.keys).reduce((acc, item) => {
+    state.result = Object.keys(state.keys).reduce((acc, item) => {
       acc[state.keys[item].key] = state.answers[item];
       return acc;
     }, {});
-    console.log({ result });
 
     state.currentQuestion = 1;
     (state.answers = {}), (state.isQuizOver = false);
+  },
+  setFormInvalid: state => {
+    state.isFormValid = false;
+  },
+  setFormValid: state => {
+    state.isFormValid = true;
   },
 };
 
@@ -94,7 +106,9 @@ export const mutations = {
 export const actions = {
   saveAnswerAction: async ({ commit }, { answer }) => {
     await commit('saveAnswer', { answer });
-    commit('setNextQuestion');
+  },
+  setNextQuestion: async ({ commit }) => {
+    await commit('setNextQuestion');
   },
   getPreviousQuestionAction: async ({ commit }) => {
     await commit('setPrevQuestion');
@@ -103,26 +117,26 @@ export const actions = {
     //имитация запроса к api
     const questions = {
       1: {
-        key: 'name',
+        key: 'full_name',
         title: 'Шаг 1 из 13',
         mainQuestion: 'Как вас зовут?',
       },
       2: {
-        key: 'cancerStory',
+        key: 'story',
         title: 'Шаг 2 из 13',
         mainQuestion: 'Было ли у вас онкологическое заболевание?',
         additionalQuestion:
           'Если да – расскажите, пожалуйста, кратко, какой диагноз и текущий статус. Если нет — приглашаем Вас поделиться своей историей неизлечимых привычек в Инстаграм с хештегами #раклечится и #этонелечится.',
       },
       3: {
-        key: 'pleasureActivities',
+        key: 'pleas_act',
         title: 'Шаг 3 из 13',
         mainQuestion: 'Какие занятия приносят Вам наибольшее удовольствие?',
         additionalQuestion:
           'Расскажите о ваших неизлечимых привычках, чего Вы боитесь или без чего не можете жить.',
       },
       4: {
-        key: 'commonActivities',
+        key: 'common_act',
         title: 'Шаг 4 из 13',
         mainQuestion:
           'На что, кроме семьи, быта и работы, Вы тратите свое время?',
@@ -141,20 +155,20 @@ export const actions = {
           'Ваши близкие, друзья или коллеги замечали за вами какие-нибудь необычные привычки или особенности?',
       },
       7: {
-        key: 'regularActivities',
+        key: 'reg_act',
         title: 'Шаг 7 из 13',
         mainQuestion:
           'Существуют ли какие-то ритуалы/действия, которые Вы совершаете регулярно?',
         additionalQuestion: 'Кроме необходимых, таких, как чистка зубов.',
       },
       8: {
-        key: 'aloneActivities',
+        key: 'alone_act',
         title: 'Шаг 8 из 13',
         mainQuestion:
           'Если вам выдался свободный день/вечер в одиночестве, чем вы займетесь?',
       },
       9: {
-        key: 'calmDownActivities',
+        key: 'calm_act',
         title: 'Шаг 9 из 13',
         mainQuestion: 'Что Вас успокаивает/умиротворяет лучше всего?',
       },
@@ -192,5 +206,18 @@ export const actions = {
   },
   finishQuiz: async ({ commit }) => {
     commit('finishQuiz');
+  },
+  sendDataToServer: async ({ commit, state }) => {
+    return axios
+      .post(process.env.API_URL + '/forms/stories', state.result)
+      .then(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+          return commit('setFormInvalid');
+        }
+      );
   },
 };

@@ -12,7 +12,7 @@
         @click="toggleQuiz"
       />
     </div>
-    <div class="popup__error" v-if="!isContentValid">
+    <div class="popup__error" v-show="!isContentValid">
       <p class="popup__error-text">{{ errorText }}</p>
     </div>
   </div>
@@ -55,6 +55,8 @@ export default {
   left: 50%;
   z-index: 10;
   transform: translate(-50%, -50%);
+  max-height: 100vh;
+  overflow: auto;
 }
 
 .popup__content {
@@ -62,7 +64,6 @@ export default {
   padding: 40px;
   vertical-align: bottom;
   background-color: #fff;
-  overflow: auto;
 }
 
 .popup__close {

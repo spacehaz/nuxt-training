@@ -9,7 +9,7 @@
         >
           {{ currentQuestionTitle }}</app-title
         >
-        <label class="quiz__question" v-if="!isQuizOver">
+        <label class="quiz__question" v-if="!isQuizOver || !isFormValid">
           <p class="quiz__label">
             <span class="quiz__text-accent">
               {{ currentQuestionText }}
@@ -24,7 +24,7 @@
         </label>
       </fieldset>
     </transition>
-    <div class="quiz__navigation" v-if="!isQuizOver">
+    <div class="quiz__navigation" v-if="!isQuizOver || !isFormValid">
       <app-button
         :lowPriority="true"
         :size="'content'"
@@ -44,7 +44,7 @@
       <app-button
         :size="size"
         @click.native.prevent="nextQuestion"
-        v-if="isLastQuestion"
+        v-if="isLastQuestion || !isFormValid"
         :disabled="isAnswerInvalid"
         class="quiz__btn"
         >Отправить</app-button
@@ -59,7 +59,7 @@
     </div>
     <app-button
       :size="size"
-      v-if="isQuizOver"
+      v-if="isQuizOver && isFormValid"
       class="quiz__close-btn"
       @click.native.prevent="toggleQuiz"
       >Закрыть</app-button
@@ -99,6 +99,9 @@ export default {
     isQuizOver() {
       return this.$store.getters['quiz/isQuizOver'];
     },
+    isFormValid() {
+      return this.$store.getters['quiz/getFormValidity'];
+    },
   },
   methods: {
     async nextQuestion() {
@@ -106,6 +109,21 @@ export default {
         answer: this.currentAnswer,
       });
       this.currentAnswer = this.currentQuestionAnswer;
+      if (this.isFormValid) {
+        await this.$store.dispatch('quiz/setNextQuestion');
+      }
+
+      if (this.isQuizOver) {
+        console.log('isQuizOver', this.isQuizOver);
+        await this.$store.dispatch('quiz/sendDataToServer');
+        console.log('isFormValid', this.isFormValid);
+        if (!this.isFormValid) {
+          this.$store.dispatch('popup/setContentInvalid', {
+            errorText:
+              'Ошибка отправки данных, пожалуйста, попробуйте еще раз.',
+          });
+        }
+      }
     },
     async prevQuestion() {
       await this.$store.dispatch('quiz/getPreviousQuestionAction');
@@ -114,6 +132,7 @@ export default {
     toggleQuiz() {
       this.$store.dispatch('quiz/closeQuiz');
       this.$store.dispatch('quiz/finishQuiz');
+      this.$store.dispatch('quiz/sendDataToServer');
       this.$store.commit('popup/togglePopupVisibility');
     },
   },
@@ -136,6 +155,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('popup/setContentValid');
+    this.$store.commit('quiz/setFormValid');
   },
 };
 </script>

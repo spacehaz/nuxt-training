@@ -47,7 +47,7 @@ export default {
 
 .button_disabled {
   opacity: 0.8;
-  cursor: not-allowed;
+  cursor: default;
 }
 
 :not(.button_disabled).button:hover {
