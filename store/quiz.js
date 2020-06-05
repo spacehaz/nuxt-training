@@ -9,6 +9,7 @@ export const state = () => ({
   keys: {},
   result: {},
   isFormValid: true,
+  isQuizSent: false,
 });
 
 // getters
@@ -24,7 +25,7 @@ export const getters = {
       : '';
   },
   getCurrentQuestionTitle: state => {
-    if (state.isQuizOver) return 'Спасибо что приняли участие!';
+    if (state.isQuizSent) return 'Спасибо что приняли участие!';
 
     return state.questions[state.currentQuestion]
       ? state.questions[state.currentQuestion].title
@@ -51,6 +52,9 @@ export const getters = {
   },
   getFormValidity: state => {
     return state.isFormValid;
+  },
+  isQuizSent() {
+    return state.isQuizSent;
   },
 };
 
@@ -99,6 +103,9 @@ export const mutations = {
   },
   setFormValid: state => {
     state.isFormValid = true;
+  },
+  setQuizSentStatus: state => {
+    state.isQuizSent = true;
   },
 };
 
@@ -213,6 +220,7 @@ export const actions = {
       .then(
         response => {
           console.log(response);
+          return commit('setQuizSentStatus');
         },
         error => {
           console.log(error);

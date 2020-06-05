@@ -5,11 +5,11 @@
         <app-title
           class="quiz__title"
           :theme="theme"
-          :class="{ quiz__title_centered: isQuizOver }"
+          :class="{ quiz__title_centered: isQuizSent }"
         >
           {{ currentQuestionTitle }}</app-title
         >
-        <label class="quiz__question" v-if="!isQuizOver || !isFormValid">
+        <label class="quiz__question" v-if="!isQuizSent">
           <p class="quiz__label">
             <span class="quiz__text-accent">
               {{ currentQuestionText }}
@@ -24,7 +24,7 @@
         </label>
       </fieldset>
     </transition>
-    <div class="quiz__navigation" v-if="!isQuizOver || !isFormValid">
+    <div class="quiz__navigation" v-if="!isQuizSent">
       <app-button
         :lowPriority="true"
         :size="'content'"
@@ -44,7 +44,7 @@
       <app-button
         :size="size"
         @click.native.prevent="nextQuestion"
-        v-if="isLastQuestion || !isFormValid"
+        v-if="isLastQuestion"
         :disabled="isAnswerInvalid"
         class="quiz__btn"
         >Отправить</app-button
@@ -59,7 +59,7 @@
     </div>
     <app-button
       :size="size"
-      v-if="isQuizOver && isFormValid"
+      v-if="isQuizSent"
       class="quiz__close-btn"
       @click.native.prevent="toggleQuiz"
       >Закрыть</app-button
@@ -102,6 +102,15 @@ export default {
     isFormValid() {
       return this.$store.getters['quiz/getFormValidity'];
     },
+    isQuizOverAndSent() {
+      return (
+        this.$store.getters['quiz/isQuizOver'] &&
+        this.$store.getters['quiz/getFormValidity']
+      );
+    },
+    isQuizSent() {
+      return this.$store.getters['quiz/isQuizSent'];
+    },
   },
   methods: {
     async nextQuestion() {
@@ -109,12 +118,13 @@ export default {
         answer: this.currentAnswer,
       });
       this.currentAnswer = this.currentQuestionAnswer;
-      if (this.isFormValid) {
+      if (this.isFormValid && !this.isQuizOver) {
         await this.$store.dispatch('quiz/setNextQuestion');
       }
 
-      if (this.isQuizOver) {
+      if (this.isQuizOver && !this.isQuizSent) {
         console.log('isQuizOver', this.isQuizOver);
+        console.log('isQuizSent', this.isQuizSent);
         await this.$store.dispatch('quiz/sendDataToServer');
         console.log('isFormValid', this.isFormValid);
         if (!this.isFormValid) {
