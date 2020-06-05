@@ -6,13 +6,31 @@
       </app-title>
 
       <div class="stories__search">
-        <app-input
-          class="stories__input"
-          :bordered="true"
-          :type="'search'"
-          v-model="query"
-          @keyup.native.enter="searchStories"
-        />
+        <div class="stories__input-container">
+          <app-input
+            class="stories__input"
+            :bordered="true"
+            :type="'search'"
+            v-model="query"
+            @keyup.native.enter="searchStories"
+          />
+          <app-button
+            v-if="isFullTextClearSearch"
+            :size="'content'"
+            :lowPriority="true"
+            class="stories__clear-search-btn"
+            @click.native="clearSearch"
+            >Очистить
+          </app-button>
+          <app-button
+            v-else
+            :size="'content'"
+            :lowPriority="true"
+            class="stories__clear-search-btn stories__clear-search-btn_short"
+            @click.native="clearSearch"
+            >&#10006;
+          </app-button>
+        </div>
         <app-button
           :size="size"
           class="stories__search-btn"
@@ -63,6 +81,10 @@ export default {
     searchStories() {
       this.$store.dispatch('stories/searchStories', this.query);
     },
+    clearSearch() {
+      this.query = '';
+      this.$store.dispatch('stories/searchStories', this.query);
+    },
   },
   computed: {
     storiesPerPage() {
@@ -74,6 +96,14 @@ export default {
         } else {
           return 16;
         }
+      }
+    },
+    isFullTextClearSearch() {
+      if (process.browser) {
+        if (window.innerWidth > 768) {
+          return true;
+        }
+        return false;
       }
     },
     storiesLength() {
@@ -95,6 +125,30 @@ export default {
 <style scoped>
 .root__stories {
   padding: 100px 0;
+}
+
+.stories__input {
+  height: 100%;
+}
+
+.stories__input-container {
+  position: relative;
+}
+
+.stories__clear-search-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+}
+
+.stories__clear-search-btn_short {
+  font-size: 26px;
+}
+
+.stories__clear-search-btn:focus {
+  outline: none;
 }
 
 .stories__title {
@@ -194,5 +248,22 @@ export default {
     margin-left: 0;
     max-width: 290px;
   }
+}
+
+input[type='text']::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type='text']::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  display: none;
 }
 </style>

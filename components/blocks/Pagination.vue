@@ -106,7 +106,10 @@
         </div>
       </div>
     </template>
-    <p class="error-message" v-else>По этому запросу ничего не найдено.</p>
+    <div class="pagination__error-message-block" v-else>
+      <p class="pagination__error-message-title">Ничего не найдено</p>
+      <p class="pagination__error-message-text">Попробуйте еще раз.</p>
+    </div>
   </div>
 </template>
 
@@ -233,8 +236,20 @@ export default {
   display: none;
 }
 
-.error-message {
-  font-size: 18px;
+.pagination__error-message-block {
+  margin-top: 40px;
+}
+
+.pagination__error-message-title {
+  font-size: 48px;
+  line-height: 58px;
+}
+
+.pagination__error-message-text {
+  margin-top: 40px;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
 }
 
 @media (max-width: 568px) {
@@ -252,8 +267,20 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-}
 
-@media (max-width: 425px) {
+  .pagination__error-message-block {
+    margin-top: 0;
+  }
+
+  .pagination__error-message-title {
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  .pagination__error-message-text {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 </style>
