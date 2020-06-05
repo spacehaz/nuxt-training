@@ -52,7 +52,6 @@ export default {
     'app-youtube': Youtube,
     'app-vk': Vk,
   },
-  methods: {},
   data() {
     return {
       size: 's',
@@ -75,6 +74,9 @@ export default {
         }&url=${encodeURI(window.location.href)}`,
       },
     };
+  },
+  mounted() {
+    this.$store.dispatch('popup/setContentValid');
   },
 };
 </script>

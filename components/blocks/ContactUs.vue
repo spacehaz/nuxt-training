@@ -13,10 +13,10 @@
     </label>
     <app-input
       class="contact-us__input"
-      placeholder="Напишите тут"
       id="name"
       :bordered="false"
-      v-model="answers.name"
+      :isError="!isNameValid"
+      v-model="name"
     />
 
     <div class="contact-us__container">
@@ -27,22 +27,24 @@
         <app-input
           type="email"
           class="contact-us__input"
-          placeholder="pochta@example.com"
+          :placeholder="'pochta@example.com'"
           :bordered="false"
           :type="'email'"
+          :isError="!isEmailValid"
           id="email"
-          v-model="answers.email"
+          v-model="email"
         />
       </div>
       <div class="contact-us__item">
         <label class="contact-us__label" for="phone">Телефон</label>
         <app-input
           class="contact-us__input"
-          placeholder="+7 000 000 00 00"
+          :placeholder="'+7 000 000 00 00'"
           :bordered="false"
+          :isError="!isPhoneValid"
           :type="'tel'"
           id="phone"
-          v-model="answers.phone"
+          v-model="phone"
         />
       </div>
     </div>
@@ -52,10 +54,10 @@
     </label>
     <app-input
       class="contact-us__input"
-      placeholder="Телефон / почта и удобное время"
+      :placeholder="'Телефон / почта и удобное время'"
       :bordered="false"
       id="comments"
-      v-model="answers.preferred"
+      v-model="preferred"
     />
 
     <div class="contact-us__send-items">
@@ -89,18 +91,59 @@ export default {
     return {
       size: 's',
       theme: 'light',
-      answers: {
-        name: '',
-        email: '',
-        phone: '',
-        preferred: '',
-      },
+      name: '',
+      email: '',
+      phone: '',
+      preferred: '',
+      isNameValid: true,
+      isEmailValid: true,
+      isPhoneValid: true,
     };
+  },
+  watch: {
+    name: function(newValue) {
+      if (newValue) this.isNameValid = true;
+    },
+    email: function(newValue) {
+      if (newValue) this.isEmailValid = true;
+    },
+    phone: function(newValue) {
+      if (newValue) this.isPhoneValid = true;
+    },
   },
   methods: {
     saveAnswers() {
-      this.$store.dispatch('contact-us/saveAnswers', this.answers);
+      let isFormValid = true;
+      if (!this.name) {
+        isFormValid = false;
+        this.isNameValid = false;
+      }
+      if (!this.email) {
+        isFormValid = false;
+        this.isEmailValid = false;
+      }
+      if (!this.phone) {
+        isFormValid = false;
+        this.isPhoneValid = false;
+      }
+      if (isFormValid) {
+        this.$store.dispatch('contact-us/saveAnswers', {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          preferred: this.preferred,
+        });
+        this.$store.dispatch('contact-us/closeContactUs');
+        this.$store.commit('popup/togglePopupVisibility');
+      } else {
+        this.$store.dispatch('popup/setContentInvalid', {
+          errorText: 'Заполните все поля.',
+        });
+      }
     },
+  },
+  mounted() {
+    this.$store.dispatch('popup/setContentValid');
   },
 };
 </script>
