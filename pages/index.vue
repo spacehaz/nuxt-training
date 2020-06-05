@@ -3,6 +3,7 @@
     <app-cover />
     <app-intro class="root__intro" />
     <app-callout :block="'note-1'" />
+    <app-featured-habits class="root__featured-habits" />
     <app-habits class="root__habits" />
     <app-callout :block="'note-2'" />
     <app-instagram class="root__instagram" />
@@ -16,6 +17,7 @@
 import Cover from '@/components/blocks/Cover';
 import Intro from '@/components/blocks/Intro';
 import Callout from '@/components/blocks/Callout';
+import FeaturedHabits from '@/components/blocks/FeaturedHabits';
 import Habits from '@/components/blocks/Habits';
 import Instagram from '@/components/blocks/Instagram';
 import ShareYourStory from '@/components/blocks/ShareYourStory';
@@ -51,6 +53,7 @@ export default {
     'app-cover': Cover,
     'app-intro': Intro,
     'app-callout': Callout,
+    'app-featured-habits': FeaturedHabits,
     'app-habits': Habits,
     'app-instagram': Instagram,
     'app-share-your-story': ShareYourStory,
@@ -76,8 +79,12 @@ export default {
   padding-bottom: 74px;
 }
 
+.root__featured-habits {
+  padding: 100px 0 0;
+}
+
 .root__habits {
-  padding: 100px 0;
+  padding: 0 0 100px;
 }
 
 .root__instagram {
@@ -103,8 +110,12 @@ export default {
     padding-bottom: 64px;
   }
 
+  .root__featured-habits {
+    padding: 90px 0 0;
+  }
+
   .root__habits {
-    padding: 90px 0;
+    padding: 0 0 90px;
   }
 
   .root__instagram {
@@ -131,8 +142,12 @@ export default {
     padding-bottom: 54px;
   }
 
+  .root__featured-habits {
+    padding: 80px 0 0;
+  }
+
   .root__habits {
-    padding: 80px 0;
+    padding: 0 0 80px;
   }
 
   .root__instagram {
@@ -165,8 +180,12 @@ export default {
     padding-bottom: 50px;
   }
 
+  .root__featured-habits {
+    padding: 50px 0 0;
+  }
+
   .root__habits {
-    padding: 50px 0;
+    padding: 0 0 50px;
   }
 
   .root__instagram {

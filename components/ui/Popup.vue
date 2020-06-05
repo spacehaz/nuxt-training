@@ -12,7 +12,7 @@
         @click="toggleQuiz"
       />
     </div>
-    <div class="popup__error" v-show="!isContentValid">
+    <div class="popup__error" v-show="!isContentValid" ref="error">
       <p class="popup__error-text">{{ errorText }}</p>
     </div>
   </div>
@@ -44,6 +44,14 @@ export default {
       this.$store.dispatch('share-us/closeShareUs');
       this.$store.commit('popup/togglePopupVisibility');
     },
+  },
+  updated() {
+    if (this.errorText) {
+      const errorElem = this.$refs.error;
+      errorElem.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
   },
 };
 </script>

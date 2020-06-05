@@ -90,6 +90,7 @@ export const mutations = {
   },
   closeQuiz: state => {
     state.isQuizShown = false;
+    state.isQuizSent = false;
   },
   finishQuiz: state => {
     state.result = Object.keys(state.keys).reduce((acc, item) => {
@@ -108,7 +109,11 @@ export const mutations = {
   },
   setInitialState: state => {
     state.currentQuestion = 1;
-    (state.answers = {}), (state.isQuizOver = false);
+    state.answers = {};
+    state.isQuizOver = false;
+    state.isFormValid = true;
+    // state.currentQuestion = 1;
+    // (state.answers = {}), (state.isQuizOver = false);
   },
 };
 
