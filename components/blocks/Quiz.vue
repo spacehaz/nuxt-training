@@ -117,32 +117,34 @@ export default {
       await this.$store.dispatch('quiz/saveAnswerAction', {
         answer: this.currentAnswer,
       });
-      this.currentAnswer = this.currentQuestionAnswer;
+
       if (this.isFormValid && !this.isQuizOver) {
         await this.$store.dispatch('quiz/setNextQuestion');
       }
+      if (!this.isQuizOver) {
+        this.currentAnswer = this.currentQuestionAnswer;
+      }
 
       if (this.isQuizOver && !this.isQuizSent) {
-        console.log('isQuizOver', this.isQuizOver);
-        console.log('isQuizSent', this.isQuizSent);
+        await this.$store.dispatch('quiz/finishQuiz');
         await this.$store.dispatch('quiz/sendDataToServer');
-        console.log('isFormValid', this.isFormValid);
         if (!this.isFormValid) {
           this.$store.dispatch('popup/setContentInvalid', {
             errorText:
               'Ошибка отправки данных, пожалуйста, попробуйте еще раз.',
           });
         }
+      } else {
+        this.$store.dispatch('popup/setContentValid');
       }
     },
     async prevQuestion() {
       await this.$store.dispatch('quiz/getPreviousQuestionAction');
+      await this.$store.dispatch('popup/setContentValid');
       this.currentAnswer = this.currentQuestionAnswer;
     },
     toggleQuiz() {
       this.$store.dispatch('quiz/closeQuiz');
-      this.$store.dispatch('quiz/finishQuiz');
-      this.$store.dispatch('quiz/sendDataToServer');
       this.$store.commit('popup/togglePopupVisibility');
     },
   },

@@ -56,6 +56,7 @@
       class="contact-us__input"
       :placeholder="'Телефон / почта и удобное время'"
       :bordered="false"
+      :isError="!isPreferredValid"
       id="comments"
       v-model="preferred"
     />
@@ -98,6 +99,7 @@ export default {
       isNameValid: true,
       isEmailValid: true,
       isPhoneValid: true,
+      isPreferredValid: true,
     };
   },
   watch: {
@@ -110,9 +112,17 @@ export default {
     phone: function(newValue) {
       if (newValue) this.isPhoneValid = true;
     },
+    preferred: function(newValue) {
+      if (newValue) this.isPhoneValid = true;
+    },
+  },
+  computed: {
+    isStatusOk() {
+      return this.$store.getters['contact-us/getStatus'];
+    },
   },
   methods: {
-    saveAnswers() {
+    async saveAnswers() {
       let isFormValid = true;
       if (!this.name) {
         isFormValid = false;
@@ -126,15 +136,28 @@ export default {
         isFormValid = false;
         this.isPhoneValid = false;
       }
+      if (!this.preferred) {
+        isFormValid = false;
+        this.isPreferredValid = false;
+      }
       if (isFormValid) {
-        this.$store.dispatch('contact-us/saveAnswers', {
-          name: this.name,
+        await this.$store.dispatch('contact-us/saveAnswers', {
+          full_name: this.name,
           email: this.email,
           phone: this.phone,
           preferred: this.preferred,
         });
-        this.$store.dispatch('contact-us/closeContactUs');
-        this.$store.commit('popup/togglePopupVisibility');
+        await this.$store.dispatch('contact-us/sendDataToServer');
+
+        if (this.isStatusOk) {
+          this.$store.dispatch('contact-us/closeContactUs');
+          this.$store.commit('popup/togglePopupVisibility');
+        } else {
+          this.$store.dispatch('popup/setContentInvalid', {
+            errorText:
+              'Ошибка отправки данных, пожалуйста, попробуйте еще раз.',
+          });
+        }
       } else {
         this.$store.dispatch('popup/setContentInvalid', {
           errorText: 'Заполните все поля.',

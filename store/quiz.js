@@ -33,7 +33,7 @@ export const getters = {
   },
   getCurrentQuestionAnswer: state => {
     return state.answers[state.currentQuestion]
-      ? state.answers[state.currentQuestion].answer
+      ? state.answers[state.currentQuestion]
       : '';
   },
   isFirstQuestion: state => {
@@ -53,7 +53,7 @@ export const getters = {
   getFormValidity: state => {
     return state.isFormValid;
   },
-  isQuizSent() {
+  isQuizSent: state => {
     return state.isQuizSent;
   },
 };
@@ -79,6 +79,8 @@ export const mutations = {
     }
     state.currentQuestion--;
     state.isQuizOver = false;
+    state.isQuizSent = false;
+    state.isFormValid = true;
   },
   setQuestions: (state, { questions }) => {
     state.questions = questions;
@@ -94,9 +96,6 @@ export const mutations = {
       acc[state.keys[item].key] = state.answers[item];
       return acc;
     }, {});
-
-    state.currentQuestion = 1;
-    (state.answers = {}), (state.isQuizOver = false);
   },
   setFormInvalid: state => {
     state.isFormValid = false;
@@ -106,6 +105,10 @@ export const mutations = {
   },
   setQuizSentStatus: state => {
     state.isQuizSent = true;
+  },
+  setInitialState: state => {
+    state.currentQuestion = 1;
+    (state.answers = {}), (state.isQuizOver = false);
   },
 };
 
@@ -219,11 +222,10 @@ export const actions = {
       .post(process.env.API_URL + '/forms/stories', state.result)
       .then(
         response => {
-          console.log(response);
-          return commit('setQuizSentStatus');
+          commit('setQuizSentStatus');
+          return commit('setInitialState');
         },
         error => {
-          console.log(error);
           return commit('setFormInvalid');
         }
       );
