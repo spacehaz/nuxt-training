@@ -15,8 +15,23 @@
 import PreviewStory from '@/components/blocks/PreviewStory';
 
 export default {
+  props: {
+    random: {
+      type: Boolean,
+      default: false,
+    },
+    featured: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     stories() {
+      if (this.random) {
+        return this.$store.getters['stories/getRandomStories'];
+      } else if (this.featured) {
+        return this.$store.getters['stories/getFeaturedStories'];
+      }
       return this.$store.getters['stories/getStories'];
     },
   },

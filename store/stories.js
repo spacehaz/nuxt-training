@@ -19,6 +19,27 @@ export const getters = {
     }
     return state.stories;
   },
+  getFeaturedStories: state => {
+    if (state.stories) {
+      const ids = [5, 6, 7, 8];
+      const featuredStories = state.stories.filter(item => {
+        return ids.includes(item.id);
+      });
+      return featuredStories;
+    }
+    return state.stories;
+  },
+  getRandomStories: state => {
+    if (state.stories) {
+      const randomisedArray = [...state.stories];
+      randomisedArray.sort(() => 0.5 - Math.random());
+      return randomisedArray.slice(
+        state.storiesPerPage * (state.currentPage - 1),
+        (state.currentPage - 1) * state.storiesPerPage + state.storiesPerPage
+      );
+    }
+    return state.stories;
+  },
   getStoriesQuantity: state => {
     return state.filteredStories ? state.filteredStories.length : 0;
   },

@@ -133,6 +133,8 @@ export default {
             errorText:
               'Ошибка отправки данных, пожалуйста, попробуйте еще раз.',
           });
+        } else {
+          this.$store.dispatch('popup/setContentValid');
         }
       } else {
         this.$store.dispatch('popup/setContentValid');
