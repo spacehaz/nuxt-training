@@ -61,7 +61,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 10;
+  z-index: 1000;
   transform: translate(-50%, -50%);
   max-height: 100vh;
   overflow: auto;

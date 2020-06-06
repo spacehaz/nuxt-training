@@ -12,6 +12,7 @@
             :bordered="true"
             :type="'search'"
             v-model="query"
+            :placeholder="'Найти...'"
             @keyup.native.enter="searchStories"
           />
           <app-button
@@ -22,14 +23,13 @@
             @click.native="clearSearch"
             >Очистить
           </app-button>
-          <app-button
+          <a
             v-else
-            :size="'content'"
-            :lowPriority="true"
             class="stories__clear-search-btn stories__clear-search-btn_short"
-            @click.native="clearSearch"
-            >&#10006;
-          </app-button>
+            @click.prevent="clearSearch"
+          >
+            <span></span>
+          </a>
         </div>
         <app-button
           :size="size"
@@ -75,7 +75,48 @@ export default {
       size: 's',
       theme: 'light',
       query: '',
+      metas: {
+        meta_title: 'РАКЛЕЧИТСЯ.РФ',
+        meta_description:
+          'Есть вещи, которые не лечатся. Особенности характера, страстные увлечения. Но это точно не рак. Рак лечится. Лучшее доказательство — люди с их историями.',
+        meta_keywords: 'РАКЛЕЧИТСЯ.РФ, раклечится, этонелечится',
+        og_image: '@/assets/background-cover.jpg',
+      },
     };
+  },
+  head() {
+    if (this.metas) {
+      return {
+        title: this.metas.meta_title,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: this.metas.meta_description || '',
+          },
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: this.metas.meta_keywords || '',
+          },
+          {
+            hid: 'og:title',
+            property: 'og:title',
+            content: this.metas.meta_title || '',
+          },
+          {
+            hid: 'og:description',
+            property: 'og:description',
+            content: this.metas.meta_description || '',
+          },
+          {
+            hid: 'og:image',
+            property: 'og:image',
+            content: this.metas.og_image || '',
+          },
+        ],
+      };
+    }
   },
   methods: {
     searchStories() {
@@ -92,7 +133,7 @@ export default {
         if (window.innerWidth <= 320) {
           return 9;
         } else if (window.innerWidth <= 1024) {
-          return 12; //потом поменяем на 12
+          return 12;
         } else {
           return 16;
         }
@@ -140,7 +181,46 @@ export default {
 }
 
 .stories__clear-search-btn_short {
-  font-size: 26px;
+  position: absolute;
+  width: 20px;
+  height: 17px;
+  cursor: pointer;
+  right: 15px;
+}
+
+.stories__clear-search-btn_short:hover {
+  opacity: 0.8;
+}
+
+.stories__clear-search-btn_short span,
+.stories__clear-search-btn_short span::before,
+.stories__clear-search-btn_short span::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  margin-left: -10px;
+  margin-top: -1px;
+  background-color: #000;
+}
+
+.stories__clear-search-btn_short span::before,
+.stories__clear-search-btn_short span::after {
+  content: '';
+  display: block;
+}
+
+.stories__clear-search-btn_short span {
+  height: 0;
+}
+
+.stories__clear-search-btn_short span::before {
+  transform: rotate(-45deg);
+}
+
+.stories__clear-search-btn_short span::after {
+  transform: rotate(45deg);
 }
 
 .stories__clear-search-btn:focus {

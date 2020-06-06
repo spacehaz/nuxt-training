@@ -2,22 +2,29 @@
   <section class="cover" ref="cover">
     <div class="cover__content">
       <h1 class="cover__main-title">{{ hashtag }}</h1>
+      <button type="button" class="cover__button" @click="toggleQuiz">
+        Рассказать историю
+      </button>
       <app-scroll-down-arrow class="cover__scroll" :hash="hash" />
     </div>
-    <video
-      autoplay
-      muted
-      loop
-      class="cover__video-background"
-      v-if="showBackCoverVideo"
-    >
-      <source src="@/assets/videos/rak.mp4" type="video/mp4" />
-    </video>
+    <div class="cover__image"></div>
+    <client-only>
+      <video
+        autoplay
+        muted
+        loop
+        class="cover__video-background"
+        v-if="showBackCoverVideo"
+      >
+        <source src="@/assets/videos/rak.mp4" type="video/mp4" />
+      </video>
+    </client-only>
   </section>
 </template>
 
 <script>
 import ScrollDownArrow from '@/components/ui/ScrollDownArrow';
+
 export default {
   computed: {
     hashtag() {
@@ -44,6 +51,12 @@ export default {
   mounted() {
     this.hash = this.$refs.cover;
   },
+  methods: {
+    toggleQuiz() {
+      this.$store.dispatch('quiz/showQuiz');
+      this.$store.commit('popup/togglePopupVisibility');
+    },
+  },
 };
 </script>
 <style scoped>
@@ -58,22 +71,56 @@ export default {
   height: 100%;
   width: 100%;
 }
+
 .cover__content {
+  margin: auto;
   position: relative;
-  z-index: 10;
+  z-index: 100;
   display: flex;
-  background-image: url('~assets/images/background-cover.png');
-  opacity: 0.8;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: calc(100vh - 76px);
   width: 100%;
 }
+
+.cover__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url('~assets/images/background-cover.png');
+  opacity: 0.8;
+  z-index: 10;
+}
+
 .cover {
   position: relative;
   display: flex;
   min-height: calc(100vh - 76px);
 }
+
+.cover__button {
+  margin-top: 30px;
+  width: 334px;
+  min-height: 60px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  border: 2px solid #fff;
+  border-radius: 60px;
+  background-color: transparent;
+  transition: background-color 0.2s linear;
+  cursor: pointer;
+}
+
+.cover__button:hover {
+  background-color: #613a93;
+}
+
 .cover__main-title {
-  margin: auto;
   color: #fff;
   font-weight: 800;
   font-size: 92px;
@@ -93,7 +140,23 @@ export default {
     font-size: 78px;
     line-height: 94px;
   }
+
+  .cover__button {
+    width: 314px;
+    min-height: 58px;
+    font-size: 22px;
+    line-height: 36px;
+  }
 }
+
+@media (max-width: 1024px) {
+  .cover__button {
+    width: 294px;
+    min-height: 56px;
+    font-size: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .cover__main-title {
     font-size: 64px;
@@ -113,6 +176,13 @@ export default {
   .cover__main-title {
     font-size: 36px;
     line-height: 44px;
+  }
+
+  .cover__button {
+    width: 224px;
+    min-height: 44px;
+    font-size: 16px;
+    line-height: 20px;
   }
 }
 </style>

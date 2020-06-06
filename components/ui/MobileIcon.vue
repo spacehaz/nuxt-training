@@ -1,11 +1,4 @@
 <template>
-  <!-- <button
-    :class="[
-      'mobile-button',
-      { 'mobile-button_type_close': isMobileMenuOpened },
-    ]"
-    @click="toggleMobileMenuState"
-  ></button> -->
   <a
     href="#"
     class="mobile-button"

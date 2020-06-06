@@ -3,6 +3,7 @@
     :class="[
       'button',
       `button_size_${size}`,
+      `button_theme_${theme}`,
       { button_disabled: disabled },
       { 'button_low-priority': lowPriority },
     ]"
@@ -26,6 +27,10 @@ export default {
     lowPriority: {
       type: Boolean,
       default: false,
+    },
+    theme: {
+      type: String,
+      default: 'default',
     },
   },
 };
@@ -62,8 +67,18 @@ export default {
   width: 226px;
 }
 
+.button_size_xs {
+  width: 218px;
+  line-height: 44px;
+}
+
 .button_size_content {
   width: initial;
+}
+
+.button_theme_light {
+  color: #000;
+  background-color: #fff;
 }
 
 .button_low-priority {
@@ -72,10 +87,22 @@ export default {
   background: none;
 }
 
+@media (max-width: 1280px) {
+  .button_size_xs {
+    width: 211px;
+    line-height: 42px;
+  }
+}
+
 @media (max-width: 1024px) {
   .button {
     font-size: 15px;
     line-height: 46px;
+  }
+
+  .button_size_xs {
+    width: 200px;
+    line-height: 38px;
   }
 }
 
@@ -83,6 +110,13 @@ export default {
   .button {
     font-size: 13px;
     line-height: 40px;
+  }
+
+  .button_size_xs {
+    width: 146px;
+    font-size: 12px;
+    line-height: 15px;
+    line-height: 31px;
   }
 }
 </style>

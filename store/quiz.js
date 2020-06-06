@@ -10,6 +10,7 @@ export const state = () => ({
   result: {},
   isFormValid: true,
   isQuizSent: false,
+  errorText: '',
 });
 
 // getters
@@ -55,6 +56,9 @@ export const getters = {
   },
   isQuizSent: state => {
     return state.isQuizSent;
+  },
+  getErrorText: state => {
+    return state.errorText;
   },
 };
 
@@ -106,14 +110,16 @@ export const mutations = {
   },
   setQuizSentStatus: state => {
     state.isQuizSent = true;
+    state.errorText = '';
   },
   setInitialState: state => {
     state.currentQuestion = 1;
     state.answers = {};
     state.isQuizOver = false;
     state.isFormValid = true;
-    // state.currentQuestion = 1;
-    // (state.answers = {}), (state.isQuizOver = false);
+  },
+  setErrorText: (state, payload) => {
+    state.errorText = payload;
   },
 };
 
@@ -231,6 +237,35 @@ export const actions = {
           return commit('setInitialState');
         },
         error => {
+          if (
+            error.response.data.detail ===
+            'Please provide a valid email address.'
+          ) {
+            commit(
+              'setErrorText',
+              'Введите корректный адрес электронной почты.'
+            );
+          } else if (
+            error.response.data.detail.includes(
+              'looks fake or invalid, please enter a real email address.'
+            )
+          ) {
+            commit('setErrorText', 'Введите реальный адрес электронной почты.');
+          } else if (
+            error.response.data.detail.includes(
+              'is already a list member. Use PUT to insert or update list members.'
+            )
+          ) {
+            commit(
+              'setErrorText',
+              'Указанный электронный адрес уже использовался.'
+            );
+          } else {
+            commit(
+              'setErrorText',
+              'Ошибка отправки данных, пожалуйста, попробуйте еще раз.'
+            );
+          }
           return commit('setFormInvalid');
         }
       );

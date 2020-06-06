@@ -120,6 +120,9 @@ export default {
     isStatusOk() {
       return this.$store.getters['contact-us/getStatus'];
     },
+    errorText() {
+      return this.$store.getters['contact-us/getErrorText'];
+    },
   },
   methods: {
     async saveAnswers() {
@@ -154,8 +157,7 @@ export default {
           this.$store.commit('popup/togglePopupVisibility');
         } else {
           this.$store.dispatch('popup/setContentInvalid', {
-            errorText:
-              'Ошибка отправки данных, пожалуйста, попробуйте еще раз.',
+            errorText: this.errorText,
           });
         }
       } else {
