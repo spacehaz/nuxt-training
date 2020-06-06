@@ -21,11 +21,7 @@ export const getters = {
   },
   getFeaturedStories: state => {
     if (state.stories) {
-      const ids = [5, 6, 7, 8];
-      const featuredStories = state.stories.filter(item => {
-        return ids.includes(item.id);
-      });
-      return featuredStories;
+      return state.stories.filter(item => item.celebrity);
     }
     return state.stories;
   },

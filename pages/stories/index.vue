@@ -1,6 +1,7 @@
 <template>
   <main class="stories root__stories">
     <app-container>
+      <app-featured-habits class="stories__featured-habits" />
       <app-title class="stories__title" :theme="theme">
         Истории неизлечимых привычек
       </app-title>
@@ -59,6 +60,7 @@ import Previews from '@/components/blocks/Previews';
 import Pagination from '@/components/blocks/Pagination';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
+import FeaturedHabits from '@/components/blocks/FeaturedHabits';
 
 export default {
   components: {
@@ -68,6 +70,7 @@ export default {
     'app-pagination': Pagination,
     'app-input': Input,
     'app-button': Button,
+    'app-featured-habits': FeaturedHabits,
   },
   data() {
     return {
@@ -162,6 +165,10 @@ export default {
 <style scoped>
 .root__stories {
   padding: 100px 0;
+}
+
+.stories__featured-habits {
+  margin-bottom: 70px;
 }
 
 .stories__input {
@@ -270,6 +277,10 @@ export default {
   .root__stories {
     padding: 90px 0;
   }
+
+  .stories__featured-habits {
+    margin-bottom: 60px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -286,6 +297,10 @@ export default {
   .stories__container {
     margin-bottom: 110px;
   }
+
+  .stories__featured-habits {
+    margin-bottom: 46px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -294,6 +309,10 @@ export default {
     max-width: 388px;
     margin-right: auto;
     margin-left: auto;
+  }
+
+  .stories__featured-habits {
+    margin-bottom: 40px;
   }
 }
 

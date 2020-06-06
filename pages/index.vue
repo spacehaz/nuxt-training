@@ -3,7 +3,9 @@
     <app-cover />
     <app-intro class="root__intro" />
     <app-callout :block="'note-1'" />
-    <app-featured-habits class="root__featured-habits" />
+    <app-container>
+      <app-featured-habits class="root__featured-habits" />
+    </app-container>
     <app-habits class="root__habits" />
     <app-callout :block="'note-2'" />
     <app-instagram class="root__instagram" />
@@ -23,6 +25,7 @@ import Instagram from '@/components/blocks/Instagram';
 import ShareYourStory from '@/components/blocks/ShareYourStory';
 import Statistics from '@/components/blocks/Statistics';
 import About from '@/components/blocks/About';
+import Container from '@/components/shared/Container';
 
 export default {
   data() {
@@ -95,6 +98,7 @@ export default {
     'app-share-your-story': ShareYourStory,
     'app-statistics': Statistics,
     'app-about': About,
+    'app-container': Container,
   },
   async fetch({ store }) {
     await store.dispatch('statistics/getStatictics');
@@ -116,7 +120,7 @@ export default {
 }
 
 .root__featured-habits {
-  padding: 100px 0 0;
+  padding: 100px 0 70px;
 }
 
 .root__habits {
@@ -147,7 +151,7 @@ export default {
   }
 
   .root__featured-habits {
-    padding: 90px 0 0;
+    padding: 90px 0 60px;
   }
 
   .root__habits {
@@ -179,7 +183,7 @@ export default {
   }
 
   .root__featured-habits {
-    padding: 80px 0 0;
+    padding: 80px 0 46px;
   }
 
   .root__habits {
@@ -208,6 +212,10 @@ export default {
   .root__intro {
     padding-bottom: 44px;
   }
+
+  .root__featured-habits {
+    padding-bottom: 40px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -217,7 +225,7 @@ export default {
   }
 
   .root__featured-habits {
-    padding: 50px 0 0;
+    padding: 50px 0 40px;
   }
 
   .root__habits {
