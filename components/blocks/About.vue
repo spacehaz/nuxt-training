@@ -7,11 +7,20 @@
           title
         }}</app-title>
         <app-flex>
-          <app-paragraph
-            :theme="theme"
-            class="about__paragraph"
-            v-html="text"
-          />
+          <div class="about__paragraph-container">
+            <app-paragraph
+              :theme="theme"
+              class="about__paragraph"
+              v-html="text"
+            />
+            <app-button
+              :theme="'light'"
+              :size="'xs'"
+              class="about__button about__button_place_desktop"
+              @click.native="toggleQuiz"
+              >Рассказать историю</app-button
+            >
+          </div>
 
           <div class="about__tabs tabs">
             <ul class="tabs__variants">
@@ -41,6 +50,14 @@
               <div class="tabs__variant-text" v-html="secondText"></div>
             </div>
           </div>
+
+          <app-button
+            :theme="'light'"
+            :size="'xs'"
+            class="about__button about__button_place_mobile"
+            @click.native="toggleQuiz"
+            >Рассказать историю</app-button
+          >
         </app-flex>
       </div>
     </app-container>
@@ -52,6 +69,7 @@ import Container from '@/components/shared/Container';
 import Flex from '@/components/shared/Flex';
 import Title from '@/components/shared/Title';
 import Paragraph from '@/components/shared/Paragraph';
+import Button from '@/components/ui/Button';
 
 export default {
   components: {
@@ -59,6 +77,7 @@ export default {
     'app-flex': Flex,
     'app-title': Title,
     'app-paragraph': Paragraph,
+    'app-button': Button,
   },
   data() {
     return {
@@ -71,6 +90,10 @@ export default {
   methods: {
     changeVariant(id) {
       this.currentVariant = id;
+    },
+    toggleQuiz() {
+      this.$store.dispatch('quiz/showQuiz');
+      this.$store.commit('popup/togglePopupVisibility');
     },
   },
   computed: {
@@ -120,15 +143,18 @@ export default {
   color: #fff;
 }
 
-.about__paragraph {
-  margin-right: 50px;
+.about__paragraph-container {
+  flex: 0 0;
+  margin-right: 60px;
 }
 
-/*.about__content {*/
-/*max-width: 1320px;*/
-/*margin-left: auto;*/
-/*margin-right: auto;*/
-/*}*/
+.about__paragraph {
+  margin-bottom: 32px;
+}
+
+.about__button_place_mobile {
+  display: none;
+}
 
 .about__content-title {
   margin-bottom: 32px;
@@ -230,6 +256,10 @@ export default {
   .about__content-title {
     margin-bottom: 30px;
   }
+
+  .about__paragraph {
+    margin-bottom: 30px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -279,8 +309,25 @@ export default {
     text-align: center;
   }
 
-  .about__paragraph {
+  .about__paragraph-container {
     margin-right: 0;
+    margin-bottom: 80px;
+  }
+
+  .about__paragraph {
+    margin-bottom: 0;
+  }
+
+  .about__button_place_desktop {
+    display: none;
+  }
+
+  .about__button_place_mobile {
+    display: block;
+    margin: auto;
+  }
+
+  .about__tabs {
     margin-bottom: 80px;
   }
 
@@ -318,8 +365,12 @@ export default {
     text-align: left;
   }
 
-  .about__paragraph {
+  .about__paragraph-container {
     margin-bottom: 40px;
+  }
+
+  .about__tabs {
+    margin-bottom: 50px;
   }
 
   .tabs {
@@ -335,10 +386,6 @@ export default {
   .tabs__variant {
     margin-bottom: 0;
     margin-right: 20px;
-  }
-
-  .tabs__btn {
-    width: 100%;
   }
 }
 </style>

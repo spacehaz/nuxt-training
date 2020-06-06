@@ -111,6 +111,9 @@ export default {
     isQuizSent() {
       return this.$store.getters['quiz/isQuizSent'];
     },
+    errorText() {
+      return this.$store.getters['quiz/getErrorText'];
+    },
   },
   methods: {
     async nextQuestion() {
@@ -130,8 +133,7 @@ export default {
         await this.$store.dispatch('quiz/sendDataToServer');
         if (!this.isFormValid) {
           this.$store.dispatch('popup/setContentInvalid', {
-            errorText:
-              'Ошибка отправки данных, пожалуйста, попробуйте еще раз.',
+            errorText: this.errorText,
           });
         } else {
           this.$store.dispatch('popup/setContentValid');
@@ -300,6 +302,10 @@ export default {
   .quiz__input {
     font-size: 15px;
     line-height: 19px;
+  }
+
+  .quiz__policy {
+    background-color: #ededed;
   }
 }
 

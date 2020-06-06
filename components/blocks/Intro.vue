@@ -141,7 +141,7 @@ export default {
   height: 40px;
   display: flex;
   border: none;
-  background-color: #fbfbfb;
+  background-color: #613a93;
   transition: background-color 0.2s linear;
 }
 
@@ -150,27 +150,18 @@ export default {
 }
 
 .intro__nav-btn:hover {
+  opacity: 0.8;
   cursor: pointer;
-  background-color: #f4f4f4;
-}
-
-.intro__nav-btn:disabled {
-  opacity: 0.2;
-}
-
-.intro__nav-btn:disabled:hover {
-  background-color: #fbfbfb;
-  cursor: default;
 }
 
 .intro__nav-btn_right {
-  background-image: url('/arrow-right.svg');
+  background-image: url('~assets/images/arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .intro__nav-btn_left {
-  background-image: url('/arrow-right.svg');
+  background-image: url('~assets/images/arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(180deg);

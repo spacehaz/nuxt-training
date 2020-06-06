@@ -4,6 +4,7 @@ export const state = () => ({
   isContactUsShown: false,
   answers: {},
   isStatusOk: true,
+  errorText: '',
 });
 
 // getters
@@ -13,6 +14,9 @@ export const getters = {
   },
   getStatus: state => {
     return state.isStatusOk;
+  },
+  getErrorText: state => {
+    return state.errorText;
   },
 };
 
@@ -29,6 +33,7 @@ export const mutations = {
   },
   setStatusOk: state => {
     state.isStatusOk = true;
+    state.errorText = '';
   },
   setStatusError: state => {
     state.isStatusOk = false;
@@ -36,6 +41,9 @@ export const mutations = {
   setInitialState: state => {
     state.answers = {};
     state.isStatusOk = true;
+  },
+  setErrorText: (state, payload) => {
+    state.errorText = payload;
   },
 };
 
@@ -60,6 +68,35 @@ export const actions = {
           return commit('setInitialState');
         },
         error => {
+          if (
+            error.response.data.detail ===
+            'Please provide a valid email address.'
+          ) {
+            commit(
+              'setErrorText',
+              'Введите корректный адрес электронной почты.'
+            );
+          } else if (
+            error.response.data.detail.includes(
+              'looks fake or invalid, please enter a real email address.'
+            )
+          ) {
+            commit('setErrorText', 'Введите реальный адрес электронной почты.');
+          } else if (
+            error.response.data.detail.includes(
+              'is already a list member. Use PUT to insert or update list members.'
+            )
+          ) {
+            commit(
+              'setErrorText',
+              'Указанный электронный адрес уже использовался.'
+            );
+          } else {
+            commit(
+              'setErrorText',
+              'Ошибка отправки данных, пожалуйста, попробуйте еще раз.'
+            );
+          }
           return commit('setStatusError');
         }
       );

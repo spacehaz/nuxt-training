@@ -25,9 +25,13 @@
             </li>
           </ul>
         </nav>
-        <button class="mobile-menu__button" @click="toggleQuiz">
+        <app-button
+          :size="'xs'"
+          class="mobile-menu__button"
+          @click.native="toggleQuiz"
+        >
           Рассказать историю
-        </button>
+        </app-button>
       </div>
     </app-container>
   </transition>
@@ -35,6 +39,7 @@
 
 <script>
 import Container from '@/components/shared/Container';
+import Button from '@/components/ui/Button';
 
 export default {
   computed: {
@@ -44,6 +49,7 @@ export default {
   },
   components: {
     'app-container': Container,
+    'app-button': Button,
   },
   methods: {
     toggleQuiz() {
@@ -67,14 +73,6 @@ export default {
 
 .mobile-menu__button {
   margin-left: 30px;
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
-  color: #121212;
-  cursor: pointer;
 }
 
 .navigation__list {
@@ -108,11 +106,6 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .mobile-menu__button {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
   .navigation__link {
     font-size: 16px;
     line-height: 24px;
@@ -129,9 +122,6 @@ export default {
   .mobile-menu__button {
     margin-left: 0;
     margin-top: 18px;
-    font-size: 13px;
-    line-height: 16px;
-    text-align: left;
   }
 
   .navigation__list {

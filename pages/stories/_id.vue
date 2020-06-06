@@ -50,6 +50,44 @@ export default {
       API_URL: process.env.API_URL,
     };
   },
+  head() {
+    if (this.currentStory) {
+      return {
+        title: `${this.currentStory.author} - РАКЛЕЧИТСЯ.РФ`,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content:
+              `${this.currentStory.author}. РАКЛЕЧИТСЯ.РФ — проект Фонда Хабенского. Истории людей, победивших рак, но не свои привычки.` ||
+              '',
+          },
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: 'РАКЛЕЧИТСЯ.РФ, раклечится, этонелечится',
+          },
+          {
+            hid: 'og:title',
+            property: 'og:title',
+            content: `${this.currentStory.author} - РАКЛЕЧИТСЯ.РФ` || '',
+          },
+          {
+            hid: 'og:description',
+            property: 'og:description',
+            content:
+              `${this.currentStory.author}. РАКЛЕЧИТСЯ.РФ — проект Фонда Хабенского. Истории людей, победивших рак, но не свои привычки.` ||
+              '',
+          },
+          {
+            hid: 'og:image',
+            property: 'og:image',
+            content: `${this.currentStory.ImageUrl[0].url}` || '',
+          },
+        ],
+      };
+    }
+  },
   components: {
     'app-container': Container,
     'app-share-btn': ShareBtn,
