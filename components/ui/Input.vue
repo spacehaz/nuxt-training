@@ -3,8 +3,7 @@
     :type="type"
     :value="value"
     :placeholder="errorText || placeholder"
-    class="input"
-    :class="[{ input_bordered: bordered }, { input_error: isError }]"
+    :class="['input', { input_bordered: bordered, input_error: isError }]"
     @input="$emit('input', $event.target.value)"
   />
 </template>

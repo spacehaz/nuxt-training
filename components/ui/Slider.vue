@@ -14,7 +14,7 @@
           :key="video.id"
         ></app-video-preview>
         <iframe
-          :src="video.url + '?enablejsapi=1'"
+          :src="`${video.url}?enablejsapi=1`"
           class="swiper__video"
         ></iframe>
       </div>

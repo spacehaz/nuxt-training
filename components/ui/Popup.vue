@@ -6,7 +6,7 @@
       <slot name="share-us" v-if="isShareUsShown"></slot>
       <slot></slot>
       <img
-        src="/close.svg"
+        src="@/assets/images/close.svg"
         alt="Закрыть"
         class="popup__close"
         @click="toggleQuiz"

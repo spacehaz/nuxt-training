@@ -3,9 +3,9 @@
     <app-container>
       <p class="about__hashtag">#РАКЛЕЧИТСЯ</p>
       <div class="about__content">
-        <app-title :theme="theme" class="about__content-title">{{
-          title
-        }}</app-title>
+        <app-title :theme="theme" class="about__content-title">
+          {{ title }}
+        </app-title>
         <app-flex>
           <div class="about__paragraph-container">
             <app-paragraph
@@ -13,13 +13,10 @@
               class="about__paragraph"
               v-html="text"
             />
-            <app-button
+            <app-share-story-btn
               :theme="'light'"
-              :size="'xs'"
               class="about__button about__button_place_desktop"
-              @click.native="toggleQuiz"
-              >Рассказать историю</app-button
-            >
+            />
           </div>
 
           <div class="about__tabs tabs">
@@ -51,13 +48,10 @@
             </div>
           </div>
 
-          <app-button
+          <app-share-story-btn
             :theme="'light'"
-            :size="'xs'"
             class="about__button about__button_place_mobile"
-            @click.native="toggleQuiz"
-            >Рассказать историю</app-button
-          >
+          />
         </app-flex>
       </div>
     </app-container>
@@ -69,7 +63,7 @@ import Container from '@/components/shared/Container';
 import Flex from '@/components/shared/Flex';
 import Title from '@/components/shared/Title';
 import Paragraph from '@/components/shared/Paragraph';
-import Button from '@/components/ui/Button';
+import ShareStoryBtn from '@/components/ui/ShareStoryBtn';
 
 export default {
   components: {
@@ -77,7 +71,7 @@ export default {
     'app-flex': Flex,
     'app-title': Title,
     'app-paragraph': Paragraph,
-    'app-button': Button,
+    'app-share-story-btn': ShareStoryBtn,
   },
   data() {
     return {
@@ -90,10 +84,6 @@ export default {
   methods: {
     changeVariant(id) {
       this.currentVariant = id;
-    },
-    toggleQuiz() {
-      this.$store.dispatch('quiz/showQuiz');
-      this.$store.commit('popup/togglePopupVisibility');
     },
   },
   computed: {

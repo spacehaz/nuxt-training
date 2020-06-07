@@ -6,7 +6,7 @@
   >
     <img
       class="scroll__scroll-arrow"
-      src="/scroll.svg"
+      src="@/assets/images/scroll.svg"
       alt="Показать следующий блок"
     />
   </a>

@@ -25,13 +25,7 @@
             </li>
           </ul>
         </nav>
-        <app-button
-          :size="'xs'"
-          class="mobile-menu__button"
-          @click.native="toggleQuiz"
-        >
-          Рассказать историю
-        </app-button>
+        <app-share-story-btn :theme="'main'" class="mobile-menu__button" />
       </div>
     </app-container>
   </transition>
@@ -39,7 +33,7 @@
 
 <script>
 import Container from '@/components/shared/Container';
-import Button from '@/components/ui/Button';
+import ShareStoryBtn from '@/components/ui/ShareStoryBtn';
 
 export default {
   computed: {
@@ -49,13 +43,7 @@ export default {
   },
   components: {
     'app-container': Container,
-    'app-button': Button,
-  },
-  methods: {
-    toggleQuiz() {
-      this.$store.dispatch('quiz/showQuiz');
-      this.$store.commit('popup/togglePopupVisibility');
-    },
+    'app-share-story-btn': ShareStoryBtn,
   },
 };
 </script>

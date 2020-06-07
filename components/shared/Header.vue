@@ -6,9 +6,7 @@
       </nuxt-link>
       <div class="header__links">
         <app-navigation />
-        <app-button :size="'xs'" class="header__button" @click="toggleQuiz">
-          Рассказать историю
-        </app-button>
+        <app-share-story-btn :theme="'main'" class="header__button" />
       </div>
       <app-mobile-icon class="header__mobile-icon" />
     </app-container>
@@ -19,20 +17,14 @@
 import Navigation from '@/components/shared/Navigation';
 import MobileIcon from '@/components/ui/MobileIcon';
 import Container from '@/components/shared/Container';
-import Button from '@/components/ui/Button';
+import ShareStoryBtn from '@/components/ui/ShareStoryBtn';
 
 export default {
   components: {
     'app-navigation': Navigation,
     'app-mobile-icon': MobileIcon,
     'app-container': Container,
-    'app-button': Button,
-  },
-  methods: {
-    toggleQuiz() {
-      this.$store.dispatch('quiz/showQuiz');
-      this.$store.commit('popup/togglePopupVisibility');
-    },
+    'app-share-story-btn': ShareStoryBtn,
   },
   computed: {
     title() {
@@ -87,10 +79,6 @@ export default {
   .header__container {
     min-height: 72px;
     padding: 0 50px;
-  }
-
-  .header__button {
-    font-size: 16px;
   }
 }
 
