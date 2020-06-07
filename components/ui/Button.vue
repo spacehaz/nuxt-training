@@ -3,6 +3,7 @@
     :class="[
       'button',
       `button_size_${size}`,
+      `button_theme_${theme}`,
       { button_disabled: disabled },
       { 'button_low-priority': lowPriority },
     ]"
@@ -27,6 +28,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    theme: {
+      type: String,
+      default: 'default',
+    },
   },
 };
 </script>
@@ -42,15 +47,16 @@ export default {
   background: #613a93;
   border: 0;
   cursor: pointer;
+  transition: opacity 0.2s linear;
 }
 
 .button_disabled {
   opacity: 0.8;
-  cursor: not-allowed;
+  cursor: default;
 }
 
 :not(.button_disabled).button:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .button_size_m {
@@ -63,6 +69,11 @@ export default {
 
 .button_size_content {
   width: initial;
+}
+
+.button_theme_light {
+  color: #000;
+  background-color: #fff;
 }
 
 .button_low-priority {

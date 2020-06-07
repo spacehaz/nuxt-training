@@ -33,13 +33,11 @@
           ></button>
         </div>
         <figcaption class="intro__caption">
-          <!--Все видео вы можете найте на нашем-->
           <a
             href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
             class="intro__caption-link"
             target="_blank"
           >
-            <!--YouTube канале.-->
             {{ note }}
           </a>
         </figcaption>
@@ -141,7 +139,8 @@ export default {
   height: 40px;
   display: flex;
   border: none;
-  background-color: #fbfbfb;
+  background-color: #613a93;
+  transition: background-color 0.2s linear;
 }
 
 .intro__nav-btn:focus {
@@ -149,27 +148,18 @@ export default {
 }
 
 .intro__nav-btn:hover {
+  opacity: 0.8;
   cursor: pointer;
-  background-color: #f4f4f4;
-}
-
-.intro__nav-btn:disabled {
-  opacity: 0.2;
-}
-
-.intro__nav-btn:disabled:hover {
-  background-color: #fbfbfb;
-  cursor: default;
 }
 
 .intro__nav-btn_right {
-  background-image: url('/arrow-right.svg');
+  background-image: url('~assets/images/arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .intro__nav-btn_left {
-  background-image: url('/arrow-right.svg');
+  background-image: url('~assets/images/arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(180deg);

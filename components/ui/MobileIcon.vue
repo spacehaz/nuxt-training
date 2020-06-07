@@ -1,14 +1,6 @@
 <template>
-  <!-- <button
-    :class="[
-      'mobile-button',
-      { 'mobile-button_type_close': isMobileMenuOpened },
-    ]"
-    @click="toggleMobileMenuState"
-  ></button> -->
   <a
     href="#"
-    class="mobile-button"
     :class="[
       'mobile-button',
       { 'mobile-button_type_close': isMobileMenuOpened },
@@ -37,7 +29,6 @@ export default {
 <style scoped>
 .mobile-button {
   position: relative;
-  display: block;
   width: 32px;
   height: 28px;
   cursor: pointer;

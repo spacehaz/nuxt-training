@@ -1,9 +1,9 @@
 <template>
   <transition name="fade" mode="out-in" appear>
     <button
-      class="pagination-btn"
       aria-label="Показать следующее видео"
       :class="[
+        'pagination-btn',
         `pagination-btn_theme_${theme}`,
         `pagination-btn_size_${size}`,
         `pagination-btn_direction_${direction}`,
@@ -53,6 +53,7 @@ export default {
   text-align: center;
   outline: none;
   justify-content: center;
+  transition: all 0.2s linear;
 }
 
 .pagination-btn:focus {
@@ -85,7 +86,8 @@ export default {
   background-color: transparent;
 }
 
-.pagination-btn_direction_default {
+.pagination-btn_theme_transparent:hover {
+  opacity: 0.8;
 }
 
 .pagination-btn_direction_right {

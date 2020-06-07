@@ -53,15 +53,9 @@ export default {
   grid-gap: 40px;
 }
 
-.statistics__facts {
-}
-
 @media (max-width: 1280px) {
   .statistics__title {
     margin-bottom: 60px;
-  }
-
-  .statistics__facts {
   }
 }
 
@@ -82,9 +76,6 @@ export default {
 @media (max-width: 810px) {
   .statistics__facts-container {
     overflow-x: scroll;
-  }
-
-  .statistics__facts {
   }
 }
 

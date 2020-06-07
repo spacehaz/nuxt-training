@@ -1,38 +1,39 @@
 <template>
-  <app-container v-if="isMobileMenuOpened" class="mobile-menu">
-    <div class="mobile-menu__links">
-      <nav class="navigation">
-        <ul class="navigation__list">
-          <li class="navigation__item">
-            <nuxt-link
-              to="/"
-              class="navigation__link"
-              active-class="navigation__link_active"
-              exact
-            >
-              Главная
-            </nuxt-link>
-          </li>
-          <li class="navigation__item">
-            <nuxt-link
-              to="/stories"
-              class="navigation__link"
-              active-class="navigation__link_active"
-            >
-              Истории
-            </nuxt-link>
-          </li>
-        </ul>
-      </nav>
-      <button class="mobile-menu__button" @click="toggleQuiz">
-        Рассказать историю
-      </button>
-    </div>
-  </app-container>
+  <transition name="fade">
+    <app-container v-if="isMobileMenuOpened" class="mobile-menu">
+      <div class="mobile-menu__links">
+        <nav class="navigation">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <nuxt-link
+                to="/"
+                class="navigation__link"
+                active-class="navigation__link_active"
+                exact
+              >
+                Главная
+              </nuxt-link>
+            </li>
+            <li class="navigation__item">
+              <nuxt-link
+                to="/stories"
+                class="navigation__link"
+                active-class="navigation__link_active"
+              >
+                Истории
+              </nuxt-link>
+            </li>
+          </ul>
+        </nav>
+        <app-share-story-btn :theme="'main'" class="mobile-menu__button" />
+      </div>
+    </app-container>
+  </transition>
 </template>
 
 <script>
 import Container from '@/components/shared/Container';
+import ShareStoryBtn from '@/components/ui/ShareStoryBtn';
 
 export default {
   computed: {
@@ -42,12 +43,7 @@ export default {
   },
   components: {
     'app-container': Container,
-  },
-  methods: {
-    toggleQuiz() {
-      this.$store.dispatch('quiz/showQuiz');
-      this.$store.commit('popup/togglePopupVisibility');
-    },
+    'app-share-story-btn': ShareStoryBtn,
   },
 };
 </script>
@@ -65,14 +61,6 @@ export default {
 
 .mobile-menu__button {
   margin-left: 30px;
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
-  color: #121212;
-  cursor: pointer;
 }
 
 .navigation__list {
@@ -106,11 +94,6 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .mobile-menu__button {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
   .navigation__link {
     font-size: 16px;
     line-height: 24px;
@@ -127,9 +110,6 @@ export default {
   .mobile-menu__button {
     margin-left: 0;
     margin-top: 18px;
-    font-size: 13px;
-    line-height: 16px;
-    text-align: left;
   }
 
   .navigation__list {

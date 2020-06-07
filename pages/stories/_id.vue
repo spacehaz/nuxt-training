@@ -4,7 +4,7 @@
       <div class="story__header">
         <img
           :src="API_URL + currentStory.ImageUrl[0].url"
-          alt=""
+          :alt="currentStory.ImageUrl[0].alternativeText"
           class="story__img story__img_place_outside"
         />
 
@@ -27,55 +27,14 @@
         </div>
       </div>
       <div class="story__content-container">
-        <div class="story__content" v-html="currentStory.text">
-          <!--<div class="story__paragraph" v-html="currentStory.text">-->
-
-          <!--</div>-->
-          <!--<p class="story__paragraph">-->
-          <!--У меня дома до сих пор стоят часы в каждой комнате, хотя они и не-->
-          <!--нужны особо — я сам чувствую, опаздываю куда-то или нет, отстаю от-->
-          <!--нужного графика или опережаю. Вот такие встроенные внутренние часы!-->
-          <!--Будильник мне тоже не нужен — я всегда встаю раньше. Одеваюсь тоже-->
-          <!--быстро, как в армии, за 45 секунд.-->
-          <!--</p>-->
-          <!--<p class="story__paragraph story__paragraph_highlighted">-->
-          <!--«В футболе если команда опоздала на 15 минут, ей засчитывается-->
-          <!--поражение».-->
-          <!--</p>-->
-          <!--<p class="story__paragraph">-->
-          <!--Опаздывать я тоже не люблю, на все встречи прихожу заранее. Если-->
-          <!--знаю, что могу попасть по дороге в пробку, то не еду на машине. В-->
-          <!--аэропорт приезжаю задолго до начала регистрации. Лучше подожду и-->
-          <!--кофе попью, чем опоздаю!-->
-          <!--</p>-->
-          <!--<p class="story__paragraph">-->
-          <!--Когда мне было 16 лет, мне в школе геометрию нужно было пересдавать.-->
-          <!--Я билеты выучил, знал абсолютно все. Пришел в нужное время, а-->
-          <!--учительница — нет. Ну, я какое-то время подождал ее и ушел. Потом-->
-          <!--она спрашивала: «Почему не дождался?». Я ответил: «В футболе если-->
-          <!--команда опоздала на 15 минут, ей засчитывается поражение». Экзамен-->
-          <!--мне все-таки поставили! Сейчас если кто-то из футболистов моей-->
-          <!--команды опаздывает — начинаю злиться, могу и прикрикнуть потом. А-->
-          <!--если кто-то опоздал на тренировку перед игрой — все, подготовка-->
-          <!--насмарку. Я сразу начинаю думать тогда: «Значит, точно проиграем».-->
-          <!--Такая болезненная пунктуальность уже не лечится. В отличие от рака.-->
-          <!--</p>-->
-          <!--<p class="story__paragraph story__paragraph_highlighted">-->
-          <!--«Сейчас если кто-то из футболистов моей команды опаздывает — начинаю-->
-          <!--злиться, могу и прикрикнуть потом. А если кто-то опоздал на-->
-          <!--тренировку перед игрой — все, подготовка насмарку. Я сразу начинаю-->
-          <!--думать тогда: «Значит, точно проиграем». Такая болезненная-->
-          <!--пунктуальность уже не лечится».-->
-          <!--</p>-->
-        </div>
+        <div class="story__content" v-html="currentStory.text"></div>
         <app-share-btn class="story__share-btn">
           Поделитесь этой статьей в своих социальных&nbsp;сетях &#8599;
         </app-share-btn>
       </div>
 
-      <app-previews class="story__previews"></app-previews>
-
-      <app-more-btn></app-more-btn>
+      <app-previews class="story__previews" :random="true"></app-previews>
+      <app-more-btn />
     </app-container>
   </main>
 </template>
@@ -90,6 +49,44 @@ export default {
     return {
       API_URL: process.env.API_URL,
     };
+  },
+  head() {
+    if (this.currentStory) {
+      return {
+        title: `${this.currentStory.author} - РАКЛЕЧИТСЯ.РФ`,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content:
+              `${this.currentStory.author}. РАКЛЕЧИТСЯ.РФ — проект Фонда Хабенского. Истории людей, победивших рак, но не свои привычки.` ||
+              '',
+          },
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: 'РАКЛЕЧИТСЯ.РФ, раклечится, этонелечится',
+          },
+          {
+            hid: 'og:title',
+            property: 'og:title',
+            content: `${this.currentStory.author} - РАКЛЕЧИТСЯ.РФ` || '',
+          },
+          {
+            hid: 'og:description',
+            property: 'og:description',
+            content:
+              `${this.currentStory.author}. РАКЛЕЧИТСЯ.РФ — проект Фонда Хабенского. Истории людей, победивших рак, но не свои привычки.` ||
+              '',
+          },
+          {
+            hid: 'og:image',
+            property: 'og:image',
+            content: `${this.currentStory.ImageUrl[0].url}` || '',
+          },
+        ],
+      };
+    }
   },
   components: {
     'app-container': Container,

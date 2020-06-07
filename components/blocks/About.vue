@@ -3,15 +3,21 @@
     <app-container>
       <p class="about__hashtag">#РАКЛЕЧИТСЯ</p>
       <div class="about__content">
-        <app-title :theme="theme" class="about__content-title">{{
-          title
-        }}</app-title>
+        <app-title :theme="theme" class="about__content-title">
+          {{ title }}
+        </app-title>
         <app-flex>
-          <app-paragraph
-            :theme="theme"
-            class="about__paragraph"
-            v-html="text"
-          />
+          <div class="about__paragraph-container">
+            <app-paragraph
+              :theme="theme"
+              class="about__paragraph"
+              v-html="text"
+            />
+            <app-share-story-btn
+              :theme="'light'"
+              class="about__button about__button_place_desktop"
+            />
+          </div>
 
           <div class="about__tabs tabs">
             <ul class="tabs__variants">
@@ -41,6 +47,11 @@
               <div class="tabs__variant-text" v-html="secondText"></div>
             </div>
           </div>
+
+          <app-share-story-btn
+            :theme="'light'"
+            class="about__button about__button_place_mobile"
+          />
         </app-flex>
       </div>
     </app-container>
@@ -52,6 +63,7 @@ import Container from '@/components/shared/Container';
 import Flex from '@/components/shared/Flex';
 import Title from '@/components/shared/Title';
 import Paragraph from '@/components/shared/Paragraph';
+import ShareStoryBtn from '@/components/ui/ShareStoryBtn';
 
 export default {
   components: {
@@ -59,6 +71,7 @@ export default {
     'app-flex': Flex,
     'app-title': Title,
     'app-paragraph': Paragraph,
+    'app-share-story-btn': ShareStoryBtn,
   },
   data() {
     return {
@@ -120,15 +133,18 @@ export default {
   color: #fff;
 }
 
-.about__paragraph {
-  margin-right: 50px;
+.about__paragraph-container {
+  flex: 0 0;
+  margin-right: 60px;
 }
 
-/*.about__content {*/
-/*max-width: 1320px;*/
-/*margin-left: auto;*/
-/*margin-right: auto;*/
-/*}*/
+.about__paragraph {
+  margin-bottom: 32px;
+}
+
+.about__button_place_mobile {
+  display: none;
+}
 
 .about__content-title {
   margin-bottom: 32px;
@@ -150,6 +166,7 @@ export default {
 .tabs__variant {
   margin-bottom: 10px;
   cursor: pointer;
+  transition: color 0.2s linear;
 }
 
 .tabs__variant::after {
@@ -229,6 +246,10 @@ export default {
   .about__content-title {
     margin-bottom: 30px;
   }
+
+  .about__paragraph {
+    margin-bottom: 30px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -278,8 +299,25 @@ export default {
     text-align: center;
   }
 
-  .about__paragraph {
+  .about__paragraph-container {
     margin-right: 0;
+    margin-bottom: 80px;
+  }
+
+  .about__paragraph {
+    margin-bottom: 0;
+  }
+
+  .about__button_place_desktop {
+    display: none;
+  }
+
+  .about__button_place_mobile {
+    display: block;
+    margin: auto;
+  }
+
+  .about__tabs {
     margin-bottom: 80px;
   }
 
@@ -317,8 +355,12 @@ export default {
     text-align: left;
   }
 
-  .about__paragraph {
+  .about__paragraph-container {
     margin-bottom: 40px;
+  }
+
+  .about__tabs {
+    margin-bottom: 50px;
   }
 
   .tabs {
@@ -334,10 +376,6 @@ export default {
   .tabs__variant {
     margin-bottom: 0;
     margin-right: 20px;
-  }
-
-  .tabs__btn {
-    width: 100%;
   }
 }
 </style>

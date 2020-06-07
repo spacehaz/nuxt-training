@@ -6,9 +6,7 @@
       </nuxt-link>
       <div class="header__links">
         <app-navigation />
-        <button class="header__button" @click="toggleQuiz">
-          Рассказать историю
-        </button>
+        <app-share-story-btn :theme="'main'" class="header__button" />
       </div>
       <app-mobile-icon class="header__mobile-icon" />
     </app-container>
@@ -19,18 +17,14 @@
 import Navigation from '@/components/shared/Navigation';
 import MobileIcon from '@/components/ui/MobileIcon';
 import Container from '@/components/shared/Container';
+import ShareStoryBtn from '@/components/ui/ShareStoryBtn';
 
 export default {
   components: {
     'app-navigation': Navigation,
     'app-mobile-icon': MobileIcon,
     'app-container': Container,
-  },
-  methods: {
-    toggleQuiz() {
-      this.$store.dispatch('quiz/showQuiz');
-      this.$store.commit('popup/togglePopupVisibility');
-    },
+    'app-share-story-btn': ShareStoryBtn,
   },
   computed: {
     title() {
@@ -60,6 +54,7 @@ export default {
   line-height: 20px;
   text-decoration: none;
   color: #000000;
+  transition: opacity 0.2s linear;
 }
 
 .header__logo:hover {
@@ -69,26 +64,11 @@ export default {
 
 .header__links {
   display: flex;
+  align-items: center;
 }
 
 .header__button {
   margin-left: 40px;
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
-  color: #121212;
-  cursor: pointer;
-}
-
-.header__button:hover {
-  opacity: 0.8;
-}
-
-.header__button:focus {
-  outline: none;
 }
 
 .header__mobile-icon {
@@ -99,10 +79,6 @@ export default {
   .header__container {
     min-height: 72px;
     padding: 0 50px;
-  }
-
-  .header__button {
-    font-size: 16px;
   }
 }
 

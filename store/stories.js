@@ -19,6 +19,23 @@ export const getters = {
     }
     return state.stories;
   },
+  getFeaturedStories: state => {
+    if (state.stories) {
+      return state.stories.filter(item => item.celebrity);
+    }
+    return state.stories;
+  },
+  getRandomStories: state => {
+    if (state.stories) {
+      const randomisedArray = [...state.stories];
+      randomisedArray.sort(() => 0.5 - Math.random());
+      return randomisedArray.slice(
+        state.storiesPerPage * (state.currentPage - 1),
+        (state.currentPage - 1) * state.storiesPerPage + state.storiesPerPage
+      );
+    }
+    return state.stories;
+  },
   getStoriesQuantity: state => {
     return state.filteredStories ? state.filteredStories.length : 0;
   },

@@ -2,8 +2,8 @@
   <input
     :type="type"
     :value="value"
-    class="input"
-    :class="{ input_bordered: bordered }"
+    :placeholder="errorText || placeholder"
+    :class="['input', { input_bordered: bordered, input_error: isError }]"
     @input="$emit('input', $event.target.value)"
   />
 </template>
@@ -22,6 +22,22 @@ export default {
     value: {
       type: String,
       default: '',
+    },
+    isError: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: 'Напишите тут',
+    },
+  },
+  computed: {
+    errorText() {
+      if (this.isError) {
+        return 'Не заполнено';
+      }
+      return '';
     },
   },
 };
@@ -46,6 +62,10 @@ export default {
 .input::placeholder {
   font-family: Inter;
   color: #666;
+}
+
+.input_error::placeholder {
+  color: #f00;
 }
 
 .input:focus {

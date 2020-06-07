@@ -67,6 +67,7 @@ export default {
   line-height: 24px;
   color: #000;
   text-decoration: none;
+  transition: opacity 0.2s linear;
 }
 
 .navigation__link:hover {
