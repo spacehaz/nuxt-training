@@ -56,7 +56,7 @@ export default {
 }
 
 :not(.button_disabled).button:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .button_size_m {
@@ -65,11 +65,6 @@ export default {
 
 .button_size_s {
   width: 226px;
-}
-
-.button_size_xs {
-  width: 218px;
-  line-height: 44px;
 }
 
 .button_size_content {
@@ -87,22 +82,10 @@ export default {
   background: none;
 }
 
-@media (max-width: 1280px) {
-  .button_size_xs {
-    width: 211px;
-    line-height: 42px;
-  }
-}
-
 @media (max-width: 1024px) {
   .button {
     font-size: 15px;
     line-height: 46px;
-  }
-
-  .button_size_xs {
-    width: 200px;
-    line-height: 38px;
   }
 }
 
@@ -110,13 +93,6 @@ export default {
   .button {
     font-size: 13px;
     line-height: 40px;
-  }
-
-  .button_size_xs {
-    width: 146px;
-    font-size: 12px;
-    line-height: 15px;
-    line-height: 31px;
   }
 }
 </style>

@@ -6,7 +6,7 @@
       <slot name="share-us" v-if="isShareUsShown"></slot>
       <slot></slot>
       <img
-        src="/close.svg"
+        src="@/assets/images/close.svg"
         alt="Закрыть"
         class="popup__close"
         @click="toggleQuiz"
@@ -93,18 +93,6 @@ export default {
   color: #f00;
   font-size: 14px;
   line-height: 17px;
-}
-
-@media (max-width: 1280px) {
-}
-
-@media (max-width: 1024px) {
-}
-
-@media (max-width: 768px) {
-}
-
-@media (max-width: 568px) {
 }
 
 @media (max-width: 425px) {

@@ -1,7 +1,6 @@
 <template>
   <p class="policy">
     {{ text }}
-    <!--<nuxt-link class="policy__link" to="policy" @click.native="$emit('click')">-->
     <nuxt-link class="policy__link" to="policy" target="_blank">
       {{ link }}
     </nuxt-link>

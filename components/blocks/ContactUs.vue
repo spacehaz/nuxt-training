@@ -14,6 +14,7 @@
     <app-input
       class="contact-us__input"
       id="name"
+      placeholder="Напишите тут"
       :bordered="false"
       :isError="!isNameValid"
       v-model="name"
@@ -27,7 +28,7 @@
         <app-input
           type="email"
           class="contact-us__input"
-          :placeholder="'pochta@example.com'"
+          placeholder="pochta@example.com"
           :bordered="false"
           :type="'email'"
           :isError="!isEmailValid"
@@ -39,7 +40,7 @@
         <label class="contact-us__label" for="phone">Телефон</label>
         <app-input
           class="contact-us__input"
-          :placeholder="'+7 000 000 00 00'"
+          placeholder="+7 000 000 00 00"
           :bordered="false"
           :isError="!isPhoneValid"
           :type="'tel'"
@@ -54,7 +55,7 @@
     </label>
     <app-input
       class="contact-us__input"
-      :placeholder="'Телефон / почта и удобное время'"
+      placeholder="Телефон / почта и удобное время"
       :bordered="false"
       :isError="!isPreferredValid"
       id="comments"

@@ -33,13 +33,11 @@
           ></button>
         </div>
         <figcaption class="intro__caption">
-          <!--Все видео вы можете найте на нашем-->
           <a
             href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
             class="intro__caption-link"
             target="_blank"
           >
-            <!--YouTube канале.-->
             {{ note }}
           </a>
         </figcaption>
