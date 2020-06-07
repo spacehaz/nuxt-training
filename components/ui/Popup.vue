@@ -95,18 +95,6 @@ export default {
   line-height: 17px;
 }
 
-@media (max-width: 1280px) {
-}
-
-@media (max-width: 1024px) {
-}
-
-@media (max-width: 768px) {
-}
-
-@media (max-width: 568px) {
-}
-
 @media (max-width: 425px) {
   .popup__close {
     top: 12px;

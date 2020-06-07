@@ -1,7 +1,6 @@
 <template>
   <a
     href="#"
-    class="mobile-button"
     :class="[
       'mobile-button',
       { 'mobile-button_type_close': isMobileMenuOpened },

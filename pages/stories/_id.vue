@@ -4,7 +4,7 @@
       <div class="story__header">
         <img
           :src="API_URL + currentStory.ImageUrl[0].url"
-          alt=""
+          :alt="currentStory.ImageUrl[0].alternativeText"
           class="story__img story__img_place_outside"
         />
 
@@ -34,7 +34,7 @@
       </div>
 
       <app-previews class="story__previews" :random="true"></app-previews>
-      <app-more-btn></app-more-btn>
+      <app-more-btn />
     </app-container>
   </main>
 </template>
