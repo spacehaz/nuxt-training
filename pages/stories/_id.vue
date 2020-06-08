@@ -14,8 +14,8 @@
             «{{ currentStory.title }}»
           </h1>
           <img
-            src="https://avatars.mds.yandex.net/get-pdb/2491915/be6af928-1dd0-45fa-aa29-16a0bcc95b10/s1200"
-            alt=""
+            :src="API_URL + currentStory.ImageUrl[0].url"
+            :alt="currentStory.ImageUrl[0].alternativeText"
             class="story__img story__img_place_inside"
           />
           <div class="story__info">
