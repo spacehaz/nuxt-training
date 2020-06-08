@@ -103,9 +103,9 @@ export default {
   async fetch({ store }) {
     await store.dispatch('statistics/getStatictics');
     await store.dispatch('videos/getVideos');
-    await store.dispatch('gallery/getPhotos');
   },
-  created() {
+  async created() {
+    await this.$store.dispatch('gallery/getPhotos');
     this.$store.dispatch('stories/setStoriesPerPage', {
       storiesPerPage: this.storiesPerPage,
     });
