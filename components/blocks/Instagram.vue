@@ -60,7 +60,7 @@ export default {
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid #000;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 }
 
 .instagram__link:hover {

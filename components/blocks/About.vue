@@ -166,7 +166,7 @@ export default {
 .tabs__variant {
   margin-bottom: 10px;
   cursor: pointer;
-  transition: color 0.2s linear;
+  transition: color 0.3s linear;
 }
 
 .tabs__variant::after {

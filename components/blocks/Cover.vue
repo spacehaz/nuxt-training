@@ -99,6 +99,10 @@ export default {
   margin-top: 30px;
 }
 
+.cover__button:focus {
+  outline: none;
+}
+
 .cover__main-title {
   color: #fff;
   font-weight: 800;

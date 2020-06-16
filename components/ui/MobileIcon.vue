@@ -51,7 +51,7 @@ export default {
 .mobile-button span::after {
   content: '';
   display: block;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 .mobile-button span::before {

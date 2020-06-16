@@ -33,7 +33,7 @@ export default {
   font-weight: 500;
   font-size: 16px;
   border: 0;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
   cursor: pointer;
 }
 
@@ -46,7 +46,7 @@ export default {
   border: 2px solid #fff;
   border-radius: 60px;
   background-color: transparent;
-  transition: background-color 0.2s linear;
+  transition: background-color 0.3s linear;
 }
 
 .button:hover {
