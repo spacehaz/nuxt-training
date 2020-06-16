@@ -41,14 +41,14 @@ export default {
 @media (max-width: 1280px) {
   .share-btn {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 16px;
   }
 }
 
 @media (max-width: 425px) {
   .share-btn {
     font-size: 13px;
-    line-height: 15px;
+    line-height: 13px;
   }
 }
 </style>
