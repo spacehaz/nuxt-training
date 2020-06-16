@@ -19,7 +19,7 @@ export default {
 .share-btn {
   padding: 0 18px 0 0;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 18px;
   color: #121212;
   background-color: transparent;
   cursor: pointer;
@@ -27,7 +27,7 @@ export default {
   transition: opacity 0.3s linear;
   background-image: url('~assets/images/arrow-top-right.svg');
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: top right;
 }
 
 .share-btn:hover {
