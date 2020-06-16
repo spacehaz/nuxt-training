@@ -140,7 +140,7 @@ export default {
   display: flex;
   border: none;
   background-color: #613a93;
-  transition: background-color 0.2s linear;
+  transition: background-color 0.3s linear;
 }
 
 .intro__nav-btn:focus {

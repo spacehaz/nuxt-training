@@ -31,6 +31,7 @@ export default {
   width: 38px;
   height: 15px;
   cursor: pointer;
+  transition: opacity 0.3s linear;
 }
 
 .scroll__scroll-arrow:hover {

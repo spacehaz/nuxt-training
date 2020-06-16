@@ -1,6 +1,7 @@
 <template>
   <button type="button" class="share-btn" @click="toggleShareUs">
-    <slot>Поделитесь &#8599;</slot>
+    <!--<slot>Поделитесь &#8599;</slot>-->
+    <slot>Поделитесь </slot>
   </button>
 </template>
 
@@ -16,14 +17,17 @@ export default {
 </script>
 <style scoped>
 .share-btn {
-  padding: 0;
+  padding: 0 18px 0 0;
   font-size: 18px;
   line-height: 24px;
   color: #121212;
   background-color: transparent;
   cursor: pointer;
   border: 0;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
+  background-image: url('~assets/images/arrow-top-right.svg');
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 .share-btn:hover {

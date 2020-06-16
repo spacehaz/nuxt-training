@@ -5,7 +5,7 @@
         <h2 class="footer__title">
           {{ title }}
         </h2>
-        <app-navigation class="footer__nav" :decorate="false"></app-navigation>
+        <app-navigation class="footer__nav" />
       </div>
       <ul class="footer__socials">
         <li class="footer__socials-item">
@@ -34,7 +34,8 @@
     <app-container class="footer__copyright">
       <p class="footer__copyright-info">Рак Лечится {{ year }}</p>
       <p class="footer__copyright-info">
-        Сделано студентами Яндекс Практикум
+        Сделано студентами
+        <a href="#" class="footer__copyright-info-link">Яндекс.Практикум</a>
       </p>
     </app-container>
   </footer>
@@ -117,10 +118,18 @@ export default {
   text-decoration: none;
   color: inherit;
   border-bottom: 1px solid #000;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 }
 
 .footer__socials-link:hover {
+  opacity: 0.8;
+}
+
+.footer__copyright-info-link {
+  color: inherit;
+}
+
+.footer__copyright-info-link:hover {
   opacity: 0.8;
 }
 

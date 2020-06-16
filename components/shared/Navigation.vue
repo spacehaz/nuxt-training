@@ -1,6 +1,6 @@
 <template>
   <nav class="navigation">
-    <ul class="navigation__list" v-if="decorate">
+    <ul class="navigation__list">
       <li class="navigation__item">
         <nuxt-link
           to="/"
@@ -21,31 +21,9 @@
         </nuxt-link>
       </li>
     </ul>
-    <ul class="navigation__list" v-else>
-      <li class="navigation__item">
-        <nuxt-link to="/" class="navigation__link">
-          Главная
-        </nuxt-link>
-      </li>
-      <li class="navigation__item">
-        <nuxt-link to="/stories" class="navigation__link">
-          Истории
-        </nuxt-link>
-      </li>
-    </ul>
   </nav>
 </template>
 
-<script>
-export default {
-  props: {
-    decorate: {
-      type: Boolean,
-      default: true,
-    },
-  },
-};
-</script>
 <style scoped>
 .navigation__list {
   display: flex;
@@ -67,7 +45,7 @@ export default {
   line-height: 24px;
   color: #000;
   text-decoration: none;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 }
 
 .navigation__link:hover {

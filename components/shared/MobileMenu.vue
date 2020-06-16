@@ -1,6 +1,6 @@
 <template>
-  <transition name="fade">
-    <app-container v-if="isMobileMenuOpened" class="mobile-menu">
+  <section class="dropdown" :style="dropdown">
+    <app-container v-if="isMobileMenuOpened" class="mobile-menu" ref="menu">
       <div class="mobile-menu__links">
         <nav class="navigation">
           <ul class="navigation__list">
@@ -28,7 +28,7 @@
         <app-share-story-btn :theme="'main'" class="mobile-menu__button" />
       </div>
     </app-container>
-  </transition>
+  </section>
 </template>
 
 <script>
@@ -36,9 +36,25 @@ import Container from '@/components/shared/Container';
 import ShareStoryBtn from '@/components/ui/ShareStoryBtn';
 
 export default {
+  data() {
+    return {
+      dropdown: { height: 0 },
+    };
+  },
   computed: {
     isMobileMenuOpened() {
       return this.$store.getters['mobile-menu/isMobileMenuOpened'];
+    },
+  },
+  watch: {
+    isMobileMenuOpened() {
+      this.$nextTick(() => {
+        if (!this.$refs.menu) {
+          this.dropdown.height = 0;
+        } else {
+          this.dropdown.height = `${this.$refs.menu.$el.clientHeight}px`;
+        }
+      });
     },
   },
   components: {
@@ -91,6 +107,12 @@ export default {
 
 .navigation__link_active {
   border-bottom: 1px solid #000;
+}
+
+.dropdown {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s;
 }
 
 @media (max-width: 768px) {
