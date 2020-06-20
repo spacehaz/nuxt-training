@@ -76,6 +76,7 @@ export default {
   font-size: 22px;
   line-height: 1;
   color: #000;
+  word-break: break-word;
 }
 
 .preview-story__blockquote {

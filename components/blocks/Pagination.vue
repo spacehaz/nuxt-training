@@ -1,53 +1,60 @@
 <template>
   <div class="pagination">
     <template v-if="storiesLength !== 0">
-      <div class="pagination__default-container">
-        <ul class="pagination__list">
-          <li class="pagination__item">
-            <app-pagination-btn
-              theme="transparent"
-              size="content"
-              @click.native="setFirstPageGroup"
-              :disabled="firstRecordDisabled"
-              >Первая</app-pagination-btn
-            >
-          </li>
-          <li class="pagination__item">
-            <app-pagination-btn
-              theme="transparent"
-              direction="left"
-              @click.native="previousPageGroup"
-            ></app-pagination-btn>
-          </li>
-        </ul>
-        <ul class="pagination__list">
-          <li class="pagination__item" v-for="index in pages" :key="index">
-            <app-pagination-btn
-              :active="index === currentPage"
-              @click.native="changeCurrentPage(index)"
-            >
-              {{ index }}
-            </app-pagination-btn>
-          </li>
-        </ul>
-        <ul class="pagination__list">
-          <li class="pagination__item">
-            <app-pagination-btn
-              theme="transparent"
-              direction="right"
-              @click.native="nextPageGroup"
-            ></app-pagination-btn>
-          </li>
-          <li class="pagination__item">
-            <app-pagination-btn
-              theme="transparent"
-              size="content"
-              @click.native="setLastPageGroup"
-              :disabled="finalRecordDisabled"
-              >Последняя</app-pagination-btn
-            >
-          </li>
-        </ul>
+      <div>
+        <div class="pagination__default-container">
+          <ul class="pagination__list">
+            <li class="pagination__item">
+              <app-pagination-btn
+                theme="transparent"
+                size="content"
+                @click.native="setFirstPageGroup"
+                :disabled="firstRecordDisabled"
+                >Первая</app-pagination-btn
+              >
+            </li>
+            <li class="pagination__item">
+              <app-pagination-btn
+                theme="transparent"
+                direction="left"
+                @click.native="previousPageGroup"
+              ></app-pagination-btn>
+            </li>
+          </ul>
+          <ul class="pagination__list">
+            <li class="pagination__item" v-for="index in pages" :key="index">
+              <app-pagination-btn
+                :active="index === currentPage"
+                @click.native="changeCurrentPage(index)"
+              >
+                {{ index }}
+              </app-pagination-btn>
+            </li>
+          </ul>
+          <ul class="pagination__list">
+            <li class="pagination__item">
+              <app-pagination-btn
+                theme="transparent"
+                direction="right"
+                @click.native="nextPageGroup"
+              ></app-pagination-btn>
+            </li>
+            <li class="pagination__item">
+              <app-pagination-btn
+                theme="transparent"
+                size="content"
+                @click.native="setLastPageGroup"
+                :disabled="finalRecordDisabled"
+                >Последняя</app-pagination-btn
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="pagination__quantity pagination__quantity_default-view">
+          <p class="pagination__quantity-caption">
+            {{ currentPage }} из {{ storiesLength }}
+          </p>
+        </div>
       </div>
       <div class="pagination__mobile-container">
         <div class="pagination__mobile-container-top">
@@ -92,6 +99,11 @@
               >
             </li>
           </ul>
+          <div class="pagination__quantity pagination__quantity_mobile-view">
+            <p class="pagination__quantity-caption">
+              {{ currentPage }} из {{ storiesLength }}
+            </p>
+          </div>
           <ul class="pagination__list">
             <li class="pagination__item">
               <app-pagination-btn
@@ -106,7 +118,10 @@
         </div>
       </div>
     </template>
-    <div class="pagination__error-message-block" v-else>
+    <div
+      class="pagination__error-message-block"
+      v-if="showEmptySearch && storiesLength === 0"
+    >
       <p class="pagination__error-message-title">Ничего не найдено</p>
       <p class="pagination__error-message-text">Попробуйте еще раз.</p>
     </div>
@@ -128,25 +143,73 @@ export default {
       startIndex: 1,
     };
   },
+  props: {
+    showEmptySearch: {
+      type: Boolean,
+      default: true,
+    },
+  },
   methods: {
     //как только клацаем по кнопке меняем переходим на страницу историй
     //соответствующих позиции пагинизации
     changeCurrentPage(index) {
+      if (this.storiesLength - index >= this.navSideBtnsQuantity) {
+        this.startIndex = Math.max(1, index - this.navSideBtnsQuantity);
+      } else {
+        this.startIndex = Math.max(
+          1,
+          this.storiesLength - this.navBtnsQuantity + 1
+        );
+      }
+
       this.currentPage = index;
       this.$store.dispatch('stories/changeStoriesPage', {
         page: this.currentPage,
       });
+      this.$nuxt.$emit('changeCurrentPage', {
+        startIndex: this.startIndex,
+        currentPage: this.currentPage,
+      });
     },
     //получить следующую пачку кнопок навигации
     nextPageGroup() {
-      this.startIndex = Math.min(
-        this.startIndex + this.navBtnsQuantity,
-        this.storiesLength - this.navBtnsQuantity + 1
-      );
+      if (this.currentPage < this.storiesLength) {
+        if (
+          this.currentPage > this.navSideBtnsQuantity &&
+          this.currentPage < this.storiesLength - this.navSideBtnsQuantity
+        ) {
+          this.startIndex++;
+        }
+        this.currentPage++;
+        this.$store.dispatch('stories/changeStoriesPage', {
+          page: this.currentPage,
+        });
+        this.$nuxt.$emit('changeCurrentPage', {
+          startIndex: this.startIndex,
+          currentPage: this.currentPage,
+        });
+      }
     },
     //получить предыдущую пачку кнопок навигации
     previousPageGroup() {
-      this.startIndex = Math.max(this.startIndex - this.navBtnsQuantity, 1);
+      // this.startIndex = Math.max(this.startIndex - this.navBtnsQuantity, 1);
+      if (this.currentPage !== 1) {
+        this.currentPage--;
+
+        if (
+          this.currentPage > this.navSideBtnsQuantity &&
+          this.currentPage < this.storiesLength - this.navSideBtnsQuantity
+        ) {
+          this.startIndex--;
+        }
+        this.$store.dispatch('stories/changeStoriesPage', {
+          page: this.currentPage,
+        });
+        this.$nuxt.$emit('changeCurrentPage', {
+          startIndex: this.startIndex,
+          currentPage: this.currentPage,
+        });
+      }
     },
     //уйти на первую страницу
     setFirstPageGroup() {
@@ -176,12 +239,24 @@ export default {
     //сколько пагинация будет содержать кнопок за раз
     navBtnsQuantity() {
       if (process.browser) {
-        if (window.innerWidth <= 600) {
+        if (window.innerWidth <= 700) {
           return Math.min(3, this.storiesLength);
-        } else if (window.innerWidth <= 768) {
-          return Math.min(4, this.storiesLength);
+          // } else if (window.innerWidth <= 768) {
+          //   return Math.min(4, this.storiesLength);
         } else {
           return Math.min(5, this.storiesLength);
+        }
+      }
+    },
+    //остаток кнопок по бокам
+    navSideBtnsQuantity() {
+      if (process.browser) {
+        if (window.innerWidth <= 700) {
+          return 1;
+          // } else if (window.innerWidth <= 768) {
+          //   return Math.min(4, this.storiesLength);
+        } else {
+          return 2;
         }
       }
     },
@@ -208,6 +283,12 @@ export default {
     finalRecordDisabled() {
       return this.currentPage === this.storiesLength;
     },
+  },
+  created() {
+    this.$nuxt.$on('changeCurrentPage', payload => {
+      this.startIndex = payload.startIndex;
+      this.currentPage = payload.currentPage;
+    });
   },
 };
 </script>
@@ -252,6 +333,22 @@ export default {
   text-align: center;
 }
 
+.pagination__quantity {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination__quantity-caption {
+  font-size: 18px;
+  line-height: 22px;
+  color: #a2a2a2;
+}
+
+.pagination__quantity_mobile-view {
+  display: none;
+}
+
 @media (max-width: 568px) {
   .pagination__default-container {
     display: none;
@@ -281,6 +378,23 @@ export default {
     margin-top: 15px;
     font-size: 14px;
     line-height: 20px;
+  }
+
+  .pagination__quantity {
+    margin-top: 0;
+  }
+
+  .pagination__quantity-caption {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .pagination__quantity_default-view {
+    display: none;
+  }
+
+  .pagination__quantity_mobile-view {
+    display: block;
   }
 }
 </style>

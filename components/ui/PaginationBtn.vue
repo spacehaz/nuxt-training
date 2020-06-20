@@ -119,7 +119,13 @@ export default {
 }
 
 .pagination-btn_active {
-  background-color: #f4f4f4;
+  background-color: #613a93;
+  color: #fff;
+}
+
+.pagination-btn_active:hover {
+  background-color: #613a93;
+  color: #fff;
 }
 
 @media (max-width: 1280px) {
