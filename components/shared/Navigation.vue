@@ -31,7 +31,6 @@
 export default {
   computed: {
     isMain() {
-      console.log(this.$nuxt.$route);
       return this.$nuxt.$route.path === '/' ? 'p' : 'a';
     },
     isStories() {
