@@ -128,6 +128,7 @@ export default {
   methods: {
     async saveAnswers() {
       let isFormValid = true;
+      let errorText = '';
       if (!this.name) {
         isFormValid = false;
         this.isNameValid = false;
@@ -139,6 +140,16 @@ export default {
       if (!this.phone) {
         isFormValid = false;
         this.isPhoneValid = false;
+      } else {
+        const format = RegExp('^[\\d|\\(|\\)|\\-|\\+|\\s]{4,}$', 'g');
+        this.isPhoneValid = format.test(this.phone);
+        if (!this.isPhoneValid) {
+          isFormValid = false;
+          errorText =
+            'Телефон может только содержать цифры, скобки, дефисы, плюсы и пробелы';
+        } else {
+          errorText = '';
+        }
       }
       if (!this.preferred) {
         isFormValid = false;
@@ -163,7 +174,7 @@ export default {
         }
       } else {
         this.$store.dispatch('popup/setContentInvalid', {
-          errorText: 'Заполните все поля.',
+          errorText: errorText || 'Заполните все поля.',
         });
       }
     },
