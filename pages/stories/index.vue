@@ -17,15 +17,13 @@
             @keyup.native.enter="searchStories"
           />
           <app-button
-            v-if="isFullTextClearSearch"
             :size="'content'"
             :lowPriority="true"
-            class="stories__clear-search-btn"
+            class="stories__clear-search-btn stories__clear-search-btn_long"
             @click.native="clearSearch"
             >Очистить
           </app-button>
           <a
-            v-else
             class="stories__clear-search-btn stories__clear-search-btn_short"
             @click.prevent="clearSearch"
           >
@@ -45,10 +43,15 @@
         ></app-button>
       </div>
 
+      <app-pagination
+        class="stories__pagination stories__pagination_place_top"
+        :showEmptySearch="false"
+      />
+
       <app-previews :class="{ stories__container: storiesLength }">
       </app-previews>
 
-      <app-pagination class="stories__pagination"></app-pagination>
+      <app-pagination class="stories__pagination" />
     </app-container>
   </main>
 </template>
@@ -148,6 +151,8 @@ export default {
           return true;
         }
         return false;
+      } else {
+        return true;
       }
     },
     storiesLength() {
@@ -193,6 +198,7 @@ export default {
   height: 17px;
   cursor: pointer;
   right: 15px;
+  display: none;
 }
 
 .stories__clear-search-btn_short:hover {
@@ -269,6 +275,11 @@ export default {
   display: none;
 }
 
+.stories__pagination_place_top {
+  margin-bottom: 20px;
+  display: none;
+}
+
 @media (max-width: 1280px) {
   .stories__title {
     margin-bottom: 50px;
@@ -314,6 +325,14 @@ export default {
   .stories__featured-habits {
     margin-bottom: 40px;
   }
+
+  .stories__clear-search-btn_long {
+    display: none;
+  }
+
+  .stories__clear-search-btn_short {
+    display: block;
+  }
 }
 
 @media (max-width: 568px) {
@@ -333,6 +352,9 @@ export default {
   }
   .stories__container {
     margin-bottom: 50px;
+  }
+  .stories__pagination_place_top {
+    display: flex;
   }
 }
 

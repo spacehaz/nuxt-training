@@ -110,6 +110,7 @@ export default {
   },
   filters: {
     localDate(value) {
+      if (!value) return '';
       const date = new Date(value);
       return date.toLocaleString('ru', {
         year: 'numeric',
