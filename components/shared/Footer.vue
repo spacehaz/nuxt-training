@@ -35,7 +35,11 @@
       <p class="footer__copyright-info">Рак Лечится {{ year }}</p>
       <p class="footer__copyright-info">
         Сделано студентами
-        <a href="#" class="footer__copyright-info-link">Яндекс.Практикум</a>
+        <a
+          href="https://www.notion.so/de0ecc64f8134e178448dcbc6382046e"
+          class="footer__copyright-info-link"
+          >Яндекс.Практикум</a
+        >
       </p>
     </app-container>
   </footer>
