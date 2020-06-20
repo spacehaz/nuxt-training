@@ -7,6 +7,7 @@
           class="navigation__link"
           active-class="navigation__link_active"
           exact
+          :tag="isMain"
         >
           Главная
         </nuxt-link>
@@ -16,6 +17,8 @@
           to="/stories"
           class="navigation__link"
           active-class="navigation__link_active"
+          exact
+          :tag="isStories"
         >
           Истории
         </nuxt-link>
@@ -24,6 +27,19 @@
   </nav>
 </template>
 
+<script>
+export default {
+  computed: {
+    isMain() {
+      console.log(this.$nuxt.$route);
+      return this.$nuxt.$route.path === '/' ? 'p' : 'a';
+    },
+    isStories() {
+      return this.$nuxt.$route.path === '/stories' ? 'p' : 'a';
+    },
+  },
+};
+</script>
 <style scoped>
 .navigation__list {
   display: flex;
@@ -54,6 +70,7 @@
 
 .navigation__link_active {
   border-bottom: 1px solid #000;
+  cursor: default;
 }
 
 @media (max-width: 1280px) {
