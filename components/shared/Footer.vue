@@ -38,6 +38,7 @@
         <a
           href="https://www.notion.so/de0ecc64f8134e178448dcbc6382046e"
           class="footer__copyright-info-link"
+          target="_blank"
           >Яндекс.Практикум</a
         >
       </p>
