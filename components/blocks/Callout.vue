@@ -36,7 +36,6 @@ export default {
 <style scoped>
 .callout {
   background: #613a93;
-  border: 1px solid #000;
 }
 
 .callout__title {
@@ -95,7 +94,7 @@ export default {
     max-width: 220px;
     padding: 15px 0;
     font-size: 16px;
-    line-height: 18px;
+    line-height: 24px;
   }
 
   .callout__hashtag {

@@ -61,6 +61,7 @@ export default {
   color: #000;
   text-decoration: none;
   transition: opacity 0.3s linear;
+  display: inline-block;
 }
 
 .navigation__link:hover {
