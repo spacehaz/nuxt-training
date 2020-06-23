@@ -12,7 +12,7 @@
   text-align: center;
   text-decoration: none;
   background-color: #fbfbfb;
-  transition: background-color 0.2s linear;
+  transition: background-color 0.3s linear;
 }
 
 .more-btn:hover {

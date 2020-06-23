@@ -6,7 +6,7 @@
         <app-title :theme="theme" class="about__content-title">
           {{ title }}
         </app-title>
-        <app-flex>
+        <app-flex class="about__flex-container">
           <div class="about__paragraph-container">
             <app-paragraph
               :theme="theme"
@@ -17,6 +17,7 @@
               :theme="'light'"
               class="about__button about__button_place_desktop"
             />
+            <div class="about__lighthouse about__lighthouse_desktop"></div>
           </div>
 
           <div class="about__tabs tabs">
@@ -46,12 +47,14 @@
             <div class="tabs__container tabs__container_theme_main" v-else>
               <div class="tabs__variant-text" v-html="secondText"></div>
             </div>
+            <div class="about__sea-image"></div>
           </div>
 
           <app-share-story-btn
             :theme="'light'"
             class="about__button about__button_place_mobile"
           />
+          <div class="about__lighthouse about__lighthouse_mobile"></div>
         </app-flex>
       </div>
     </app-container>
@@ -120,8 +123,13 @@ export default {
 
 <style scoped>
 .about {
-  min-height: 650px;
+  min-height: 960px;
   background-color: #613a93;
+  overflow: hidden;
+}
+
+.about__flex-container {
+  align-items: flex-start;
 }
 
 .about__hashtag {
@@ -142,6 +150,31 @@ export default {
   margin-bottom: 32px;
 }
 
+.about__lighthouse {
+  width: 238px;
+  height: 170px;
+  margin-top: 70px;
+  background-image: url('~assets/images/lighthouse.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.about__lighthouse_mobile {
+  display: none;
+}
+
+.about__sea-image {
+  position: absolute;
+  left: -85px;
+  top: 270px;
+  width: 932px;
+  height: 320px;
+  background-image: url('~assets/images/sea.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .about__button_place_mobile {
   display: none;
 }
@@ -151,6 +184,7 @@ export default {
 }
 
 .tabs {
+  position: relative;
   display: grid;
   grid-template-columns: max-content 1fr;
   grid-gap: 40px;
@@ -166,7 +200,7 @@ export default {
 .tabs__variant {
   margin-bottom: 10px;
   cursor: pointer;
-  transition: color 0.2s linear;
+  transition: color 0.3s linear;
 }
 
 .tabs__variant::after {
@@ -230,7 +264,7 @@ export default {
 
 @media (max-width: 1280px) {
   .about {
-    min-height: 692px;
+    min-height: 908px;
   }
 
   .about__hashtag {
@@ -250,11 +284,21 @@ export default {
   .about__paragraph {
     margin-bottom: 30px;
   }
+
+  .about__lighthouse {
+    width: 218px;
+    height: 155px;
+  }
+
+  .about__sea-image {
+    width: 952px;
+    height: 292px;
+  }
 }
 
 @media (max-width: 1024px) {
   .about {
-    min-height: 570px;
+    min-height: 796px;
   }
 
   .about__hashtag {
@@ -276,6 +320,32 @@ export default {
   .tabs__container {
     max-width: 447px;
     min-height: 200px;
+  }
+
+  .about__lighthouse {
+    width: 167px;
+    height: 118px;
+  }
+
+  .about__sea-image {
+    width: 657px;
+    height: 225px;
+  }
+}
+
+@media (max-width: 890px) {
+  .about__sea-image {
+    width: 500px;
+    height: 200px;
+    left: 0;
+    top: 350px;
+  }
+}
+
+@media (max-width: 820px) {
+  .about__sea-image {
+    left: -50px;
+    top: 380px;
   }
 }
 
@@ -343,6 +413,21 @@ export default {
   .tabs__variant_active {
     border-bottom: 2px solid #fff;
   }
+
+  .about__sea-image {
+    display: none;
+  }
+
+  .about__lighthouse_desktop {
+    display: none;
+  }
+
+  .about__lighthouse_mobile {
+    display: block;
+    margin: 60px auto 0;
+    width: 198px;
+    height: 139px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -376,6 +461,12 @@ export default {
   .tabs__variant {
     margin-bottom: 0;
     margin-right: 20px;
+  }
+
+  .about__lighthouse_mobile {
+    margin-top: 50px;
+    width: 136px;
+    height: 96px;
   }
 }
 </style>

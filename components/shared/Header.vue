@@ -54,7 +54,7 @@ export default {
   line-height: 20px;
   text-decoration: none;
   color: #000000;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 }
 
 .header__logo:hover {

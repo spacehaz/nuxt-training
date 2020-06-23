@@ -19,9 +19,7 @@
             class="story__img story__img_place_inside"
           />
           <div class="story__info">
-            <app-share-btn class="social__link">
-              Поделитесь &#8599;
-            </app-share-btn>
+            <app-share-btn class="social__link" />
             <span class="story__date">{{ currentStory.date | localDate }}</span>
           </div>
         </div>
@@ -112,6 +110,7 @@ export default {
   },
   filters: {
     localDate(value) {
+      if (!value) return '';
       const date = new Date(value);
       return date.toLocaleString('ru', {
         year: 'numeric',

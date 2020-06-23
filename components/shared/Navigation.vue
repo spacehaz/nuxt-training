@@ -1,12 +1,13 @@
 <template>
   <nav class="navigation">
-    <ul class="navigation__list" v-if="decorate">
+    <ul class="navigation__list">
       <li class="navigation__item">
         <nuxt-link
           to="/"
           class="navigation__link"
           active-class="navigation__link_active"
           exact
+          :tag="isMain"
         >
           Главная
         </nuxt-link>
@@ -16,19 +17,9 @@
           to="/stories"
           class="navigation__link"
           active-class="navigation__link_active"
+          exact
+          :tag="isStories"
         >
-          Истории
-        </nuxt-link>
-      </li>
-    </ul>
-    <ul class="navigation__list" v-else>
-      <li class="navigation__item">
-        <nuxt-link to="/" class="navigation__link">
-          Главная
-        </nuxt-link>
-      </li>
-      <li class="navigation__item">
-        <nuxt-link to="/stories" class="navigation__link">
           Истории
         </nuxt-link>
       </li>
@@ -38,10 +29,12 @@
 
 <script>
 export default {
-  props: {
-    decorate: {
-      type: Boolean,
-      default: true,
+  computed: {
+    isMain() {
+      return this.$nuxt.$route.path === '/' ? 'p' : 'a';
+    },
+    isStories() {
+      return this.$nuxt.$route.path === '/stories' ? 'p' : 'a';
     },
   },
 };
@@ -67,7 +60,8 @@ export default {
   line-height: 24px;
   color: #000;
   text-decoration: none;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
+  display: inline-block;
 }
 
 .navigation__link:hover {
@@ -76,6 +70,7 @@ export default {
 
 .navigation__link_active {
   border-bottom: 1px solid #000;
+  cursor: default;
 }
 
 @media (max-width: 1280px) {

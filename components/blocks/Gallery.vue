@@ -35,7 +35,7 @@ export default {
   display: block;
   padding-top: 100%;
   position: relative;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 }
 
 .gallery__link:hover {

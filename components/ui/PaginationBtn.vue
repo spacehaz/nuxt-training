@@ -53,7 +53,7 @@ export default {
   text-align: center;
   outline: none;
   justify-content: center;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 
 .pagination-btn:focus {
@@ -87,17 +87,17 @@ export default {
 }
 
 .pagination-btn_theme_transparent:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .pagination-btn_direction_right {
-  background-image: url('~assets/images/arrow-right.svg');
+  background-image: url('~assets/images/black-arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .pagination-btn_direction_left {
-  background-image: url('~assets/images/arrow-right.svg');
+  background-image: url('~assets/images/black-arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(180deg);
@@ -114,12 +114,18 @@ export default {
 }
 
 .pagination-btn_theme_default:disabled:hover {
-  background-color: #fbfbfb;
+  background-color: #f1f1f1;
   cursor: default;
 }
 
 .pagination-btn_active {
-  background-color: #f4f4f4;
+  background-color: #613a93;
+  color: #fff;
+}
+
+.pagination-btn_active:hover {
+  background-color: #613a93;
+  color: #fff;
 }
 
 @media (max-width: 1280px) {

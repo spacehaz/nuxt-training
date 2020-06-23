@@ -43,7 +43,7 @@ export default {
 .preview-story {
   display: block;
   text-decoration: none;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 }
 
 .preview-story:hover {
@@ -76,6 +76,7 @@ export default {
   font-size: 22px;
   line-height: 1;
   color: #000;
+  word-break: break-word;
 }
 
 .preview-story__blockquote {
