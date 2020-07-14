@@ -75,9 +75,11 @@ export const mutations = {
 
 export const actions = {
   getStories: async ({ commit }) => {
-    return axios.get(process.env.API_URL + '/stories').then(response => {
-      return commit('setStories', { stories: response.data });
-    });
+    return axios
+      .get(process.env.API_URL + '/stories?_sort=id:DESC')
+      .then(response => {
+        return commit('setStories', { stories: response.data });
+      });
   },
   getStory: async ({ commit }, { id }) => {
     return axios.get(process.env.API_URL + `/stories/${id}`).then(response => {
