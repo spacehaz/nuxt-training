@@ -57,30 +57,37 @@ export default {
             hid: 'description',
             name: 'description',
             content:
-              `${this.currentStory.author}. РАКЛЕЧИТСЯ.РФ — проект Фонда Хабенского. Истории людей, победивших рак, но не свои привычки.` ||
-              '',
+              this.currentStory.seoDescription ||
+              `${this.currentStory.author}. РАКЛЕЧИТСЯ.РФ — проект Фонда Хабенского. Истории людей, победивших рак, но не свои привычки.`,
           },
           {
             hid: 'keywords',
             name: 'keywords',
-            content: 'РАКЛЕЧИТСЯ.РФ, раклечится, этонелечится',
+            content:
+              this.currentStory.seoKeywords ||
+              'РАКЛЕЧИТСЯ.РФ, раклечится, этонелечится',
           },
           {
             hid: 'og:title',
             property: 'og:title',
-            content: `${this.currentStory.author} - РАКЛЕЧИТСЯ.РФ` || '',
+            content:
+              this.currentStory.seoTitle ||
+              `${this.currentStory.author} - РАКЛЕЧИТСЯ.РФ`,
           },
           {
             hid: 'og:description',
             property: 'og:description',
             content:
-              `${this.currentStory.author}. РАКЛЕЧИТСЯ.РФ — проект Фонда Хабенского. Истории людей, победивших рак, но не свои привычки.` ||
-              '',
+              this.currentStory.seoDescription ||
+              `${this.currentStory.author}. РАКЛЕЧИТСЯ.РФ — проект Фонда Хабенского. Истории людей, победивших рак, но не свои привычки.`,
           },
           {
             hid: 'og:image',
             property: 'og:image',
-            content: `${this.currentStory.ImageUrl[0].url}` || '',
+            content:
+              process.env.API_URL +
+              (this.currentStory.ogImage ||
+                `${this.currentStory.ImageUrl[0].url}`),
           },
         ],
       };

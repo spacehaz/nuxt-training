@@ -39,6 +39,8 @@ export default {
         meta_keywords: 'РАКЛЕЧИТСЯ.РФ, раклечится, этонелечится',
         og_image: '@/assets/og_image.jpg',
       },
+      seo: {},
+      ogImage: '',
     };
   },
   head() {
@@ -49,27 +51,28 @@ export default {
           {
             hid: 'description',
             name: 'description',
-            content: this.metas.meta_description || '',
+            content: this.seo.seoDescription || this.metas.meta_description,
           },
           {
             hid: 'keywords',
             name: 'keywords',
-            content: this.metas.meta_keywords || '',
+            content: this.seo.seoKeywords || this.metas.meta_keywords,
           },
           {
             hid: 'og:title',
             property: 'og:title',
-            content: this.metas.meta_title || '',
+            content: this.seo.seoTitle || this.metas.meta_title,
           },
           {
             hid: 'og:description',
             property: 'og:description',
-            content: this.metas.meta_description || '',
+            content: this.seo.seoDescription || this.metas.meta_description,
           },
           {
             hid: 'og:image',
             property: 'og:image',
-            content: this.metas.og_image || '',
+            content:
+              process.env.API_URL + (this.ogImage || this.metas.og_image),
           },
         ],
       };
@@ -104,11 +107,22 @@ export default {
     await store.dispatch('statistics/getStatictics');
     await store.dispatch('videos/getVideos');
   },
-  async created() {
-    await this.$store.dispatch('gallery/getPhotos');
+  created() {
+    this.$store.dispatch('gallery/getPhotos');
     this.$store.dispatch('stories/setStoriesPerPage', {
       storiesPerPage: this.storiesPerPage,
     });
+
+    const pageName = this.$route.name;
+    const seo = this.$store.getters['seo/getSeo'];
+    const seoEl = seo.find(
+      el => el.pageName.toLowerCase() === pageName.toLowerCase()
+    );
+    console.log(pageName);
+    if (seoEl) {
+      this.seo = seoEl;
+      this.ogImage = seoEl.ogImage.url;
+    }
   },
 };
 </script>
