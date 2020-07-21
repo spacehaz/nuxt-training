@@ -118,7 +118,7 @@ export default {
     const seoEl = seo.find(
       el => el.pageName.toLowerCase() === pageName.toLowerCase()
     );
-    console.log(pageName);
+
     if (seoEl) {
       this.seo = seoEl;
       this.ogImage = seoEl.ogImage.url;
