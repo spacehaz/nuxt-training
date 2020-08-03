@@ -121,7 +121,7 @@ export default {
       const date = new Date(value);
       return date.toLocaleString('ru', {
         year: 'numeric',
-        month: 'long',
+        month: 'short',
         day: 'numeric',
       });
     },
