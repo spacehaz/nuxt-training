@@ -86,8 +86,9 @@ export default {
             property: 'og:image',
             content:
               process.env.API_URL +
-              (this.currentStory.ogImage ||
-                `${this.currentStory.ImageUrl[0].url}`),
+              (this.currentStory.ogImage
+                ? this.currentStory.ogImage
+                : this.currentStory.ImageUrl[0].url),
           },
         ],
       };

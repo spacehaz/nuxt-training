@@ -71,8 +71,9 @@ export default {
           {
             hid: 'og:image',
             property: 'og:image',
-            content:
-              process.env.API_URL + (this.ogImage || this.metas.og_image),
+            content: this.ogImage
+              ? `${process.env.API_URL}${this.ogImage}`
+              : this.metas.og_image,
           },
         ],
       };
