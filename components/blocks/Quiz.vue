@@ -18,7 +18,7 @@
           </p>
           <app-input
             class="quiz__input"
-            placeholder="Напишите тут"
+            :placeholder="currentPlaceHolder || 'Напишите тут'"
             v-model="currentAnswer"
           />
         </label>
@@ -87,6 +87,15 @@ export default {
     currentQuestionAnswer() {
       return this.$store.getters['quiz/getCurrentQuestionAnswer'];
     },
+    currentPlaceHolder() {
+      return this.$store.getters['quiz/getCurrentPlaceHolder'];
+    },
+    currentPattern() {
+      return this.$store.getters['quiz/getCurrentPattern'];
+    },
+    currentPatternMismatchText() {
+      return this.$store.getters['quiz/getCurrentPatternMismatchText'];
+    },
     isAnswerInvalid() {
       return !this.currentAnswer;
     },
@@ -120,6 +129,25 @@ export default {
       await this.$store.dispatch('quiz/saveAnswerAction', {
         answer: this.currentAnswer,
       });
+
+      if (this.currentPattern) {
+        if (!this.currentPattern.test(this.currentAnswer)) {
+          this.$store.commit(
+            'quiz/setErrorText',
+            this.currentPatternMismatchText
+              ? `${this.currentPatternMismatchText}`
+              : 'Введите корректную информацию'
+          );
+          this.$store.commit('quiz/setFormInvalid');
+          this.$store.dispatch('popup/setContentInvalid', {
+            errorText: this.errorText,
+          });
+          return;
+        } else {
+          this.$store.commit('quiz/setFormValid');
+          this.$store.dispatch('popup/setContentValid');
+        }
+      }
 
       if (this.isFormValid && !this.isQuizOver) {
         await this.$store.dispatch('quiz/setNextQuestion');
