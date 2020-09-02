@@ -37,6 +37,21 @@ export const getters = {
       ? state.answers[state.currentQuestion]
       : '';
   },
+  getCurrentPlaceHolder: state => {
+    return state.questions[state.currentQuestion]
+      ? state.questions[state.currentQuestion].placeholder
+      : '';
+  },
+  getCurrentPattern: state => {
+    return state.questions[state.currentQuestion]
+      ? state.questions[state.currentQuestion].pattern
+      : '';
+  },
+  getCurrentPatternMismatchText: state => {
+    return state.questions[state.currentQuestion]
+      ? state.questions[state.currentQuestion].patternMismatchText
+      : '';
+  },
   isFirstQuestion: state => {
     const questionIds = Object.keys(state.questions);
     return state.currentQuestion === Math.min(...questionIds);
@@ -208,6 +223,9 @@ export const actions = {
         key: 'phone',
         title: 'Шаг 12 из 13',
         mainQuestion: 'Телефон для связи.',
+        placeholder: '+7 000 000 00 00',
+        pattern: /^\+?\d{1}?\s*(?:\(\s*\d{3}\s*\)|\d{3})?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
+        patternMismatchText: 'Введите телефон в формате "+7 000 000 00 00"',
       },
       13: {
         key: 'email',
@@ -215,6 +233,10 @@ export const actions = {
         mainQuestion: 'Почта.',
         additionalQuestion:
           'После обработки анкеты координатор проекта свяжется с Вами для размещения Вашей истории на сайте.',
+        placeholder: 'pochta@example.com',
+        pattern: /^[\w._-]+@[\w.-]+\.[a-z]{2,}$/,
+        patternMismatchText:
+          'Введите электронную почту в формате "pochta@example.com"',
       },
     };
     commit('setQuestions', { questions });
