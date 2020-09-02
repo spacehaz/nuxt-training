@@ -12,10 +12,12 @@ export const state = () => ({
 export const getters = {
   getStories: state => {
     if (state.stories) {
-      return state.filteredStories.slice(
-        state.storiesPerPage * (state.currentPage - 1),
-        (state.currentPage - 1) * state.storiesPerPage + state.storiesPerPage
-      );
+      return state.filteredStories
+        .filter(item => !item.celebrity)
+        .slice(
+          state.storiesPerPage * (state.currentPage - 1),
+          (state.currentPage - 1) * state.storiesPerPage + state.storiesPerPage
+        );
     }
     return state.stories;
   },
@@ -76,7 +78,7 @@ export const mutations = {
 export const actions = {
   getStories: async ({ commit }) => {
     return axios
-      .get(process.env.API_URL + '/stories?_sort=id:DESC')
+      .get(process.env.API_URL + '/stories?_sort=date:DESC')
       .then(response => {
         return commit('setStories', { stories: response.data });
       });

@@ -29,6 +29,7 @@
           type="email"
           class="contact-us__input"
           placeholder="pochta@example.com"
+          pattern="^[\w._-]+@[\w.-]+\.[a-z]{2,}$"
           :bordered="false"
           :type="'email'"
           :isError="!isEmailValid"
@@ -136,17 +137,33 @@ export default {
       if (!this.email) {
         isFormValid = false;
         this.isEmailValid = false;
+      } else {
+        const format = /^[\w._-]+@[\w.-]+\.[a-z]{2,}$/;
+        this.isEmailValid = format.test(this.email);
+        if (!this.isEmailValid) {
+          console.log('here');
+          isFormValid = false;
+          this.$store.dispatch('popup/setContentInvalid', {
+            errorText: 'Введите корректный формат email',
+          });
+          return;
+        } else {
+          errorText = '';
+        }
       }
       if (!this.phone) {
         isFormValid = false;
         this.isPhoneValid = false;
       } else {
-        const format = RegExp('^[\\d|\\(|\\)|\\-|\\+|\\s]{4,}$', 'g');
+        const format = /^\+?\d{1}?\s*(?:\(\s*\d{3}\s*\)|\d{3})?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
         this.isPhoneValid = format.test(this.phone);
         if (!this.isPhoneValid) {
           isFormValid = false;
-          errorText =
-            'Телефон может только содержать цифры, скобки, дефисы, плюсы и пробелы';
+          this.$store.dispatch('popup/setContentInvalid', {
+            errorText:
+              'Телефон может только содержать цифры, скобки, дефисы, плюсы и пробелы',
+          });
+          return;
         } else {
           errorText = '';
         }
