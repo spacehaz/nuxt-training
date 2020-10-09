@@ -2,7 +2,7 @@
   <ul class="previews">
     <li class="previews__item" v-for="story in stories" :key="story.id">
       <app-preview-story
-        :imageSrc="`${API_URL}${story.ImageUrl[0].url}`"
+        :imageSrc="getImage(story)"
         :author="story.author"
         :quote="story.title"
         :id="story.id"
@@ -42,6 +42,14 @@ export default {
     return {
       API_URL: process.env.API_URL,
     };
+  },
+  methods: {
+    getImage(story) {
+      if (!story.ImageUrl[0]) {
+        return '';
+      }
+      return `${process.env.API_URL}${story.ImageUrl[0].url}`;
+    },
   },
 };
 </script>

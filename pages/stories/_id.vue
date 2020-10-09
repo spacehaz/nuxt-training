@@ -113,7 +113,11 @@ export default {
       }
     },
     currentStory() {
-      return this.$store.getters['stories/getCurrentStory'];
+      const currentStory = this.$store.getters['stories/getCurrentStory'];
+      if (currentStory.text) {
+        currentStory.text.replace('/uploads', `${this.API_URL}/uploads`);
+      }
+      return currentStory;
     },
   },
   filters: {
@@ -220,6 +224,11 @@ export default {
 .story__content >>> p:last-of-type {
   margin-bottom: 0;
 }
+
+.story__content >>> img {
+  max-width: 100%;
+}
+
 .story__share-btn {
   padding: 30px 0;
   border-top: 1px solid #efefef;
