@@ -1,5 +1,17 @@
 import axios from 'axios';
 
+const updateStoryText = story => {
+  if (story.text) {
+    if (story.text.indexOf('/uploads') > -1) {
+      story.text = story.text.replace(
+        '/uploads',
+        `${process.env.API_URL}/uploads`
+      );
+    }
+  }
+  return story;
+};
+
 export const state = () => ({
   stories: [],
   filteredStories: [],
@@ -80,12 +92,14 @@ export const actions = {
     return axios
       .get(process.env.API_URL + '/stories?_sort=date:DESC')
       .then(response => {
-        return commit('setStories', { stories: response.data });
+        return commit('setStories', {
+          stories: response.data.map(updateStoryText),
+        });
       });
   },
   getStory: async ({ commit }, { id }) => {
     return axios.get(process.env.API_URL + `/stories/${id}`).then(response => {
-      return commit('setStory', { story: response.data });
+      return commit('setStory', { story: updateStoryText(response.data) });
     });
   },
   setStoriesPerPage: ({ commit }, { storiesPerPage }) => {

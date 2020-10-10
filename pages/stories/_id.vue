@@ -3,8 +3,9 @@
     <app-container>
       <div class="story__header">
         <img
-          :src="API_URL + currentStory.ImageUrl[0].url"
-          :alt="currentStory.ImageUrl[0].alternativeText"
+          v-if="getImage(currentStory)"
+          :src="getImage(currentStory)"
+          :alt="getAlt(currentStory)"
           class="story__img story__img_place_outside"
         />
 
@@ -14,8 +15,9 @@
             «{{ currentStory.title }}»
           </h1>
           <img
-            :src="API_URL + currentStory.ImageUrl[0].url"
-            :alt="currentStory.ImageUrl[0].alternativeText"
+            v-if="getImage(currentStory)"
+            :src="getImage(currentStory)"
+            :alt="getAlt(currentStory)"
             class="story__img story__img_place_inside"
           />
           <div class="story__info">
@@ -84,11 +86,9 @@ export default {
           {
             hid: 'og:image',
             property: 'og:image',
-            content:
-              process.env.API_URL +
-              (this.currentStory.ogImage
-                ? this.currentStory.ogImage
-                : this.currentStory.ImageUrl[0].url),
+            content: this.currentStory.ogImage
+              ? `${process.env.API_URL}${this.currentStory.ogImage}`
+              : this.getImage(this.currentStory),
           },
         ],
       };
@@ -138,6 +138,22 @@ export default {
       .catch(e => {
         error({ statusCode: 404, message: 'Post not found' });
       });
+  },
+  methods: {
+    getImage(story) {
+      const img = story.ImageUrl[0];
+      if (!img) {
+        return '';
+      }
+      return `${process.env.API_URL}${img.url}`;
+    },
+    getAlt(story) {
+      const img = story.ImageUrl[0];
+      if (!img || !img.alternativeText) {
+        return '';
+      }
+      return img.alternativeText;
+    },
   },
 };
 </script>
@@ -220,6 +236,11 @@ export default {
 .story__content >>> p:last-of-type {
   margin-bottom: 0;
 }
+
+.story__content >>> img {
+  max-width: 100%;
+}
+
 .story__share-btn {
   padding: 30px 0;
   border-top: 1px solid #efefef;

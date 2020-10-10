@@ -70,6 +70,17 @@ export default {
   background-color: grey;
 }
 
+img::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: grey;
+}
+
 .preview-story__author {
   margin-bottom: 14px;
   font-weight: 600;
