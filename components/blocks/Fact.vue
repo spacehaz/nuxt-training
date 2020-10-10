@@ -1,36 +1,35 @@
 <template>
-  <div class="fact" v-if="fact.oldValue === 0">
-    <p class="fact__text">
-      {{ fact.description }}
-    </p>
+  <div class="fact">
+    <p class="fact__number">{{ fact.summary }}</p>
     <div class="fact__container">
       <div class="fact__bars">
-        <app-progress-bar
-          :currentValue="fact.currentValue"
-          :maxValue="fact.maxValue"
-        />
+        <!--        <app-progress-bar-->
+        <!--          :currentValue="fact.currentValue"-->
+        <!--          :maxValue="fact.maxValue"-->
+        <!--        />-->
+        <img :src="image" :alt="fact.description" class="fact__image" />
       </div>
-      <p class="fact__number">{{ fact.summary }}</p>
+      <p class="fact__text">{{ fact.description }}</p>
       <p class="fact__source">{{ fact.source }}</p>
     </div>
   </div>
 
-  <div class="fact" v-else>
-    <p class="fact__text">
-      {{ fact.description }}
-    </p>
-    <div class="fact__container">
-      <div class="fact__bars">
-        <app-double-progress-bar
-          :previousValue="fact.oldValue"
-          :currentValue="fact.currentValue"
-          :maxValue="fact.maxValue"
-        />
-      </div>
-      <p class="fact__number">{{ fact.summary }}</p>
-      <p class="fact__source">{{ fact.source }}</p>
-    </div>
-  </div>
+  <!--  <div class="fact" v-else>-->
+  <!--    <p class="fact__text">-->
+  <!--      {{ fact.description }}-->
+  <!--    </p>-->
+  <!--    <div class="fact__container">-->
+  <!--      <div class="fact__bars">-->
+  <!--        <app-double-progress-bar-->
+  <!--          :previousValue="fact.oldValue"-->
+  <!--          :currentValue="fact.currentValue"-->
+  <!--          :maxValue="fact.maxValue"-->
+  <!--        />-->
+  <!--      </div>-->
+  <!--      <p class="fact__number">{{ fact.summary }}</p>-->
+  <!--      <p class="fact__source">{{ fact.source }}</p>-->
+  <!--    </div>-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -43,6 +42,10 @@ export default {
     fact: {
       type: Object,
       required: true,
+    },
+    image: {
+      type: String,
+      required: false,
     },
   },
   components: {
@@ -71,20 +74,34 @@ export default {
 .fact__number {
   margin-bottom: 20px;
   font-weight: 600;
-  font-size: 38px;
+  font-size: 26px;
   line-height: 40px;
-  text-align: right;
 }
 
 .fact__source {
   font-size: 12px;
   line-height: 16px;
-  text-align: right;
   color: #666;
 }
 
 .fact__bars {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.fact__image {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.fact__container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 @media (max-width: 1280px) {

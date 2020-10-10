@@ -6,7 +6,12 @@
       </app-title>
       <div class="statistics__facts-container">
         <app-flex class="statistics__facts">
-          <app-fact v-for="fact in statistics" :key="fact.id" :fact="fact" />
+          <app-fact
+            v-for="fact in statistics"
+            :key="fact.id"
+            :fact="fact"
+            :image="images[`_${fact.id}`]"
+          />
         </app-flex>
       </div>
     </app-container>
@@ -29,6 +34,12 @@ export default {
   data() {
     return {
       theme: 'light',
+      images: {
+        _1: require('~/assets/images/statistics_1.svg'),
+        _2: require('~/assets/images/statistics_2.svg'),
+        _3: require('~/assets/images/statistics_3.svg'),
+        _4: require('~/assets/images/statistics_4.svg'),
+      },
     };
   },
   computed: {
