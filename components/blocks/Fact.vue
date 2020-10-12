@@ -1,6 +1,10 @@
 <template>
   <div class="fact">
-    <p class="fact__number">{{ fact.summary }}</p>
+    <p class="fact__number">
+      {{ fact.summary }}
+      <app-up-arrow v-if="fact.id === 3" />
+      <app-down-arrow v-if="fact.id === 4" />
+    </p>
     <div class="fact__container">
       <div class="fact__bars">
         <!--        <app-progress-bar-->
@@ -36,6 +40,8 @@
 import Flex from '@/components/shared/Flex';
 import ProgressBar from '@/components/ui/ProgressBar';
 import DoubleProgressBar from '@/components/ui/DoubleProgressBar';
+import UpArrow from '@/components/ui/UpArrow';
+import DownArrow from '@/components/ui/DownArrow';
 
 export default {
   props: {
@@ -52,6 +58,8 @@ export default {
     'app-flex': Flex,
     'app-progress-bar': ProgressBar,
     'app-double-progress-bar': DoubleProgressBar,
+    'app-up-arrow': UpArrow,
+    'app-down-arrow': DownArrow,
   },
 };
 </script>
