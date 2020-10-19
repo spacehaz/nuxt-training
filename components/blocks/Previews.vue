@@ -46,7 +46,7 @@ export default {
   methods: {
     getImage(story) {
       if (!story.ImageUrl[0]) {
-        return '';
+        return require('@/assets/images/no-image.png');
       }
       return `${process.env.API_URL}${story.ImageUrl[0].url}`;
     },
