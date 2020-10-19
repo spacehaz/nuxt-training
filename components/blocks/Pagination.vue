@@ -26,6 +26,7 @@
               <app-pagination-btn
                 :active="index === currentPage"
                 @click.native="changeCurrentPage(index)"
+                :index="String(index)"
               >
                 {{ index }}
               </app-pagination-btn>
@@ -138,11 +139,12 @@ export default {
   data() {
     return {
       //текущая страница пагинации
-      currentPage: 1,
+      currentPage: this.$route.query.page ? Number(this.$route.query.page) : 1,
       //стартовый индекс пагинации
       startIndex: 1,
     };
   },
+
   props: {
     showEmptySearch: {
       type: Boolean,
@@ -289,6 +291,9 @@ export default {
       this.startIndex = payload.startIndex;
       this.currentPage = payload.currentPage;
     });
+  },
+  mounted() {
+    this.changeCurrentPage(this.currentPage);
   },
 };
 </script>

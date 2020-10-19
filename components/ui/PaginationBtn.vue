@@ -1,6 +1,7 @@
 <template>
   <transition name="fade" mode="out-in" appear>
-    <button
+    <nuxt-link
+      :to="{ path: '/stories', query: { page: index } }"
       aria-label="Показать следующее видео"
       :class="[
         'pagination-btn',
@@ -12,13 +13,17 @@
       :disabled="disabled"
     >
       <slot></slot>
-    </button>
+    </nuxt-link>
   </transition>
 </template>
 
 <script>
 export default {
   props: {
+    index: {
+      type: String,
+      default: '1',
+    },
     theme: {
       type: String,
       default: 'default',
