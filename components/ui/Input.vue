@@ -51,12 +51,14 @@ export default {
   font-size: 18px;
   line-height: 24px;
   border: none;
+  border-radius: 0;
+  box-shadow: none;
   border-bottom: 1px solid #e7e7e7;
 }
 
 .input_bordered {
   padding-left: 10px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #e8e8e8 !important;
 }
 
 .input::placeholder {
