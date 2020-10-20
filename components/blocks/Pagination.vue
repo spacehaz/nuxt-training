@@ -321,7 +321,6 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log(from.query.page, to.query.page);
       if (from.query.page !== to.query.page) {
         this.changeCurrentPage(Number(to.query.page || '1'));
       }
