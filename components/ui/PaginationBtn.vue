@@ -1,6 +1,7 @@
 <template>
   <transition name="fade" mode="out-in" appear>
-    <button
+    <nuxt-link
+      :to="{ path: '/stories', query: { page: index } }"
       aria-label="Показать следующее видео"
       :class="[
         'pagination-btn',
@@ -12,13 +13,17 @@
       :disabled="disabled"
     >
       <slot></slot>
-    </button>
+    </nuxt-link>
   </transition>
 </template>
 
 <script>
 export default {
   props: {
+    index: {
+      type: String,
+      default: '1',
+    },
     theme: {
       type: String,
       default: 'default',
@@ -54,6 +59,8 @@ export default {
   outline: none;
   justify-content: center;
   transition: all 0.3s linear;
+  text-decoration: none;
+  color: #000;
 }
 
 .pagination-btn:focus {
@@ -94,6 +101,8 @@ export default {
   background-image: url('~assets/images/black-arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
+  text-decoration: none;
+  color: #000;
 }
 
 .pagination-btn_direction_left {

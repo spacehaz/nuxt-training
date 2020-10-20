@@ -130,10 +130,17 @@ export default {
   },
   methods: {
     searchStories() {
+      this.$store.dispatch('stories/changeStoriesPage', {
+        page: 1,
+      });
       this.$store.dispatch('stories/searchStories', this.query);
     },
     clearSearch() {
       this.query = '';
+      this.$store.dispatch('stories/changeStoriesPage', {
+        page: 1,
+      });
+      this.$router.push({ name: 'stories', params: { page: '1' } });
       this.$store.dispatch('stories/searchStories', this.query);
     },
   },
@@ -351,15 +358,15 @@ export default {
 
 @media (max-width: 568px) {
   .stories__search-btn {
-    display: none;
+    display: none !important;
   }
   .stories__mini-search-btn {
-    width: 46px;
-    height: 46px;
-    display: block;
-    background-image: url('~assets/images/search.svg');
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 46px !important;
+    height: 46px !important;
+    display: block !important;
+    background-image: url('~assets/images/search.svg') !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
   }
   .root__stories {
     padding: 50px 0;
