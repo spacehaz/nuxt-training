@@ -24,12 +24,13 @@ export const state = () => ({
 export const getters = {
   getStories: state => {
     if (state.stories) {
-      return state.filteredStories
+      const stories = state.filteredStories
         .filter(item => !item.celebrity)
         .slice(
           state.storiesPerPage * (state.currentPage - 1),
           (state.currentPage - 1) * state.storiesPerPage + state.storiesPerPage
         );
+      return stories;
     }
     return state.stories;
   },
@@ -51,7 +52,9 @@ export const getters = {
     return state.stories;
   },
   getStoriesQuantity: state => {
-    return state.filteredStories ? state.filteredStories.length : 0;
+    return state.filteredStories
+      ? state.filteredStories.filter(item => !item.celebrity).length
+      : 0;
   },
   getCurrentStory: state => {
     return state.currentStory;
@@ -78,12 +81,13 @@ export const mutations = {
   },
   searchStories: (state, query) => {
     state.query = query.toLowerCase();
-    state.filteredStories = state.stories.filter(
-      story =>
-        story.title.toLowerCase().includes(state.query) ||
-        story.author.toLowerCase().includes(state.query) ||
-        story.text.toLowerCase().includes(state.query)
-    );
+    state.filteredStories = state.stories.filter(story => {
+      return (
+        (story.title || '').toLowerCase().includes(state.query) ||
+        (story.author || '').toLowerCase().includes(state.query) ||
+        (story.text || '').toLowerCase().includes(state.query)
+      );
+    });
   },
 };
 

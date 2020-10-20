@@ -130,10 +130,17 @@ export default {
   },
   methods: {
     searchStories() {
+      this.$store.dispatch('stories/changeStoriesPage', {
+        page: 1,
+      });
       this.$store.dispatch('stories/searchStories', this.query);
     },
     clearSearch() {
       this.query = '';
+      this.$store.dispatch('stories/changeStoriesPage', {
+        page: 1,
+      });
+      this.$router.push({ name: 'stories', params: { page: '1' } });
       this.$store.dispatch('stories/searchStories', this.query);
     },
   },

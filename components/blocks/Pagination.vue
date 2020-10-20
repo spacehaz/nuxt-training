@@ -1,6 +1,6 @@
 <template>
   <div class="pagination">
-    <template v-if="storiesLength !== 0">
+    <template v-if="storiesLength !== 0 && pages.length > 1">
       <div>
         <div class="pagination__default-container">
           <ul class="pagination__list">
@@ -294,6 +294,14 @@ export default {
   },
   mounted() {
     this.changeCurrentPage(this.currentPage);
+  },
+  watch: {
+    $route(to, from) {
+      console.log(from.query.page, to.query.page);
+      if (from.query.page !== to.query.page) {
+        this.changeCurrentPage(Number(to.query.page || '1'));
+      }
+    },
   },
 };
 </script>

@@ -59,6 +59,8 @@ export default {
   outline: none;
   justify-content: center;
   transition: all 0.3s linear;
+  text-decoration: none;
+  color: #000;
 }
 
 .pagination-btn:focus {
@@ -99,6 +101,8 @@ export default {
   background-image: url('~assets/images/black-arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
+  text-decoration: none;
+  color: #000;
 }
 
 .pagination-btn_direction_left {
