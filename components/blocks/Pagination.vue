@@ -1,149 +1,147 @@
 <template>
-  <div class="pagination">
-    <template v-if="storiesLength !== 0 && pages.length > 1">
-      <div>
-        <div class="pagination__default-container">
-          <ul class="pagination__list">
-            <li class="pagination__item">
-              <app-pagination-btn
-                theme="transparent"
-                size="content"
-                @click.native="setFirstPageGroup"
-                :disabled="firstRecordDisabled"
-                :index="1"
-                >Первая</app-pagination-btn
-              >
-            </li>
-            <li class="pagination__item">
-              <app-pagination-btn
-                theme="transparent"
-                direction="left"
-                :index="String(currentPage - 1 <= 0 ? 1 : currentPage - 1)"
-                :disabled="firstRecordDisabled"
-                @click.native="previousPageGroup"
-              ></app-pagination-btn>
-            </li>
-          </ul>
-          <ul class="pagination__list">
-            <li class="pagination__item" v-for="index in pages" :key="index">
-              <app-pagination-btn
-                :active="index === currentPage"
-                @click.native="changeCurrentPage(index)"
-                :index="String(index)"
-              >
-                {{ index }}
-              </app-pagination-btn>
-            </li>
-          </ul>
-          <ul class="pagination__list">
-            <li class="pagination__item">
-              <app-pagination-btn
-                theme="transparent"
-                direction="right"
-                @click.native="nextPageGroup"
-                :index="
-                  String(
-                    currentPage + 1 >= storiesLength
-                      ? storiesLength
-                      : currentPage + 1
-                  )
-                "
-                :disabled="finalRecordDisabled"
-              ></app-pagination-btn>
-            </li>
-            <li class="pagination__item">
-              <app-pagination-btn
-                theme="transparent"
-                size="content"
-                @click.native="setLastPageGroup"
-                :disabled="finalRecordDisabled"
-                :index="String(storiesLength)"
-                >Последняя</app-pagination-btn
-              >
-            </li>
-          </ul>
-        </div>
-        <div class="pagination__quantity pagination__quantity_default-view">
+  <div class="pagination" v-if="storiesLength !== 0 && pages.length > 1">
+    <div>
+      <div class="pagination__default-container">
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              size="content"
+              @click.native="setFirstPageGroup"
+              :disabled="firstRecordDisabled"
+              :index="1"
+              >Первая</app-pagination-btn
+            >
+          </li>
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              direction="left"
+              :index="String(currentPage - 1 <= 0 ? 1 : currentPage - 1)"
+              :disabled="firstRecordDisabled"
+              @click.native="previousPageGroup"
+            ></app-pagination-btn>
+          </li>
+        </ul>
+        <ul class="pagination__list">
+          <li class="pagination__item" v-for="index in pages" :key="index">
+            <app-pagination-btn
+              :active="index === currentPage"
+              @click.native="changeCurrentPage(index)"
+              :index="String(index)"
+            >
+              {{ index }}
+            </app-pagination-btn>
+          </li>
+        </ul>
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              direction="right"
+              @click.native="nextPageGroup"
+              :index="
+                String(
+                  currentPage + 1 >= storiesLength
+                    ? storiesLength
+                    : currentPage + 1
+                )
+              "
+              :disabled="finalRecordDisabled"
+            ></app-pagination-btn>
+          </li>
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              size="content"
+              @click.native="setLastPageGroup"
+              :disabled="finalRecordDisabled"
+              :index="String(storiesLength)"
+              >Последняя</app-pagination-btn
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="pagination__quantity pagination__quantity_default-view">
+        <p class="pagination__quantity-caption">
+          {{ currentPage }} из {{ storiesLength }}
+        </p>
+      </div>
+    </div>
+    <div class="pagination__mobile-container">
+      <div class="pagination__mobile-container-top">
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              direction="left"
+              @click.native="previousPageGroup"
+              :index="String(currentPage - 1 <= 0 ? 1 : currentPage - 1)"
+              :disabled="firstRecordDisabled"
+            ></app-pagination-btn>
+          </li>
+        </ul>
+        <ul class="pagination__list">
+          <li class="pagination__item" v-for="index in pages" :key="index">
+            <app-pagination-btn
+              :active="index === currentPage"
+              @click.native="changeCurrentPage(index)"
+              :index="String(index)"
+            >
+              {{ index }}
+            </app-pagination-btn>
+          </li>
+        </ul>
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              direction="right"
+              @click.native="nextPageGroup"
+              :index="
+                String(
+                  currentPage + 1 >= storiesLength
+                    ? storiesLength
+                    : currentPage + 1
+                )
+              "
+              :disabled="finalRecordDisabled"
+            ></app-pagination-btn>
+          </li>
+        </ul>
+      </div>
+      <div class="pagination__mobile-container-bottom">
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              size="content"
+              @click.native="setFirstPageGroup"
+              :disabled="firstRecordDisabled"
+              :index="1"
+              >Первая</app-pagination-btn
+            >
+          </li>
+        </ul>
+        <div class="pagination__quantity pagination__quantity_mobile-view">
           <p class="pagination__quantity-caption">
             {{ currentPage }} из {{ storiesLength }}
           </p>
         </div>
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <app-pagination-btn
+              theme="transparent"
+              size="content"
+              @click.native="setLastPageGroup"
+              :disabled="finalRecordDisabled"
+              :index="String(storiesLength)"
+              >Последняя</app-pagination-btn
+            >
+          </li>
+        </ul>
       </div>
-      <div class="pagination__mobile-container">
-        <div class="pagination__mobile-container-top">
-          <ul class="pagination__list">
-            <li class="pagination__item">
-              <app-pagination-btn
-                theme="transparent"
-                direction="left"
-                @click.native="previousPageGroup"
-                :index="String(currentPage - 1 <= 0 ? 1 : currentPage - 1)"
-                :disabled="firstRecordDisabled"
-              ></app-pagination-btn>
-            </li>
-          </ul>
-          <ul class="pagination__list">
-            <li class="pagination__item" v-for="index in pages" :key="index">
-              <app-pagination-btn
-                :active="index === currentPage"
-                @click.native="changeCurrentPage(index)"
-                :index="String(index)"
-              >
-                {{ index }}
-              </app-pagination-btn>
-            </li>
-          </ul>
-          <ul class="pagination__list">
-            <li class="pagination__item">
-              <app-pagination-btn
-                theme="transparent"
-                direction="right"
-                @click.native="nextPageGroup"
-                :index="
-                  String(
-                    currentPage + 1 >= storiesLength
-                      ? storiesLength
-                      : currentPage + 1
-                  )
-                "
-                :disabled="finalRecordDisabled"
-              ></app-pagination-btn>
-            </li>
-          </ul>
-        </div>
-        <div class="pagination__mobile-container-bottom">
-          <ul class="pagination__list">
-            <li class="pagination__item">
-              <app-pagination-btn
-                theme="transparent"
-                size="content"
-                @click.native="setFirstPageGroup"
-                :disabled="firstRecordDisabled"
-                :index="1"
-                >Первая</app-pagination-btn
-              >
-            </li>
-          </ul>
-          <div class="pagination__quantity pagination__quantity_mobile-view">
-            <p class="pagination__quantity-caption">
-              {{ currentPage }} из {{ storiesLength }}
-            </p>
-          </div>
-          <ul class="pagination__list">
-            <li class="pagination__item">
-              <app-pagination-btn
-                theme="transparent"
-                size="content"
-                @click.native="setLastPageGroup"
-                :disabled="finalRecordDisabled"
-                :index="String(storiesLength)"
-                >Последняя</app-pagination-btn
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </template>
+    </div>
     <div
       class="pagination__error-message-block"
       v-if="showEmptySearch && storiesLength === 0"
@@ -152,6 +150,7 @@
       <p class="pagination__error-message-text">Попробуйте еще раз.</p>
     </div>
   </div>
+  <div v-else />
 </template>
 
 <script>
