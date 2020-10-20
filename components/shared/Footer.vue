@@ -5,6 +5,19 @@
         <h2 class="footer__title">
           {{ title }}
         </h2>
+        <p class="footer__text">
+          Благотворительный Фонд Константина Хабенского с апреля 2008 года
+          делает все возможное, чтобы дети с опухолями мозга вовремя получали
+          всю необходимую медицинскую помощь и скорее возвращались к полноценной
+          жизни. За это время адресную помощь получили более 2800 подопечных.
+          Фонд не только оплачивает диагностику и лечение детей, но и проводит
+          информационную работу с родителями, с помощью курсов и тренингов
+          повышает квалификацию врачей, помогает оснащать профильные отделения
+          российских медицинских учреждений, а также организует реабилитационные
+          программы.
+        </p>
+      </div>
+      <div class="footer__menu">
         <app-navigation class="footer__nav" />
       </div>
       <ul class="footer__socials">
@@ -74,8 +87,7 @@ export default {
 }
 
 .footer__title {
-  max-width: 340px;
-  margin-right: 102px;
+  margin-bottom: 26px;
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
@@ -88,7 +100,12 @@ export default {
 }
 
 .footer__info {
-  display: flex;
+  max-width: 500px;
+}
+
+.footer__text {
+  color: #a3a3a3;
+  font-size: 12px;
 }
 
 .footer__copyright {
@@ -169,6 +186,10 @@ export default {
     margin-bottom: 90px;
   }
 
+  .footer__info {
+    max-width: 400px;
+  }
+
   .footer__socials {
     min-width: 221px;
   }
@@ -196,6 +217,10 @@ export default {
     max-width: 268px;
   }
 
+  .footer__info {
+    max-width: 300px;
+  }
+
   .footer__socials-item {
     margin-bottom: 14px;
   }
@@ -205,6 +230,10 @@ export default {
   .footer__row {
     display: block;
     margin-bottom: 50px;
+  }
+
+  .footer__menu {
+    margin-bottom: 18px;
   }
 
   .footer__info {

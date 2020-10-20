@@ -54,7 +54,7 @@
             :theme="'light'"
             class="about__button about__button_place_mobile"
           />
-          <div class="about__lighthouse about__lighthouse_mobile"></div>
+          <div class="about__sea-image about__sea_mobile"></div>
         </app-flex>
       </div>
     </app-container>
@@ -160,10 +160,6 @@ export default {
   background-size: contain;
 }
 
-.about__lighthouse_mobile {
-  display: none;
-}
-
 .about__sea-image {
   position: absolute;
   left: -85px;
@@ -173,6 +169,13 @@ export default {
   background-image: url('~assets/images/sea.svg');
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.about__sea_mobile {
+  display: none;
+  position: relative;
+  left: 0px;
+  top: 0px;
 }
 
 .about__button_place_mobile {
@@ -422,11 +425,13 @@ export default {
     display: none;
   }
 
-  .about__lighthouse_mobile {
+  .about__sea_mobile {
     display: block;
     margin: 60px auto 0;
-    width: 198px;
+    width: 300px;
     height: 139px;
+    left: 0px;
+    top: 0px;
   }
 }
 
@@ -463,10 +468,13 @@ export default {
     margin-right: 20px;
   }
 
-  .about__lighthouse_mobile {
+  .about__sea_mobile {
     margin-top: 50px;
-    width: 136px;
+    display: block;
+    width: 300px;
     height: 96px;
+    left: 0px;
+    top: 0px;
   }
 }
 </style>
