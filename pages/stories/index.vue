@@ -358,15 +358,15 @@ export default {
 
 @media (max-width: 568px) {
   .stories__search-btn {
-    display: none;
+    display: none !important;
   }
   .stories__mini-search-btn {
-    width: 46px;
-    height: 46px;
-    display: block;
-    background-image: url('~assets/images/search.svg');
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 46px !important;
+    height: 46px !important;
+    display: block !important;
+    background-image: url('~assets/images/search.svg') !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
   }
   .root__stories {
     padding: 50px 0;
