@@ -10,6 +10,7 @@
                 size="content"
                 @click.native="setFirstPageGroup"
                 :disabled="firstRecordDisabled"
+                :index="1"
                 >Первая</app-pagination-btn
               >
             </li>
@@ -17,6 +18,8 @@
               <app-pagination-btn
                 theme="transparent"
                 direction="left"
+                :index="String(currentPage - 1 <= 0 ? 1 : currentPage - 1)"
+                :disabled="firstRecordDisabled"
                 @click.native="previousPageGroup"
               ></app-pagination-btn>
             </li>
@@ -38,6 +41,14 @@
                 theme="transparent"
                 direction="right"
                 @click.native="nextPageGroup"
+                :index="
+                  String(
+                    currentPage + 1 >= storiesLength
+                      ? storiesLength
+                      : currentPage + 1
+                  )
+                "
+                :disabled="finalRecordDisabled"
               ></app-pagination-btn>
             </li>
             <li class="pagination__item">
@@ -46,6 +57,7 @@
                 size="content"
                 @click.native="setLastPageGroup"
                 :disabled="finalRecordDisabled"
+                :index="String(storiesLength)"
                 >Последняя</app-pagination-btn
               >
             </li>
@@ -65,6 +77,8 @@
                 theme="transparent"
                 direction="left"
                 @click.native="previousPageGroup"
+                :index="String(currentPage - 1 <= 0 ? 1 : currentPage - 1)"
+                :disabled="firstRecordDisabled"
               ></app-pagination-btn>
             </li>
           </ul>
@@ -73,6 +87,7 @@
               <app-pagination-btn
                 :active="index === currentPage"
                 @click.native="changeCurrentPage(index)"
+                :index="String(index)"
               >
                 {{ index }}
               </app-pagination-btn>
@@ -84,6 +99,14 @@
                 theme="transparent"
                 direction="right"
                 @click.native="nextPageGroup"
+                :index="
+                  String(
+                    currentPage + 1 >= storiesLength
+                      ? storiesLength
+                      : currentPage + 1
+                  )
+                "
+                :disabled="finalRecordDisabled"
               ></app-pagination-btn>
             </li>
           </ul>
@@ -96,6 +119,7 @@
                 size="content"
                 @click.native="setFirstPageGroup"
                 :disabled="firstRecordDisabled"
+                :index="1"
                 >Первая</app-pagination-btn
               >
             </li>
@@ -112,6 +136,7 @@
                 size="content"
                 @click.native="setLastPageGroup"
                 :disabled="finalRecordDisabled"
+                :index="String(storiesLength)"
                 >Последняя</app-pagination-btn
               >
             </li>
