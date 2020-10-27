@@ -2,8 +2,7 @@
   <header class="header">
     <app-container class="header__container">
       <nuxt-link to="/" class="header__logo">
-        <img class="header__icon" src="@/assets/images/logo.png" />
-        <div>{{ title }}</div>
+        <img class="header__icon" src="@/assets/images/logo.svg" />
       </nuxt-link>
       <div class="header__links">
         <app-navigation />
@@ -67,8 +66,8 @@ export default {
 }
 
 .header__icon {
-  max-width: 50px;
   margin-right: 18px;
+  max-width: 200px;
 }
 
 .header__links {
@@ -91,7 +90,6 @@ export default {
   }
 
   .header__icon {
-    max-width: 45px;
   }
 }
 
@@ -124,7 +122,6 @@ export default {
   }
 
   .header__icon {
-    max-width: 30px;
     margin-right: 8px;
   }
 }
