@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/gtm": "^2.3.2",
     "@nuxtjs/pwa": "^3.0.0-0",
     "axios": "^0.19.2",
     "nuxt": "^2.0.0",
