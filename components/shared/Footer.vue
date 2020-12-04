@@ -52,8 +52,18 @@
           href="https://www.notion.so/de0ecc64f8134e178448dcbc6382046e"
           class="footer__copyright-info-link"
           target="_blank"
-          >Яндекс.Практикум</a
         >
+          Яндекс.Практикума
+        </a>
+        <br />
+        Автор концепции
+        <a
+          href="https://www.behance.net/isas-dreams"
+          class="footer__copyright-info-link"
+          target="_blank"
+        >
+          Ирина Волокова
+        </a>
       </p>
     </app-container>
   </footer>
@@ -145,6 +155,10 @@ export default {
 
 .footer__socials-link:hover {
   opacity: 0.8;
+}
+
+.footer__copyright-info {
+  line-height: 1.4;
 }
 
 .footer__copyright-info-link {
