@@ -89,7 +89,7 @@ export default {
     extend(config, ctx) {},
   },
   env: {
-    API_URL: 'https://strapi.kruzhok.io',
+    API_URL: 'https://api.raklechitsa.ru',
   },
   transition: {
     name: 'fade',
