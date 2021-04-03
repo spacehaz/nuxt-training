@@ -140,7 +140,6 @@ export default {
         const format = /^[\w._-]+@[\w.-]+\.[a-z]{2,}$/;
         this.isEmailValid = format.test(this.email);
         if (!this.isEmailValid) {
-          console.log('here');
           isFormValid = false;
           this.$store.dispatch('popup/setContentInvalid', {
             errorText: 'Введите корректный формат email',
@@ -181,8 +180,10 @@ export default {
         await this.$store.dispatch('contact-us/sendDataToServer');
 
         if (this.isStatusOk) {
-          this.$store.dispatch('contact-us/closeContactUs');
-          this.$store.commit('popup/togglePopupVisibility');
+          // я делаю так, потому что надо быстро. Это плохо
+          this.$store.dispatch('popup/setContentInvalid', {
+            errorText: 'Форма отправлена. Спасибо, мы с вами свяжемся.',
+          });
         } else {
           this.$store.dispatch('popup/setContentInvalid', {
             errorText: this.errorText,

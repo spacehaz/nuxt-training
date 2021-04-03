@@ -20,6 +20,9 @@ export const mutations = {
   togglePopupVisibility(state) {
     state.isPopupShown = !state.isPopupShown;
   },
+  setPopupVisibility(state, val) {
+    state.isPopupShown = val;
+  },
   setContentInvalid(state, { errorText }) {
     state.isContentValid = false;
     state.errorText = errorText;
