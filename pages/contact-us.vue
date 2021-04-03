@@ -38,6 +38,7 @@ export default {
 .contact-us__container {
   padding-top: 48px;
   padding-bottom: 48px;
+  max-width: 920px;
 }
 .contact-us__title {
   max-width: 100%;

@@ -40,6 +40,7 @@ export default {
 .your-story__container {
   padding-top: 48px;
   padding-bottom: 48px;
+  max-width: 920px;
 }
 
 .error-and-success-block {
